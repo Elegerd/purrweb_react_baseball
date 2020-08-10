@@ -1,11 +1,87 @@
+@font-face {
+  font-family: "Lato";
+  src: url("assets/fonts/Lato-Regular.ttf");
+}
+
 html,
 body,
 #app {
   height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  line-height: 1.42857143;
+}
+
+:root {
+  --primaryColor: #fff;
+  --secondaryColor: #000;
+}
+
+html,
+body {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: #cbcccd;
+}
+
+*,
+:after,
+:before {
+  background-repeat: no-repeat;
+  box-sizing: inherit;
 }
 
 #app {
-  display: flex;
-  flex-direction: column;
-  font-size: 14px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "hd hd"
+    "content content"
+    "ft ft";
+}
+
+[tabindex],
+a,
+area,
+button,
+input,
+label,
+select,
+textarea {
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+
+a {
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
+
+p {
+  font-size: 1.4rem;
+}
+
+button {
+  background-color: transparent;
+  border-style: none;
+  color: inherit;
+  font-size: 1em;
+  margin: 0;
 }

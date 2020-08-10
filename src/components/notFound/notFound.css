@@ -1,0 +1,44 @@
+.not-found {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-found__nf-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.nf-container__baseball-svg {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.nf-container__baseball-svg h3 {
+  font-size: 100px;
+}
+
+.nf-container__baseball-svg span {
+  display: inline-block;
+  background-size: cover;
+  width: 76px;
+  height: 76px;
+}
+
+.nf-container__text {
+  margin: 0;
+  font-size: 30px;
+}

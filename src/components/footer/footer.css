@@ -1,0 +1,28 @@
+footer {
+  grid-area: ft;
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  height: 40px;
+  font-size: 1.4rem;
+}
+
+footer .legal span {
+  padding-right: 10px;
+}
+
+footer .legal a,
+footer .socialMedia a {
+  padding: 8px;
+}
+
+@media (max-width: 40em) {
+  footer {
+    flex-flow: column;
+    height: 116px;
+    flex-direction: column-reverse;
+  }
+}
