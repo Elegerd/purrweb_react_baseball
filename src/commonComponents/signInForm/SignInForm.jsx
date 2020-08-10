@@ -1,23 +1,20 @@
 import React from "react";
+import { connect } from "react-redux";
 import { createForm } from "final-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLock, faUser, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import "./signUpForm.css";
+import { signIn } from "@routines/authRoutines";
+import PropTypes from "prop-types";
+import "./signInForm.css";
 
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-const onSubmit = async (values) => {
-  await sleep(300);
-  window.alert(JSON.stringify(values, 0, 2));
-};
-
-class SignUpForm extends React.Component {
-  constructor() {
-    super();
+class SignInForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onSubmit = this.onSubmit.bind(this);
     const initialState = {};
     let inConstructor = true;
-    this.form = createForm({ onSubmit });
+    this.form = createForm({ onSubmit: this.onSubmit });
 
     this.unsubscribe = this.form.subscribe(
       (formState) => {
@@ -30,19 +27,18 @@ class SignUpForm extends React.Component {
       { active: true, pristine: true, submitting: true, values: true }
     );
 
-    this.unsubscribeFields = ["email", "password", "password_confirmation"].map(
-      (fieldName) =>
-        this.form.registerField(
-          fieldName,
-          (fieldState) => {
-            if (inConstructor) {
-              initialState[fieldName] = fieldState;
-            } else {
-              this.setState({ [fieldName]: fieldState });
-            }
-          },
-          { value: true }
-        )
+    this.unsubscribeFields = ["email", "password"].map((fieldName) =>
+      this.form.registerField(
+        fieldName,
+        (fieldState) => {
+          if (inConstructor) {
+            initialState[fieldName] = fieldState;
+          } else {
+            this.setState({ [fieldName]: fieldState });
+          }
+        },
+        { value: true }
+      )
     );
 
     this.state = initialState;
@@ -54,8 +50,12 @@ class SignUpForm extends React.Component {
     this.unsubscribeFields.forEach((unsubscribe) => unsubscribe());
   }
 
+  onSubmit(user) {
+    this.props.signIn(user);
+  }
+
   render() {
-    const { formState, email, password, password_confirmation } = this.state;
+    const { formState, email, password } = this.state;
     const handleSubmit = (event) => {
       event.preventDefault();
       this.form.submit();
@@ -66,6 +66,7 @@ class SignUpForm extends React.Component {
           <div className="sf-input__container">
             <input
               name="email"
+              type="email"
               onBlur={() => email.blur()}
               onChange={(event) =>
                 email.change(event.target.value || undefined)
@@ -83,6 +84,7 @@ class SignUpForm extends React.Component {
           <div className="sf-input__container">
             <input
               name="password"
+              type="password"
               onBlur={() => password.blur()}
               onChange={(event) =>
                 password.change(event.target.value || undefined)
@@ -96,34 +98,27 @@ class SignUpForm extends React.Component {
             <FontAwesomeIcon className="icon icon-lock" icon={faLock} />
           </span>
         </div>
-        <div className="sign-form__sf-input">
-          <div className="sf-input__container">
-            <input
-              name="password_confirmation"
-              onBlur={() => password_confirmation.blur()}
-              onChange={(event) =>
-                password_confirmation.change(event.target.value || undefined)
-              }
-              onFocus={() => password_confirmation.focus()}
-              value={password_confirmation.value || ""}
-              placeholder="Confirm Password"
-            />
-          </div>
-          <span className="sf-input__icon">
-            <FontAwesomeIcon className="icon icon-check" icon={faCheck} />
-          </span>
-        </div>
-        <div className="sign-form__terms_and_privacy">
-          By clicking Sign Up, you agree to our
-          <Link to="/legal/terms"> Terms of Service </Link> and
-          <Link to="/legal/privacy"> Privacy Policy </Link>
-        </div>
         <button type="submit" disabled={formState.submitting}>
-          Sign Up
+          Sign In
         </button>
+        <div className="sign-form__forgotten">
+          <Link to="/forgotpassword">Forgotten password?</Link>
+        </div>
       </form>
     );
   }
 }
 
-export default SignUpForm;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signIn: (user) => {
+      dispatch(signIn(user));
+    },
+  };
+};
+
+SignInForm.propTypes = {
+  signIn: PropTypes.func,
+};
+
+export default connect(null, mapDispatchToProps)(SignInForm);

@@ -1,7 +1,7 @@
 import React from "react";
-import SignInForm from "@common_components/SignInForm/SignInForm";
-import "./signIn.css";
+import SignInForm from "@commonComponents/signInForm/SignInForm";
 import { Link } from "react-router-dom";
+import "./signIn.css";
 
 const SignIn = () => {
   return (

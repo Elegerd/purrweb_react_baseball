@@ -1,4 +1,12 @@
-import { setAuth } from "../routines";
+import { signIn, signUp, logOut } from "@routines/authRoutines";
+import { createReducer } from "../createReducer";
+import {
+  handleFailure,
+  handleFulfill,
+  handleSuccess,
+  handleRequest,
+  handleTrigger,
+} from "../baseHandle";
 
 const initialState = {
   data: null,
@@ -6,15 +14,33 @@ const initialState = {
   error: null,
 };
 
-export function authReducer(state = initialState, action) {
-  switch (action.type) {
-    case setAuth.TRIGGER: {
-      return {
-        ...state,
-        data: action.payload,
-      };
-    }
-    default:
-      return state;
-  }
-}
+const handleSignIn = {
+  ...handleTrigger(signIn),
+  ...handleRequest(signIn),
+  ...handleSuccess(signIn),
+  ...handleFailure(signIn),
+  ...handleFulfill(signIn),
+};
+
+const handleSignUp = {
+  ...handleTrigger(signUp),
+  ...handleRequest(signUp),
+  ...handleSuccess(signUp),
+  ...handleFailure(signUp),
+  ...handleFulfill(signUp),
+};
+
+const handleLogOut = {
+  [logOut.SUCCESS]: (state) => ({
+    ...state,
+    data: null,
+    loading: false,
+    error: null,
+  }),
+};
+
+export const authReducer = createReducer(initialState)({
+  ...handleSignIn,
+  ...handleSignUp,
+  ...handleLogOut,
+});

@@ -29,7 +29,7 @@ module.exports = {
   resolve: {
     alias: {
       "@components": path.resolve(PATHS.src, "components"),
-      "@common_components": path.resolve(PATHS.src, "common_components"),
+      "@commonComponents": path.resolve(PATHS.src, "commonComponents"),
       "@actions": path.resolve(PATHS.src, "store/actions"),
       "@reducers": path.resolve(PATHS.src, "store/reducers"),
       "@routines": path.resolve(PATHS.src, "store/routines"),

@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from "react-router";
 import App from "@components/App";
 import Auth from "@components/auth/Auth";
 import NotFound from "@components/notFound/NotFound";
-import RouteWithLayout from "@common_components/RouteWithLayout/RouteWithLayout";
+import RouteWithLayout from "@commonComponents/routeWithLayout/RouteWithLayout";
 import SignIn from "@components/signIn/SignIn";
 import SignUp from "@components/signUp/SignUp";
 

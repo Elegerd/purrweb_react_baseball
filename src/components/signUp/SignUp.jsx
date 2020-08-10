@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import SignUpForm from "@common_components/signUpForm/SignUpForm";
+import SignUpForm from "@commonComponents/signUpForm/SignUpForm";
 import classNames from "classnames";
-import "./signUp.css";
 import { Link } from "react-router-dom";
+import "./signUp.css";
 
 const SignUp = () => {
-  const [role, setRole] = useState("Player");
+  const [role, setRole] = useState("player");
 
   const renderCheckSvg = () => {
     return (
@@ -54,22 +54,22 @@ const SignUp = () => {
     <div className="sign-up__switch-role">
       <button
         className={classNames("button switch-role__button", {
-          "button-active": role === "Player",
+          "button-active": role === "player",
         })}
         type="button"
-        onClick={() => setRole("Player")}
+        onClick={() => setRole("player")}
       >
-        {role === "Player" && renderCheckSvg()}
+        {role === "player" && renderCheckSvg()}
         Sign Up as Player
       </button>
       <button
         className={classNames("button switch-role__button", {
-          "button-active": role === "Scout",
+          "button-active": role === "scout",
         })}
         type="button"
-        onClick={() => setRole("Scout")}
+        onClick={() => setRole("scout")}
       >
-        {role === "Scout" && renderCheckSvg()}
+        {role === "scout" && renderCheckSvg()}
         Sign Up as Scout
       </button>
     </div>
@@ -78,9 +78,9 @@ const SignUp = () => {
   return (
     <div className="flex-container column sign-up">
       {renderSwitchRole()}
-      {role === "Player" && renderPlayerBlock()}
-      {role === "Scout" && renderScoutBlock()}
-      <SignUpForm />
+      {role === "player" && renderPlayerBlock()}
+      {role === "scout" && renderScoutBlock()}
+      <SignUpForm role={role} />
       <div className="sign-up__su-footer">
         <div className="su-footer__text">Already registered?</div>
         <Link className="si-footer__link" to="/login">
