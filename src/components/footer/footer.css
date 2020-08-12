@@ -26,3 +26,19 @@ footer .socialMedia a {
     flex-direction: column-reverse;
   }
 }
+
+@media (max-width: 40em) {
+  footer .socialMedia {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 40em) {
+  footer .legal span {
+    display: block;
+    text-align: center;
+    padding: 5px 0;
+  }
+}

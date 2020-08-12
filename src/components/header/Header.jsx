@@ -1,10 +1,20 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import "./header.css";
+import PropTypes from "prop-types";
+import { signOut } from "@routines/authRoutines";
 
-const Header = () => {
+const Header = ({ auth }) => {
+  const dispatch = useDispatch();
+
+  const handleOnClick = (e) => {
+    e.preventDefault();
+    dispatch(signOut());
+  };
+
   return (
     <header className={"header"}>
-      <div className={"header__logo-bs"} href={"/"}>
+      <div className={"header__logo-bs"}>
         <div className={"logo-bs"}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -35,8 +45,13 @@ const Header = () => {
           </svg>
         </div>
       </div>
+      {auth && <div style={{cursor: "pointer", padding: "0 20px"}} onClick={handleOnClick}>Logout</div>}
     </header>
   );
+};
+
+Header.propTypes = {
+  auth: PropTypes.object,
 };
 
 export default Header;

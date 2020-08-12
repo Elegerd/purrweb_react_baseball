@@ -1,5 +1,5 @@
 import React from "react";
-import SignInForm from "@commonComponents/signInForm/SignInForm";
+import SignInForm from "./signInForm/SignInForm";
 import { Link } from "react-router-dom";
 import "./signIn.css";
 

@@ -25,17 +25,23 @@ module.exports = {
   },
   externals: {
     paths: PATHS,
+    config: JSON.stringify({
+      apiUrl: "https://baseballcloud-back.herokuapp.com",
+    }),
   },
   resolve: {
     alias: {
+      "@": PATHS.src,
       "@components": path.resolve(PATHS.src, "components"),
       "@commonComponents": path.resolve(PATHS.src, "commonComponents"),
+      "@store": path.resolve(PATHS.src, "store"),
       "@actions": path.resolve(PATHS.src, "store/actions"),
       "@reducers": path.resolve(PATHS.src, "store/reducers"),
       "@routines": path.resolve(PATHS.src, "store/routines"),
       "@sagas": path.resolve(PATHS.src, "store/sagas"),
       "@selectors": path.resolve(PATHS.src, "store/selectors"),
-      "@utils": path.resolve(PATHS.src, "utils"),
+      "@helpers": path.resolve(PATHS.src, "helpers"),
+      "@services": path.resolve(PATHS.src, "services"),
       "@assets": path.resolve(PATHS.src, "assets"),
     },
     extensions: [".js", ".jsx"],

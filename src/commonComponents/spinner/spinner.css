@@ -1,0 +1,9 @@
+.spinner__container {
+  display: flex;
+  width: 100%;
+}
+
+.spinner {
+  display: table;
+  margin: auto;
+}

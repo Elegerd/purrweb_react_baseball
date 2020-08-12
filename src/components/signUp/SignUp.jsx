@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SignUpForm from "@commonComponents/signUpForm/SignUpForm";
+import SignUpForm from "./signUpForm/SignUpForm";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 import "./signUp.css";

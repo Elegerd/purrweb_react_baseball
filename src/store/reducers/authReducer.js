@@ -1,4 +1,9 @@
-import { signIn, signUp, logOut } from "@routines/authRoutines";
+import {
+  signIn,
+  signUp,
+  signOut,
+  tokenVerification,
+} from "@routines/authRoutines";
 import { createReducer } from "../createReducer";
 import {
   handleFailure,
@@ -6,7 +11,7 @@ import {
   handleSuccess,
   handleRequest,
   handleTrigger,
-} from "../baseHandle";
+} from "../baseHandleActions";
 
 const initialState = {
   data: null,
@@ -30,17 +35,25 @@ const handleSignUp = {
   ...handleFulfill(signUp),
 };
 
-const handleLogOut = {
-  [logOut.SUCCESS]: (state) => ({
-    ...state,
-    data: null,
-    loading: false,
-    error: null,
-  }),
+const handleSignOut = {
+  ...handleTrigger(signOut),
+  ...handleRequest(signOut),
+  ...handleSuccess(signOut),
+  ...handleFailure(signOut),
+  ...handleFulfill(signOut),
+};
+
+const handleTokenVerification = {
+  ...handleTrigger(tokenVerification),
+  ...handleRequest(tokenVerification),
+  ...handleSuccess(tokenVerification),
+  ...handleFailure(tokenVerification),
+  ...handleFulfill(tokenVerification),
 };
 
 export const authReducer = createReducer(initialState)({
   ...handleSignIn,
   ...handleSignUp,
-  ...handleLogOut,
+  ...handleSignOut,
+  ...handleTokenVerification,
 });

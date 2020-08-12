@@ -2,4 +2,6 @@ export const SIGN_IN = "SIGN_IN";
 
 export const SIGN_UP = "SIGN_UP";
 
-export const LOG_OUT = "LOG_OUT";
+export const SIGN_OUT = "SIGN_OUT";
+
+export const TOKEN_VERIFICATION = "TOKEN_VERIFICATION";

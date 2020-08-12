@@ -3,21 +3,19 @@ import "./index.css";
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
-import configureStore from "./store/configureStore";
-import { BrowserRouter, Route } from "react-router-dom";
-import Routes from "./routes";
+import configureStore from "@store/configureStore";
+import { ConnectedRouter } from "connected-react-router";
+import history from "@helpers/history";
+import App from "@components/App";
 
-const { store, persistor } = configureStore();
+const store = configureStore();
 
 const AppWrapper = () => {
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
-          <Routes />
-        </BrowserRouter>
-      </PersistGate>
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
     </Provider>
   );
 };
