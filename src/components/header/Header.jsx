@@ -45,7 +45,14 @@ const Header = ({ auth }) => {
           </svg>
         </div>
       </div>
-      {auth && <div style={{cursor: "pointer", padding: "0 20px"}} onClick={handleOnClick}>Logout</div>}
+      {auth && (
+        <div
+          style={{ cursor: "pointer", padding: "0 20px" }}
+          onClick={handleOnClick}
+        >
+          Logout
+        </div>
+      )}
     </header>
   );
 };
