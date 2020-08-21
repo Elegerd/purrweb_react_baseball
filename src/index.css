@@ -85,3 +85,21 @@ button {
   font-size: 1em;
   margin: 0;
 }
+
+.card {
+  background: #fff;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  flex-grow: 1;
+}
+
+.error {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 8px;
+  color: #f05f62;
+}

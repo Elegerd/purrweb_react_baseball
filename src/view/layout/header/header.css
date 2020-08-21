@@ -1,0 +1,137 @@
+header {
+  grid-area: hd;
+  grid-column-end: span 2;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  color: #788b99;
+}
+
+.header {
+  background: #fff;
+  background: var(--primaryColor, #fff);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.header__logo-bs {
+  cursor: pointer;
+}
+
+.logo-bs {
+  display: flex;
+}
+
+.nav-header__link {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-flexbox;
+  display: inline-flex;
+  margin-left: 16px;
+}
+
+.nav-header__link:first-child {
+  margin-left: 0;
+}
+
+.nav-header__header-panel {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-flexbox;
+  display: inline-flex;
+  margin-left: 16px;
+}
+
+.header-panel {
+  position: relative;
+  display: inline-block;
+}
+
+.header-panel__container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.header-panel__header-avatar {
+  display: block;
+  -webkit-flex: 0 0 32px;
+  -ms-flex: 0 0 32px;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.header-panel_dropdown-panel {
+  white-space: nowrap;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.header-avatar {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 32px;
+  height: 32px;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+header nav {
+  display: flex;
+}
+
+header nav a {
+  padding: 0 8px;
+  color: #788b99 !important;
+  text-decoration: none !important;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.nav-header__avatar-header {
+  position: relative;
+  display: inline-block;
+}
+
+@media (max-width: 40em) {
+  .header .header__logo {
+    margin-bottom: 16px;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
+
+@media (max-width: 40em) {
+  .header {
+    justify-content: center;
+  }
+}

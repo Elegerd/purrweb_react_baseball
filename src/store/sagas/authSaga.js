@@ -5,12 +5,13 @@ import {
   signOut,
   tokenVerification,
 } from "@routines/authRoutines";
+import { fetchProfileData } from "@routines/profileRoutines";
 import {
   signInRequest,
   signUpRequest,
   signOutRequest,
   tokenVerificationRequest,
-} from "@helpers/auth";
+} from "@helpers/authRequest";
 import { authService } from "@services/authService";
 import history from "@helpers/history";
 
@@ -39,6 +40,7 @@ function* signInFlow({ payload }) {
     } = yield call(signInRequest, payload);
     yield call(authService.setToken, headers);
     yield put(signIn.success(data));
+    yield put(fetchProfileData());
     yield call(history.push, "/profile");
   } catch (error) {
     yield put(signIn.failure(error.message));
@@ -56,6 +58,7 @@ function* signUpFlow({ payload }) {
     } = yield call(signUpRequest, payload);
     yield call(authService.setToken, headers);
     yield put(signUp.success(data));
+    yield put(fetchProfileData());
     yield call(history.push, "/profile");
   } catch (error) {
     yield put(signUp.failure(error.message));
@@ -71,6 +74,7 @@ function* tokenVerificationFlow({ payload }) {
       data: { data },
     } = yield call(tokenVerificationRequest, payload);
     yield put(tokenVerification.success(data));
+    yield put(fetchProfileData());
   } catch (error) {
     yield put(tokenVerification.failure(error.message));
   } finally {

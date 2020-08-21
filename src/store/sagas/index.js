@@ -5,6 +5,7 @@ import {
   signOutWatcherSaga,
   tokenVerificationWatcherSaga,
 } from "./authSaga";
+import { fetchProfileDataWatcherSaga } from "@sagas/profileSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -12,5 +13,6 @@ export default function* rootSaga() {
     signUpWatcherSaga(),
     signOutWatcherSaga(),
     tokenVerificationWatcherSaga(),
+    fetchProfileDataWatcherSaga(),
   ]);
 }

@@ -32,7 +32,7 @@ module.exports = {
   resolve: {
     alias: {
       "@": PATHS.src,
-      "@components": path.resolve(PATHS.src, "components"),
+      "@view": path.resolve(PATHS.src, "view"),
       "@commonComponents": path.resolve(PATHS.src, "commonComponents"),
       "@store": path.resolve(PATHS.src, "store"),
       "@actions": path.resolve(PATHS.src, "store/actions"),
@@ -72,11 +72,15 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|gif)$/,
         loader: "file-loader",
         options: {
           name: "[hash].[ext]",
         },
+      },
+      {
+        test: /\.svg$/,
+        use: ["@svgr/webpack", "url-loader"],
       },
       {
         test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,

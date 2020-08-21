@@ -1,0 +1,56 @@
+.main-content {
+  grid-area: content;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.flex-container.column {
+  flex-flow: column;
+}
+
+.icon {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.button {
+  white-space: nowrap;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  padding: 15px 5px 17px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: #35c32a;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.13;
+  border-radius: 0;
+  border: solid 1px #35c32a;
+  background-color: #ffffff;
+  box-shadow: none;
+}
+
+.button-active {
+  background-color: #35c32a;
+  color: #ffffff;
+  border: solid 1px #35c32a;
+}
+
+@media (max-width: 40em) {
+  .main-content {
+    overflow: visible;
+  }
+}

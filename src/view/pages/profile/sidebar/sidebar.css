@@ -1,0 +1,323 @@
+.profile .side-bar {
+  overflow: auto;
+}
+
+.main-content .side-bar {
+  background: #fff;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  width: 200px;
+  overflow: auto;
+  padding: 16px;
+}
+
+.side-bar {
+  opacity: 1;
+  position: relative;
+  width: 298px;
+  -webkit-flex: 0 0 298px;
+  -ms-flex: 0 0 298px;
+  flex: 0 0 298px;
+  background: #ffffff;
+  height: auto;
+  z-index: 1;
+  display: block;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.1);
+}
+
+aside {
+  grid-area: sidebar;
+  background: #fff;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  grid-column: 1;
+  width: 200px;
+}
+
+.profile__container .user-info {
+  position: relative;
+}
+
+.profile__container .school-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-info__avatar {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.user-info__info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.user-info__first-role {
+  font-size: 16px;
+  line-height: 19px;
+  color: #788b99;
+}
+
+.user-info__second-role {
+  font-size: 16px;
+  line-height: 19px;
+  color: #788b99;
+  border-top: 1px solid #cbcccd;
+}
+
+.user-info__name {
+  font-size: 20px;
+  line-height: 24px;
+  color: #414f5a;
+  word-wrap: break-word;
+  word-break: break-all;
+  -webkit-text-align: center;
+  text-align: center;
+}
+
+.user-info__name-and-role {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.user-info__avatar .avatar__container {
+  display: block;
+}
+
+.user-info__avatar .avatar__container .avatar {
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-position: 50% 50%;
+  border-radius: 50%;
+}
+
+.personal-info .personal-info__content {
+  display: flex;
+  flex-flow: column;
+}
+
+.personal-info .personal-info__item {
+  display: flex;
+  padding: 16px 0;
+  justify-content: space-between;
+}
+
+.personal-info__item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.personal-info .personal-info__content .personal-info__item span:nth-child(1n) {
+  width: 24px;
+  height: 24px;
+  margin-right: 16px;
+}
+
+.personal-info .personal-info__content .personal-info__item span:nth-child(2n) {
+  width: auto;
+  margin-right: auto;
+}
+
+.personal-info .personal-info__content .personal-info__item span:nth-child(3n) {
+  width: auto;
+  margin: 0;
+}
+
+.user-info .edit-button {
+  position: absolute;
+  top: 12px;
+  right: 13px;
+  padding: 0;
+  display: block;
+  border-radius: 4px;
+  box-shadow: none;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 400;
+}
+
+.user-info .edit-button:focus {
+  outline: none;
+}
+
+.user-info .edit-button span {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.school-info__about-title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  position: relative;
+}
+
+.school-info__about-title::before {
+  content: "";
+  position: absolute;
+  top: 11px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #e7ebef;
+  z-index: 0;
+}
+
+.school-info__about-title div {
+  line-height: 1.25;
+  font-size: 18px;
+  font-weight: 900;
+  color: #414f5a;
+  text-align: left;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  background-color: #ffffff;
+  padding-right: 12px;
+}
+
+.school-info__about-value {
+  font-size: 16px;
+  color: #788b99;
+  line-height: 1.75;
+  word-wrap: break-word;
+}
+
+.school-info__item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.school-info__item .item__title {
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 300;
+  color: #667784;
+  margin-bottom: 3px;
+  text-align: left;
+}
+
+.school-info__item .item__value {
+  font-size: 16px;
+  color: #667784;
+  word-wrap: break-word;
+  margin-bottom: 11px;
+}
+
+@media (max-width: 40em) {
+  .profile__container .side-bar {
+    width: 100vw;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    overflow-x: auto;
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 40em) {
+  .main-content .side-bar {
+    width: 100%;
+    padding: 0;
+    overflow: unset;
+  }
+}
+
+@media (max-width: 40em) {
+  .profile__container .side-bar .user-info {
+    flex-flow: column;
+    width: 200px;
+  }
+  .profile__container .side-bar .school-info {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 40em) {
+  .profile__container .side-bar .personal-info .personal-info__content {
+    flex-flow: row;
+    min-width: 380px;
+  }
+  .profile__container
+    .side-bar
+    .personal-info
+    .personal-info__content
+    .personal-info__item {
+    flex-flow: column;
+    align-items: center;
+    flex: 0 0 75px;
+    padding: 5px 0 0;
+  }
+  .profile__container
+    .side-bar
+    .personal-info
+    .personal-info__content
+    .personal-info__item
+    span:nth-child(1n) {
+    margin: unset;
+  }
+  .profile__container
+    .side-bar
+    .personal-info
+    .personal-info__content
+    .personal-info__item
+    span:nth-child(2n) {
+    margin: unset;
+  }
+  .profile__container
+    .side-bar
+    .personal-info
+    .personal-info__content
+    .personal-info__item
+    span:nth-child(3n) {
+    width: auto;
+    margin: 0;
+  }
+}
