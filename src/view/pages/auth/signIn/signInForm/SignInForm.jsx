@@ -1,13 +1,15 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Form, Field } from "react-final-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { signIn } from "@routines/authRoutines";
+import { getAuthIsLoading } from "@selectors/authSelector";
 import "./signInForm.css";
 
 const SignInForm = () => {
+  const isLoading = useSelector(getAuthIsLoading);
   const dispatch = useDispatch();
 
   const onSubmit = (user) => {
@@ -45,7 +47,7 @@ const SignInForm = () => {
               <FontAwesomeIcon className="icon icon-lock" icon={faLock} />
             </span>
           </div>
-          <button type="submit" disabled={submitting}>
+          <button type="submit" disabled={isLoading}>
             Sign In
           </button>
           <div className="sign-form__forgotten">

@@ -1,0 +1,104 @@
+.custom-input {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+.custom-input__container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-flex: 0 0 100%;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.custom-input__input {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.custom-input__input > input {
+  height: 40px;
+  padding: 0 16px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  touch-action: manipulation;
+  display: block;
+  width: 100%;
+  border-radius: 4px;
+  background-color: #eff1f3;
+  font-size: 16px;
+  line-height: 1.13;
+  font-weight: 400;
+  color: #667784;
+  border: 1px solid transparent;
+}
+
+.custom-input__input > input:focus,
+.custom-input__input > input:active {
+  outline: none;
+  background-color: #fff;
+  border: solid 1px #48bbff;
+}
+
+.custom-input__label {
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 400;
+  color: #788b99;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.custom-input__input > input + label {
+  position: absolute;
+  cursor: text;
+  max-width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  -webkit-transform-origin: left bottom;
+  -ms-transform-origin: left bottom;
+  transform-origin: left bottom;
+  -webkit-transform: translate(17px, 15px) scale(1.15);
+  -ms-transform: translate(17px, 15px) scale(1.15);
+  transform: translate(17px, 15px) scale(1.15);
+  visibility: hidden;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  touch-action: manipulation;
+}
+
+.custom-input__input > input:focus + label {
+  -webkit-transform: translate(6px, 0px) scale(0.8);
+  -ms-transform: translate(6px, 0px) scale(0.8);
+  transform: translate(6px, 0px) scale(0.8);
+  cursor: pointer;
+  visibility: visible;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.custom-input__label:hover {
+  color: #48bbff;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.custom-input__input > input::-webkit-outer-spin-button,
+.custom-input__input > input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -1,0 +1,145 @@
+.edit-profile__names {
+  position: relative;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-between;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: space-between;
+  justify-content: space-between;
+}
+
+.edit-profile__position2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  margin-bottom: 21px;
+}
+
+.edit-profile__block-title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.edit-profile__block-title:before {
+  content: "";
+  position: absolute;
+  top: 11px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #e7ebef;
+  z-index: 0;
+}
+
+.edit-profile__block-text {
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 400;
+  -webkit-text-align: center;
+  text-align: center;
+  color: #667784;
+  font-size: 18px;
+  font-weight: 900;
+  color: #414f5a;
+  -webkit-text-align: left;
+  text-align: left;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  background-color: #ffffff;
+  padding-right: 12px;
+}
+
+.edit-profile__age {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  margin-bottom: 11px;
+}
+
+.edit-profile__feet-and-inches {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.feet-and-inches__container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-between;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: space-between;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.edit-profile__names > .custom-input,
+.feet-and-inches__container > .custom-input,
+.throws-and-bats__container > .custom-base-select {
+  width: 48%;
+  -webkit-flex: 0 0 48%;
+  -ms-flex: 0 0 48%;
+  flex: 0 0 48%;
+}
+
+.edit-profile__throws-and-bats {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.throws-and-bats__container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-between;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: space-between;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.edit-profile__position,
+.edit-profile__weight,
+.edit-profile__school,
+.edit-profile__school-year,
+.edit-profile__teams,
+.edit-profile__facility {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.edit-profile__buttons {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}

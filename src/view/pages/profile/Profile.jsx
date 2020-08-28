@@ -7,8 +7,8 @@ import {
 } from "@selectors/profileSelector";
 import Spinner from "@commonComponents/spinner/Spinner";
 import { profileDataRequest } from "@helpers/dataRequest";
-import ProgressBars from "./ProgressBars/ProgressBars";
-import CardStatistic from "./CardStatistic/CardStatistic";
+import ProgressBars from "./progressBars/ProgressBars";
+import CardStatistic from "./cardStatistic/CardStatistic";
 import PropTypes from "prop-types";
 import "./profile.css";
 
@@ -34,7 +34,7 @@ const Profile = ({ match: { params } }) => {
     })();
   }, [params]);
 
-  return isLoading ? (
+  return !currentProfile || !userProfile || isLoading ? (
     <Spinner />
   ) : (
     <>
@@ -44,7 +44,7 @@ const Profile = ({ match: { params } }) => {
         <div className="profile">
           <div className="profile__container">
             <div className="profile__content">
-              {userProfile && <Sidebar profile={userProfile} />}
+              <Sidebar profile={userProfile} />
               <main className="profile__main">
                 <ProgressBars />
                 <CardStatistic />

@@ -1,0 +1,218 @@
+.avatar-form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 23px;
+}
+
+.avatar-form__container {
+  display: block;
+  margin-bottom: 8px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.avatar-form__container .avatar__container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.avatar-form__container .avatar__container .avatar {
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-position: 50% 50%;
+  border-radius: 50%;
+}
+
+.choose-avatar {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-flex: 0 0 100%;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.choose-avatar__container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-flex: 0 0 100%;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.choose-avatar__input {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  display: none;
+}
+
+.choose-avatar__input > input {
+  display: block;
+  width: 100%;
+  height: 50px;
+  border-radius: 4px;
+  background-color: #eff1f3;
+  padding: 6px 12px 10px 37px;
+  font-size: 16px;
+  line-height: 1.13;
+  font-weight: 400;
+  color: #667784;
+  border: 1px solid transparent;
+}
+
+.choose-avatar__input > input[type="file"] {
+  padding-top: 8px;
+}
+
+.choose-avatar__input > input[type="file"] {
+  display: block;
+}
+
+.choose-avatar__input > input[type="file"]:active {
+  outline: none;
+  background-color: #fff;
+  border: solid 1px #48bbff;
+}
+
+.choose-avatar__upload-photo {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-flex: 0 0 100%;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.upload-photo {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 8px;
+}
+
+.submit-photo {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.upload-photo__label {
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 400;
+  color: #788b99;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.upload-photo__label:hover {
+  color: #48bbff;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.file-name {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-text-align: center;
+  text-align: center;
+  display: block;
+  margin-bottom: 10px;
+  color: #48bbff;
+}
+
+.file-name > label {
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 400;
+  color: #788b99;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.file-name > label:hover {
+  color: #48bbff;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.submit-photo__submit-avatar {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 20px;
+}
+
+.submit-avatar {
+  color: #48bbff;
+  font-size: 16px;
+  line-height: 1.13;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.submit-avatar:hover {
+  color: #48bbff;
+}
+
+.cancel-avatar {
+  font-size: 16px;
+  line-height: 1.13;
+  font-weight: 400;
+  color: #788b99;
+  cursor: pointer;
+}

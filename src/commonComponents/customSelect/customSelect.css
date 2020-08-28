@@ -1,0 +1,48 @@
+.custom-base-select {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-flex: 0 0 100%;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.custom-base-select__label {
+  position: absolute;
+  top: 0;
+  cursor: text;
+  max-width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-transform-origin: left bottom;
+  -ms-transform-origin: left bottom;
+  transform-origin: left bottom;
+  -webkit-transform: translate(17px, 15px) scale(1.15);
+  -ms-transform: translate(17px, 15px) scale(1.15);
+  transform: translate(17px, 15px) scale(1.15);
+  visibility: hidden;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  touch-action: manipulation;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 400;
+  color: #788b99;
+}
+
+.custom-base-select input:focus .custom-base-select__label {
+  -webkit-transform: translate(6px, 0px) scale(0.8);
+  -ms-transform: translate(6px, 0px) scale(0.8);
+  transform: translate(6px, 0px) scale(0.8);
+  cursor: pointer;
+  visibility: visible;
+  background: #fff;
+  border-radius: 4px;
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ReactComponent as Age } from "@assets/svg/age.svg";
 import { ReactComponent as Height } from "@assets/svg/height.svg";
 import { ReactComponent as Weight } from "@assets/svg/weight.svg";
@@ -6,10 +6,14 @@ import { ReactComponent as Throws } from "@assets/svg/throws.svg";
 import { ReactComponent as Bats } from "@assets/svg/bats.svg";
 import { ReactComponent as Edit } from "@assets/svg/edit.svg";
 import { firstLetterToUppercase } from "@helpers/utilities";
+import AvatarForm from "../avatarForm/AvatarForm";
+import ProfileForm from "@view/pages/profile/profileForm/ProfileForm";
 import PropTypes from "prop-types";
 import "./sidebar.css";
 
 const Sidebar = ({ profile }) => {
+  const [isEditing, setIsEditing] = useState(false);
+
   const renderPersonalInfo = () => {
     const { age, feet, inches, weight, throws_hand, bats_hand } = profile;
     const renderItem = (title, value, Icon) => {
@@ -40,7 +44,7 @@ const Sidebar = ({ profile }) => {
     const { avatar, first_name, last_name, position, position2 } = profile;
     return (
       <div className="user-info">
-        <button className="edit-button">
+        <button className="edit-button" onClick={handleOnClickEdit}>
           <span>
             <Edit />
           </span>
@@ -71,6 +75,11 @@ const Sidebar = ({ profile }) => {
         </div>
       </div>
     );
+  };
+
+  const handleOnClickEdit = (e) => {
+    e.preventDefault();
+    setIsEditing(true);
   };
 
   const renderSchoolInfo = () => {
@@ -111,9 +120,18 @@ const Sidebar = ({ profile }) => {
 
   return (
     <aside className="side-bar">
-      {renderUserInfo()}
-      {renderPersonalInfo()}
-      {renderSchoolInfo()}
+      {isEditing ? (
+        <>
+          <AvatarForm profile={profile} />
+          <ProfileForm />
+        </>
+      ) : (
+        <>
+          {renderUserInfo()}
+          {renderPersonalInfo()}
+          {renderSchoolInfo()}
+        </>
+      )}
     </aside>
   );
 };

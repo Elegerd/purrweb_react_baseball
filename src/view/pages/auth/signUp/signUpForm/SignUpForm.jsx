@@ -1,15 +1,17 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Form, Field } from "react-final-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faUser, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { signUp } from "@routines/authRoutines";
 import { required } from "@helpers/validators";
+import { getAuthIsLoading } from "@selectors/authSelector";
 import PropTypes from "prop-types";
 import "./signUpForm.css";
 
 const SignUpForm = ({ role }) => {
+  const isLoading = useSelector(getAuthIsLoading);
   const dispatch = useDispatch();
 
   const onSubmit = (user) => {
@@ -89,7 +91,7 @@ const SignUpForm = ({ role }) => {
             <Link to="/legal/terms"> Terms of Service </Link> and
             <Link to="/legal/privacy"> Privacy Policy </Link>
           </div>
-          <button type="submit" disabled={submitting || pristine}>
+          <button type="submit" disabled={isLoading}>
             Sign Up
           </button>
         </form>
