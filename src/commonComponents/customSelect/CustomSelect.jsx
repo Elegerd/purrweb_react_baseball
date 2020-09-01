@@ -7,6 +7,7 @@ const CustomSelect = ({
   input,
   placeholder,
   isSearchable = false,
+  isMulti = false,
   ...rest
 }) => {
   const customStyles = {
@@ -51,20 +52,21 @@ const CustomSelect = ({
     indicatorSeparator: () => ({
       display: "none",
     }),
-    input: (provided) => ({
-      ...provided,
-      color: "#667784",
-      "&:focus + div": {
-        color: "red",
-      },
-    }),
-    placeholder: (provided, { isMulti, isFocused }) => ({
+    input: (provided, props) => {
+      return {
+        ...provided,
+        color: "#667784",
+        paddingLeft: isMulti ? "8px" : "0",
+        marginLeft: isMulti ? "5px" : "0",
+      };
+    },
+    placeholder: (provided, { isFocused }) => ({
       position: "absolute",
       right: "0",
       top: "0",
       bottom: "0",
       left: "0",
-      padding: "0 10px 0 16px",
+      paddingLeft: "16px",
       fontSize: "16px",
       lineHeight: "38px",
       fontWeight: "400",
@@ -75,15 +77,14 @@ const CustomSelect = ({
       webkitTextOverflow: "ellipsis",
       textOverflow: "ellipsis",
     }),
-    valueContainer: (provided, { isMulti }) => ({
+    valueContainer: (provided) => ({
       ...provided,
-      height: isMulti ? "auto" : "38px",
+      minHeight: "38px",
       padding: "0",
       fontSize: "16px",
       fontWeight: "400",
       color: "#667784",
       paddingLeft: isMulti ? "0" : "16px",
-      paddingRight: isMulti ? "0" : "42px",
       overflow: "hidden",
       cursor: "default",
     }),
@@ -169,6 +170,7 @@ const CustomSelect = ({
             styles={customStyles}
             placeholder={placeholder}
             isSearchable={isSearchable}
+            isMulti={isMulti}
             valueRenderer={() => {}}
             {...input}
             {...rest}
@@ -183,6 +185,7 @@ const CustomSelect = ({
 CustomSelect.propTypes = {
   input: PropTypes.object,
   isSearchable: PropTypes.bool,
+  isMulti: PropTypes.bool,
   placeholder: PropTypes.string,
 };
 

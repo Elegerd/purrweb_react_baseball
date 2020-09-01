@@ -3,7 +3,7 @@ import { fetchProfileData } from "@routines/profileRoutines";
 import {
   currentProfileDataRequest,
   profileDataRequest,
-} from "@helpers/dataRequest";
+} from "@helpers/profileRequest";
 
 export function* fetchProfileDataWatcherSaga() {
   yield takeEvery(fetchProfileData.TRIGGER, fetchProfileDataFlow);

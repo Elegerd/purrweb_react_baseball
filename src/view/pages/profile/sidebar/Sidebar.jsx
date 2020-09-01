@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ReactComponent as Age } from "@assets/svg/age.svg";
 import { ReactComponent as Height } from "@assets/svg/height.svg";
 import { ReactComponent as Weight } from "@assets/svg/weight.svg";
 import { ReactComponent as Throws } from "@assets/svg/throws.svg";
 import { ReactComponent as Bats } from "@assets/svg/bats.svg";
 import { ReactComponent as Edit } from "@assets/svg/edit.svg";
-import { firstLetterToUppercase } from "@helpers/utilities";
+import { letterToUppercase } from "@helpers/utilities";
+import {
+  facilitiesRequest,
+  schoolsRequest,
+  teamsRequest,
+} from "@helpers/dataRequest";
 import AvatarForm from "../avatarForm/AvatarForm";
 import ProfileForm from "@view/pages/profile/profileForm/ProfileForm";
 import PropTypes from "prop-types";
@@ -13,6 +18,31 @@ import "./sidebar.css";
 
 const Sidebar = ({ profile }) => {
   const [isEditing, setIsEditing] = useState(false);
+  const [isRequesting, setIsRequesting] = useState(false);
+  const [schools, setSchools] = useState([]);
+  const [teams, setTeams] = useState([]);
+  const [facilities, setFacilities] = useState([]);
+
+  useEffect(() => {
+    if (isEditing)
+      (async () => {
+        try {
+          const promises = [
+            schoolsRequest({}),
+            teamsRequest({}),
+            facilitiesRequest({}),
+          ];
+          setIsRequesting(true);
+          const response = await Promise.all(promises);
+          setSchools(response[0]);
+          setTeams(response[1]);
+          setFacilities(response[2]);
+          setIsRequesting(false);
+        } catch (e) {
+          console.error(e);
+        }
+      })();
+  }, [isEditing]);
 
   const renderPersonalInfo = () => {
     const { age, feet, inches, weight, throws_hand, bats_hand } = profile;
@@ -33,8 +63,8 @@ const Sidebar = ({ profile }) => {
           {renderItem("Age", age, Age)}
           {renderItem("Height", `${feet || 0} ft ${inches || 0} in`, Height)}
           {renderItem("Weight", `${weight || 0} lbs`, Weight)}
-          {renderItem("Throws", firstLetterToUppercase(throws_hand), Throws)}
-          {renderItem("Bats", firstLetterToUppercase(bats_hand), Bats)}
+          {renderItem("Throws", letterToUppercase(throws_hand), Throws)}
+          {renderItem("Bats", letterToUppercase(bats_hand), Bats)}
         </div>
       </div>
     );
@@ -64,12 +94,12 @@ const Sidebar = ({ profile }) => {
           }`}</div>
           {position && (
             <div className="user-info__first-role">
-              {firstLetterToUppercase(position)}
+              {letterToUppercase(position)}
             </div>
           )}
           {position2 && (
             <div className="user-info__second-role">
-              {firstLetterToUppercase(position2)}
+              {letterToUppercase(position2)}
             </div>
           )}
         </div>
@@ -80,6 +110,11 @@ const Sidebar = ({ profile }) => {
   const handleOnClickEdit = (e) => {
     e.preventDefault();
     setIsEditing(true);
+  };
+
+  const handleOnClickCancel = (e) => {
+    e.preventDefault();
+    setIsEditing(false);
   };
 
   const renderSchoolInfo = () => {
@@ -96,10 +131,7 @@ const Sidebar = ({ profile }) => {
       <div className="school-info">
         {school && renderSchoolInfoItem("School", school.name)}
         {school_year &&
-          renderSchoolInfoItem(
-            "School Year",
-            firstLetterToUppercase(school_year)
-          )}
+          renderSchoolInfoItem("School Year", letterToUppercase(school_year))}
         {teams && teams.length
           ? renderSchoolInfoItem("Team", teams[0].name)
           : null}
@@ -123,7 +155,14 @@ const Sidebar = ({ profile }) => {
       {isEditing ? (
         <>
           <AvatarForm profile={profile} />
-          <ProfileForm />
+          <ProfileForm
+            profile={profile}
+            isRequesting={isRequesting}
+            schools={schools}
+            teams={teams}
+            facilities={facilities}
+            handleOnClickCancel={handleOnClickCancel}
+          />
         </>
       ) : (
         <>

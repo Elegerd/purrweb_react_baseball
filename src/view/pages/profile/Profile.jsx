@@ -6,7 +6,7 @@ import {
   getProfileIsLoading,
 } from "@selectors/profileSelector";
 import Spinner from "@commonComponents/spinner/Spinner";
-import { profileDataRequest } from "@helpers/dataRequest";
+import { profileDataRequest } from "@helpers/profileRequest";
 import ProgressBars from "./progressBars/ProgressBars";
 import CardStatistic from "./cardStatistic/CardStatistic";
 import PropTypes from "prop-types";
