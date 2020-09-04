@@ -1,4 +1,4 @@
-import { fetchProfileData } from "@routines/profileRoutines";
+import { fetchProfileData, updateProfile } from "@routines/profileRoutines";
 import { createReducer } from "../createReducer";
 import {
   handleFailure,
@@ -12,6 +12,7 @@ import { signOut } from "@routines/authRoutines";
 const initialState = {
   data: null,
   loading: false,
+  requesting: false,
   error: null,
 };
 
@@ -34,7 +35,33 @@ const handleSignOut = {
   ...handleSuccess(signOut),
 };
 
+const handleUpdateProfile = {
+  ...handleTrigger(updateProfile),
+  [updateProfile.REQUEST]: (state) => ({
+    ...state,
+    requesting: true,
+    error: null,
+  }),
+  [updateProfile.SUCCESS]: ({ data, ...state }, { payload }) => {
+    return {
+      ...state,
+      data: {
+        ...data,
+        ...payload,
+      },
+      error: null,
+    };
+  },
+  ...handleFailure(updateProfile),
+  [updateProfile.FULFILL]: (state, { payload }) => ({
+    ...state,
+    requesting: false,
+    error: null,
+  }),
+};
+
 export const profileReducer = createReducer(initialState)({
   ...handleFetchProfileData,
   ...handleSignOut,
+  ...handleUpdateProfile,
 });

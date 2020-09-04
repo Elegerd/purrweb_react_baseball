@@ -7,6 +7,10 @@ export const letterToUppercase = (string) =>
         .join(" ")
     : "";
 
+export const handleRequestError = (response) => {
+  if (typeof response.errors !== "undefined") throw new Error(response.errors);
+};
+
 export const toBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();

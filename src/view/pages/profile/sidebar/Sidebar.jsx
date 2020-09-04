@@ -18,7 +18,7 @@ import "./sidebar.css";
 
 const Sidebar = ({ profile }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [isRequesting, setIsRequesting] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [schools, setSchools] = useState([]);
   const [teams, setTeams] = useState([]);
   const [facilities, setFacilities] = useState([]);
@@ -32,12 +32,12 @@ const Sidebar = ({ profile }) => {
             teamsRequest({}),
             facilitiesRequest({}),
           ];
-          setIsRequesting(true);
+          setIsLoading(true);
           const response = await Promise.all(promises);
           setSchools(response[0]);
           setTeams(response[1]);
           setFacilities(response[2]);
-          setIsRequesting(false);
+          setIsLoading(false);
         } catch (e) {
           console.error(e);
         }
@@ -117,6 +117,10 @@ const Sidebar = ({ profile }) => {
     setIsEditing(false);
   };
 
+  const onChangeIsEditing = (value) => {
+    setIsEditing(value);
+  };
+
   const renderSchoolInfo = () => {
     const { school, school_year, teams, facilities, biography } = profile;
     const renderSchoolInfoItem = (title, value) => {
@@ -157,11 +161,12 @@ const Sidebar = ({ profile }) => {
           <AvatarForm profile={profile} />
           <ProfileForm
             profile={profile}
-            isRequesting={isRequesting}
+            isLoading={isLoading}
             schools={schools}
             teams={teams}
             facilities={facilities}
             handleOnClickCancel={handleOnClickCancel}
+            onChangeIsEditing={onChangeIsEditing}
           />
         </>
       ) : (

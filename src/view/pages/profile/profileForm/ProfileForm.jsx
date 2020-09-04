@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
+import ReactLoading from "react-loading";
+import { useDispatch, useSelector } from "react-redux";
 import { Form, Field } from "react-final-form";
 import { required } from "@helpers/validators";
 import CustomInput from "@commonComponents/customInput/CustomInput";
 import CustomTextarea from "@commonComponents/customTextarea/CustomTextarea";
 import CustomSelect from "@commonComponents/customSelect/CustomSelect";
+import { updateProfile } from "@routines/profileRoutines";
+import { getProfileIsRequesting } from "@selectors/profileSelector";
 import PropTypes from "prop-types";
 import "./profileForm.css";
 
@@ -12,11 +16,33 @@ const ProfileForm = ({
   teams,
   facilities,
   schools,
-  isRequesting,
+  isLoading,
+  onChangeIsEditing,
   handleOnClickCancel = () => {},
 }) => {
+  const dispatch = useDispatch();
+  const isRequesting = useSelector(getProfileIsRequesting);
   const onSubmit = (values) => {
-    console.log(values);
+    const profile = { ...values };
+    profile.bats_hand = profile.bats_hand ? profile.bats_hand.value : "none";
+    profile.throws_hand = profile.throws_hand
+      ? profile.throws_hand.value
+      : "none";
+    profile.position = profile.position ? profile.position.value : null;
+    profile.position2 = profile.position2 ? profile.position2.value : null;
+    profile.facilities = profile.facilities.map((faculty) => {
+      return { id: faculty.value, u_name: faculty.label };
+    });
+    profile.school = profile.school
+      ? { id: profile.school.value, name: profile.school.label }
+      : null;
+    profile.school_year = profile.school_year
+      ? profile.school_year.value
+      : null;
+    profile.teams = profile.teams.map((team) => {
+      return { id: team.value, name: team.label };
+    });
+    dispatch(updateProfile({ profile, callback: onChangeIsEditing }));
   };
   const [defaultFacultyOptions, setDefaultFacultyOptions] = useState(undefined);
   const [defaultTeamOptions, setDefaultTeamOptions] = useState(undefined);
@@ -40,7 +66,7 @@ const ProfileForm = ({
   }, []);
 
   useEffect(() => {
-    if (!isRequesting) {
+    if (!isLoading) {
       setDefaultFacultyOptions(
         getDefaultValues(facultyOptions, profile.facilities)
       );
@@ -52,7 +78,7 @@ const ProfileForm = ({
       );
       setDefaultTeamOptions(getDefaultValues(teamOptions, profile.teams));
     }
-  }, [isRequesting]);
+  }, [isLoading]);
 
   const teamOptions = teams.map((team) => {
     return { value: team.id, label: team.name };
@@ -89,13 +115,6 @@ const ProfileForm = ({
     { value: "pitcher", label: "Pitcher" },
   ];
 
-  const states = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-    { value: "cat", label: "Cat" },
-  ];
-
   const renderBlockTitle = (title) => (
     <div className="edit-profile__block-title">
       <div className="edit-profile__block-text">{title}</div>
@@ -113,7 +132,14 @@ const ProfileForm = ({
   return (
     <Form
       onSubmit={onSubmit}
-      render={({ handleSubmit, form, submitting, pristine, values }) => {
+      render={({
+        handleSubmit,
+        form,
+        errors,
+        submitting,
+        pristine,
+        values,
+      }) => {
         return (
           <form className="edit-profile" onSubmit={handleSubmit}>
             <div className="edit-profile__names">
@@ -184,7 +210,6 @@ const ProfileForm = ({
                     min="0"
                     placeholder={"Age *"}
                     title={"Age *"}
-                    options={states}
                     input={input}
                     error={meta.error && meta.touched ? meta.error : null}
                   />
@@ -206,6 +231,7 @@ const ProfileForm = ({
                       placeholder={"Feet *"}
                       title={"Feet *"}
                       input={input}
+                      error={meta.error && meta.touched ? meta.error : null}
                     />
                   )}
                 </Field>
@@ -222,6 +248,7 @@ const ProfileForm = ({
                       placeholder={"Inches *"}
                       title={"Inches *"}
                       input={input}
+                      error={meta.error && meta.touched ? meta.error : null}
                     />
                   )}
                 </Field>
@@ -241,6 +268,7 @@ const ProfileForm = ({
                     placeholder={"Weight *"}
                     title={"Weight *"}
                     input={input}
+                    error={meta.error && meta.touched ? meta.error : null}
                   />
                 )}
               </Field>
@@ -249,23 +277,27 @@ const ProfileForm = ({
               <div className="throws-and-bats__container">
                 <Field
                   defaultValue={defaultThrowOption}
-                  name="throws"
+                  name="throws_hand"
                   validate={required}
                 >
                   {({ input, meta }) => (
                     <CustomSelect
+                      title={"Throws *"}
                       placeholder={"Throws *"}
                       options={throwAndBatOptions}
                       input={input}
+                      error={meta.error && meta.touched ? meta.error : null}
                     />
                   )}
                 </Field>
-                <Field defaultValue={defaultBatOption} name="bats">
+                <Field defaultValue={defaultBatOption} name="bats_hand">
                   {({ input, meta }) => (
                     <CustomSelect
+                      title={"Bats *"}
                       placeholder={"Bats *"}
                       options={throwAndBatOptions}
                       input={input}
+                      error={meta.error && meta.touched ? meta.error : null}
                     />
                   )}
                 </Field>
@@ -276,7 +308,7 @@ const ProfileForm = ({
               <Field defaultValue={defaultSchoolOption} name="school">
                 {({ input, meta }) => (
                   <CustomSelect
-                    isLoading={isRequesting}
+                    isLoading={isLoading}
                     isSearchable={true}
                     placeholder={"School"}
                     options={schoolOptions}
@@ -301,7 +333,7 @@ const ProfileForm = ({
               <Field defaultValue={defaultTeamOptions} name="teams">
                 {({ input, meta }) => (
                   <CustomSelect
-                    isLoading={isRequesting}
+                    isLoading={isLoading}
                     isMulti={true}
                     isClearable={false}
                     isSearchable={true}
@@ -317,7 +349,7 @@ const ProfileForm = ({
               <Field defaultValue={defaultFacultyOptions} name="facilities">
                 {({ input, meta }) => (
                   <CustomSelect
-                    isLoading={isRequesting}
+                    isLoading={isLoading}
                     isMulti={true}
                     isClearable={false}
                     isSearchable={true}
@@ -339,12 +371,30 @@ const ProfileForm = ({
                 )}
               </Field>
             </div>
+            {Object.keys(errors).length ? (
+              <span className="error">* Fill out the required fields</span>
+            ) : null}
             <div className="edit-profile__buttons">
               <button className="button-cancel" onClick={handleOnClickCancel}>
                 Cancel
               </button>
-              <button type="submit" className="button-save">
-                Save
+              <button
+                type="submit"
+                disabled={isRequesting}
+                className="button-save"
+              >
+                {isRequesting ? (
+                  <ReactLoading
+                    delay={1}
+                    className="spinner"
+                    type={"spinningBubbles"}
+                    height={"15px"}
+                    width={"15px"}
+                    color={"#FFF"}
+                  />
+                ) : (
+                  "Save"
+                )}
               </button>
             </div>
           </form>
@@ -356,8 +406,9 @@ const ProfileForm = ({
 
 ProfileForm.propTypes = {
   profile: PropTypes.object,
-  isRequesting: PropTypes.bool,
+  isLoading: PropTypes.bool,
   handleOnClickCancel: PropTypes.func,
+  onChangeIsEditing: PropTypes.func,
   schools: PropTypes.array,
   teams: PropTypes.array,
   facilities: PropTypes.array,

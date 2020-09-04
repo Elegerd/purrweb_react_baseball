@@ -5,7 +5,9 @@ import "./customSelect.css";
 
 const CustomSelect = ({
   input,
+  title,
   placeholder,
+  error,
   isSearchable = false,
   isMulti = false,
   ...rest
@@ -52,7 +54,7 @@ const CustomSelect = ({
     indicatorSeparator: () => ({
       display: "none",
     }),
-    input: (provided, props) => {
+    input: (provided) => {
       return {
         ...provided,
         color: "#667784",
@@ -171,12 +173,14 @@ const CustomSelect = ({
             placeholder={placeholder}
             isSearchable={isSearchable}
             isMulti={isMulti}
-            valueRenderer={() => {}}
             {...input}
             {...rest}
           />
           <label className="custom-base-select__label">{placeholder}</label>
         </div>
+        {error && (
+          <span className="error">{`${title.replace("*", "")} ${error}`}</span>
+        )}
       </div>
     </div>
   );
@@ -186,7 +190,9 @@ CustomSelect.propTypes = {
   input: PropTypes.object,
   isSearchable: PropTypes.bool,
   isMulti: PropTypes.bool,
+  title: PropTypes.string,
   placeholder: PropTypes.string,
+  error: PropTypes.string,
 };
 
 export default CustomSelect;

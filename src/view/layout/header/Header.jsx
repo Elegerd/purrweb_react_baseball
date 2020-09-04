@@ -1,19 +1,50 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "@routines/authRoutines";
 import { ReactComponent as BaseballCloud } from "@assets/svg/baseballCloud.svg";
+import { ReactComponent as Arrow } from "@assets/svg/arrow.svg";
 import { Link } from "react-router-dom";
 import { getProfile } from "@selectors/profileSelector";
+import Dropdown from "rc-dropdown";
+import Menu, { Item as MenuItem } from "rc-menu";
 import "./header.css";
 
 const Header = () => {
+  const history = useHistory();
   const profile = useSelector(getProfile);
   const dispatch = useDispatch();
 
-  const handleOnClick = (e) => {
-    e.preventDefault();
+  const handleOnClickLogOut = (v) => {
     dispatch(signOut());
   };
+
+  const handleOnClickProfile = (v) => {
+    history.push("/profile");
+  };
+
+  const menuItems = [
+    <MenuItem
+      onClick={handleOnClickProfile}
+      className="dropdown-panel__item"
+      key="1"
+    >
+      My Profile
+    </MenuItem>,
+    <MenuItem
+      onClick={handleOnClickLogOut}
+      className="dropdown-panel__item"
+      key="2"
+    >
+      Log Out
+    </MenuItem>,
+  ];
+
+  const menu = (
+    <Menu selectable={false} className="dropdown-panel">
+      {menuItems}
+    </Menu>
+  );
 
   return (
     <header className={"header"}>
@@ -30,9 +61,6 @@ const Header = () => {
             <nav>
               <Link to="/leaderboard"> Leaderboard </Link>
               <Link to="/network"> Network </Link>
-              <a onClick={handleOnClick} style={{ cursor: "pointer" }}>
-                Logout
-              </a>
             </nav>
           </div>
           <div className="nav-header__header-panel">
@@ -47,7 +75,16 @@ const Header = () => {
                     />
                   </Link>
                 </div>
-                <div className="header-panel__dropdown-panel"></div>
+                <div className="header-panel__dropdown-panel">
+                  <Dropdown trigger={["click"]} overlay={menu}>
+                    <button className="dropdown-panel__button">
+                      {`${profile.first_name} ${profile.last_name}`}
+                      <span className="dropdown-panel__arrow">
+                        <Arrow />
+                      </span>
+                    </button>
+                  </Dropdown>
+                </div>
               </div>
             </div>
           </div>

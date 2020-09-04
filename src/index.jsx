@@ -1,4 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import "rc-dropdown/assets/index.css";
 import "./index.css";
 import React from "react";
 import { render } from "react-dom";

@@ -123,7 +123,7 @@ export function currentProfileDataRequest() {
     .then(({ data }) => data);
 }
 
-export function updateProfileRequest() {
+export function updateProfileRequest(profile) {
   return request
     .post("api/v1/graphql", {
       query: `
@@ -147,7 +147,8 @@ export function updateProfileRequest() {
                         recent_events {
                             id
                             event_type
-                            event_namedate
+                            event_name
+                            date
                             recent_avatars {
                                 id
                                 first_name 
@@ -172,6 +173,7 @@ export function updateProfileRequest() {
                 }
             }
         `,
+      variables: { form: profile },
     })
     .then(({ data }) => data);
 }

@@ -26,6 +26,8 @@
     "final-form": "^4.20.1",
     "history": "4.10.1",
     "prop-types": "^15.7.2",
+    "rc-dropdown": "^3.1.2",
+    "rc-menu": "^8.5.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-final-form": "^6.5.1",

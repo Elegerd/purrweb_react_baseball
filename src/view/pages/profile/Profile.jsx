@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Sidebar from "@view/pages/profile/sidebar/Sidebar";
-import {
-  getCurrentProfile,
-  getProfileIsLoading,
-} from "@selectors/profileSelector";
+import { getProfile, getProfileIsLoading } from "@selectors/profileSelector";
 import Spinner from "@commonComponents/spinner/Spinner";
 import { profileDataRequest } from "@helpers/profileRequest";
 import ProgressBars from "./progressBars/ProgressBars";
@@ -15,7 +12,7 @@ import "./profile.css";
 const Profile = ({ match: { params } }) => {
   const [hasError, setHasError] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
-  const currentProfile = useSelector(getCurrentProfile);
+  const currentProfile = useSelector(getProfile);
   const isLoading = useSelector(getProfileIsLoading);
 
   useEffect(() => {
