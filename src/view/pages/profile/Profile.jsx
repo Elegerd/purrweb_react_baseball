@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import { useSelector } from "react-redux";
 import Sidebar from "@view/pages/profile/sidebar/Sidebar";
 import { getProfile, getProfileIsLoading } from "@selectors/profileSelector";
 import Spinner from "@commonComponents/spinner/Spinner";
 import { profileDataRequest } from "@helpers/profileRequest";
-import ProgressBars from "./progressBars/ProgressBars";
+import PitcherSummary from "./pitcherSummary/PitcherSummary";
 import CardStatistic from "./cardStatistic/CardStatistic";
 import PropTypes from "prop-types";
 import "./profile.css";
+
+export const ProfileContext = createContext();
 
 const Profile = ({ match: { params } }) => {
   const [hasError, setHasError] = useState(null);
@@ -31,6 +33,10 @@ const Profile = ({ match: { params } }) => {
     })();
   }, [params]);
 
+  const updateProfile = (profile) => {
+    setUserProfile(profile);
+  };
+
   return !currentProfile || !userProfile || isLoading ? (
     <Spinner />
   ) : (
@@ -38,17 +44,21 @@ const Profile = ({ match: { params } }) => {
       {hasError ? (
         <div className="profile-error">{hasError}</div>
       ) : (
-        <div className="profile">
-          <div className="profile__container">
-            <div className="profile__content">
-              <Sidebar profile={userProfile} />
-              <main className="profile__main">
-                <ProgressBars />
-                <CardStatistic />
-              </main>
+        <ProfileContext.Provider
+          value={{ profile: userProfile, updateProfile }}
+        >
+          <div className="profile">
+            <div className="profile__container">
+              <div className="profile__content">
+                <Sidebar />
+                <main className="profile__main">
+                  <PitcherSummary />
+                  <CardStatistic />
+                </main>
+              </div>
             </div>
           </div>
-        </div>
+        </ProfileContext.Provider>
       )}
     </>
   );

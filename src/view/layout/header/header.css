@@ -183,20 +183,20 @@ header nav a {
   color: #788b99;
 }
 
-.dropdown-panel::before {
+.dropdown-header::before {
   content: "";
   width: 0;
   height: 0;
   position: absolute;
   top: -8px;
-  left: 151px;
+  left: 129px;
   z-index: 2;
   border-style: solid;
   border-width: 0 8px 8px 8px;
   border-color: transparent transparent #ffffff transparent;
 }
 
-.dropdown-panel::after {
+.dropdown-header::after {
   content: "";
   width: 0;
   height: 0;

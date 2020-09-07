@@ -149,6 +149,9 @@ aside {
 .personal-info .personal-info__content .personal-info__item span:nth-child(1n) {
   width: 24px;
   height: 24px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
   margin-right: 16px;
 }
 

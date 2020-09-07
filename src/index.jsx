@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "rc-dropdown/assets/index.css";
+import "react-datepicker/dist/react-datepicker.css";
 import "./index.css";
 import React from "react";
 import { render } from "react-dom";

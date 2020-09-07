@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ReactLoading from "react-loading";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Field } from "react-final-form";
@@ -8,6 +8,7 @@ import CustomTextarea from "@commonComponents/customTextarea/CustomTextarea";
 import CustomSelect from "@commonComponents/customSelect/CustomSelect";
 import { updateProfile } from "@routines/profileRoutines";
 import { getProfileIsRequesting } from "@selectors/profileSelector";
+import { ProfileContext } from "@view/pages/profile/Profile";
 import PropTypes from "prop-types";
 import "./profileForm.css";
 
@@ -20,10 +21,15 @@ const ProfileForm = ({
   onChangeIsEditing,
   handleOnClickCancel = () => {},
 }) => {
+  const { updateProfile: setProfile } = useContext(ProfileContext);
   const dispatch = useDispatch();
   const isRequesting = useSelector(getProfileIsRequesting);
   const onSubmit = (values) => {
     const profile = { ...values };
+    const callback = (profile) => {
+      setProfile(profile);
+      onChangeIsEditing(false);
+    };
     profile.bats_hand = profile.bats_hand ? profile.bats_hand.value : "none";
     profile.throws_hand = profile.throws_hand
       ? profile.throws_hand.value
@@ -42,7 +48,7 @@ const ProfileForm = ({
     profile.teams = profile.teams.map((team) => {
       return { id: team.value, name: team.label };
     });
-    dispatch(updateProfile({ profile, callback: onChangeIsEditing }));
+    dispatch(updateProfile({ profile, callback }));
   };
   const [defaultFacultyOptions, setDefaultFacultyOptions] = useState(undefined);
   const [defaultTeamOptions, setDefaultTeamOptions] = useState(undefined);

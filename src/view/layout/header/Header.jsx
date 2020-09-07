@@ -41,7 +41,7 @@ const Header = () => {
   ];
 
   const menu = (
-    <Menu selectable={false} className="dropdown-panel">
+    <Menu selectable={false} className="dropdown-panel dropdown-header">
       {menuItems}
     </Menu>
   );

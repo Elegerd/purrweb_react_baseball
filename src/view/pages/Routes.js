@@ -6,13 +6,15 @@ import PrivateRoute from "@commonComponents/privateRoute/PrivateRoute";
 import SignIn from "@view/pages/auth/signIn/SignIn";
 import SignUp from "@view/pages/auth/signUp/SignUp";
 import Profile from "@view/pages/profile/Profile";
+import Leaderboard from "@view/pages/leaderboard/Leaderboard";
 import PropTypes from "prop-types";
 
 const Routes = ({ auth }) => {
   const isAuth = !!auth;
   return (
     <Switch>
-      <PrivateRoute exact path={"/"} component={() => <h1>Root</h1>} />
+      <PrivateRoute exact path={"/"} component={Leaderboard} />
+      <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
       <PrivateRoute exact path="/profile" component={Profile} />
       <PrivateRoute path="/profile/:id" component={Profile} />
       <Route

@@ -78,6 +78,12 @@ p {
   font-size: 1.4rem;
 }
 
+ol,
+ul {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
 button {
   background-color: transparent;
   border-style: none;
@@ -86,13 +92,18 @@ button {
   margin: 0;
 }
 
-.card {
+.c-card {
   background: #fff;
   margin: 16px;
   padding: 16px;
   border-radius: 8px;
   box-sizing: border-box;
   flex-grow: 1;
+}
+
+.c-card .heading {
+  width: 100%;
+  text-align: left;
 }
 
 .error {
@@ -107,12 +118,79 @@ button {
 :focus::-webkit-input-placeholder {
   color: transparent;
 }
+
 :focus::-moz-placeholder {
   color: transparent;
 }
+
 :focus:-moz-placeholder {
   color: transparent;
 }
+
 :focus:-ms-input-placeholder {
   color: transparent;
+}
+
+.c-table {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.c-table__header {
+  top: 0;
+  background: #fff;
+  position: sticky;
+  min-height: 44px;
+  margin-bottom: 6px;
+}
+
+.c-table__content {
+  background: #ffffff;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 300;
+  color: #667784;
+  border-radius: 4px;
+}
+
+.c-table__header-item {
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  background: #fff;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 300;
+  color: #667784;
+}
+
+.c-table__header-item > div {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c-table__content > .c-table__row {
+  min-height: 44px;
+  margin-bottom: 4px;
+}
+
+.c-table__row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-flex: 0 0 100%;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 4px;
+  background-color: #f7f8f9;
 }

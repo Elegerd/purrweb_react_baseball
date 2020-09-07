@@ -1,0 +1,44 @@
+.main-content .leaderboard__container {
+  padding: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.leaderboard {
+}
+
+.leaderboard__header {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.leaderboard__header-title {
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 400;
+  -webkit-text-align: center;
+  text-align: center;
+  color: #667784;
+}
+
+@media (min-width: 1200px) {
+  .leaderboard__container {
+    width: 1170px;
+  }
+}
+
+@media (min-width: 992px) {
+  .leaderboard__container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 768px) {
+  .leaderboard__container {
+    width: 750px;
+  }
+}

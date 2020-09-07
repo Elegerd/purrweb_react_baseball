@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ReactComponent as Age } from "@assets/svg/age.svg";
 import { ReactComponent as Height } from "@assets/svg/height.svg";
 import { ReactComponent as Weight } from "@assets/svg/weight.svg";
@@ -14,9 +14,11 @@ import {
 import AvatarForm from "../avatarForm/AvatarForm";
 import ProfileForm from "@view/pages/profile/profileForm/ProfileForm";
 import PropTypes from "prop-types";
+import { ProfileContext } from "@view/pages/profile/Profile";
 import "./sidebar.css";
 
-const Sidebar = ({ profile }) => {
+const Sidebar = () => {
+  const { profile } = useContext(ProfileContext);
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [schools, setSchools] = useState([]);

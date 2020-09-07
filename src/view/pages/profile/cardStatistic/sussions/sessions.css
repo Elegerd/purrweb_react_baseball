@@ -1,0 +1,276 @@
+.statistic-sessions {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  display: block;
+}
+
+.statistic-sessions__header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-flex: 0 0 100%;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: space-between;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: space-between;
+  justify-content: space-between;
+  margin-bottom: 21px;
+}
+
+.statistic-sessions__title {
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 400;
+  -webkit-text-align: center;
+  text-align: center;
+  color: #667784;
+  font-size: 18px;
+  font-weight: 900;
+  color: #414f5a;
+  font-weight: 400;
+  -webkit-text-align: left;
+  text-align: left;
+}
+
+.statistic-sessions__actions {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ss-actions__clear {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  margin-right: 20px;
+}
+
+.ss-actions__clear > button {
+  padding: 0;
+  font-size: 16px;
+  line-height: 1.19;
+  color: #48bbff;
+  display: block;
+  border-radius: 4px;
+  box-shadow: none;
+  font-weight: 400;
+}
+
+.ss-actions__clear > button:hover,
+.ss-actions__clear > button:focus,
+.ss-actions__clear > button:active,
+.ss-actions__clear > button:active:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.ss-actions__type {
+  position: relative;
+  display: inline-block;
+}
+
+.ss-actions__type > button {
+  padding: 0;
+  font-size: 16px;
+  line-height: 1.19;
+  color: #48bbff;
+  white-space: nowrap;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  border-radius: 4px;
+  box-shadow: none;
+  font-weight: 400;
+}
+
+.ss-actions__type > button:hover,
+.ss-actions__type > button:focus,
+.ss-actions__type > button:active,
+.ss-actions__type > button:active:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.ss-actions__datepicker button {
+  padding: 0;
+  font-size: 16px;
+  line-height: 1.19;
+  color: #48bbff;
+  white-space: nowrap;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  border-radius: 4px;
+  box-shadow: none;
+  font-weight: 400;
+}
+
+.ss-actions__calendar {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 6px;
+  margin-top: 2px;
+}
+
+.ss-actions__arrow {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 6px;
+  margin-top: 6px;
+  width: 16px;
+  height: 9px;
+}
+
+.ss-actions__datepicker button:hover,
+.ss-actions__datepicker button:focus,
+.ss-actions__datepicker button:active,
+.ss-actions__datepicker button:active:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.ss-actions__datepicker .react-datepicker-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 20px;
+}
+
+.ss-actions__datepicker .react-datepicker-popper {
+  left: 35px !important;
+}
+
+.statistic-sessions__content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.ss-table {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.ss-table__header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-flex: 0 0 100%;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 4px;
+  background-color: #f7f8f9;
+}
+
+.ss-table__header {
+  top: 0;
+  background: #fff;
+  position: sticky;
+}
+
+.ss-table .ss-table__header {
+  min-height: 44px;
+  margin-bottom: 6px;
+}
+
+.ss-table .ss-table__header-item:nth-child(1) {
+  width: 35%;
+  -webkit-flex: 1 0 32%;
+  -ms-flex: 1 0 32%;
+  flex: 1 0 32%;
+}
+
+.ss-table .ss-table__header-item:nth-child(2) {
+  width: 30%;
+  -webkit-flex: 1 0 28%;
+  -ms-flex: 1 0 28%;
+  flex: 1 0 28%;
+}
+
+.ss-table .ss-table__header-item:nth-child(3) {
+  width: 30%;
+  -webkit-flex: 1 0 28%;
+  -ms-flex: 1 0 28%;
+  flex: 1 0 28%;
+}
+
+.ss-table .ss-table__header-item:nth-child(4) {
+  width: 10%;
+  -webkit-flex: 1 0 10%;
+  -ms-flex: 1 0 10%;
+  flex: 1 0 10%;
+}
+
+.ss-table__header-item {
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 300;
+  color: #667784;
+}
+
+.ss-table__content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  min-height: 420px;
+  color: #667784;
+  font-size: 16px;
+}
