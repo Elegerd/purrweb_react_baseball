@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./customInput.css";
 
-const CustomInput = ({ input, placeholder, title, error, ...rest }) => {
+const CustomInput = ({ input, placeholder, title, meta, ...rest }) => {
   return (
     <div className="custom-input">
       <div className="custom-input__container">
@@ -10,9 +10,11 @@ const CustomInput = ({ input, placeholder, title, error, ...rest }) => {
           <input title={title} placeholder={placeholder} {...input} {...rest} />
           <label className="custom-input__label">{placeholder}</label>
         </div>
-        {error && (
-          <span className="error">{`${title.replace("*", "")} ${error}`}</span>
-        )}
+        {meta.error && meta.touched ? (
+          <span className="error">{`${title.replace("*", "")} ${
+            meta.error
+          }`}</span>
+        ) : null}
       </div>
     </div>
   );
@@ -22,7 +24,7 @@ CustomInput.propTypes = {
   input: PropTypes.object,
   placeholder: PropTypes.string,
   title: PropTypes.string,
-  error: PropTypes.string,
+  meta: PropTypes.object,
 };
 
 export default CustomInput;

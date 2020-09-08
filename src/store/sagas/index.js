@@ -9,6 +9,9 @@ import {
   fetchProfileDataWatcherSaga,
   updateProfileWatcherSaga,
 } from "@sagas/profileSaga";
+import { fetchSchoolDataWatcherSaga } from "@sagas/schoolsSaga";
+import { fetchFacilitiesDataWatcherSaga } from "@sagas/facilitiesSaga";
+import { fetchTeamsDataWatcherSaga } from "@sagas/teamsSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -17,6 +20,9 @@ export default function* rootSaga() {
     signOutWatcherSaga(),
     tokenVerificationWatcherSaga(),
     fetchProfileDataWatcherSaga(),
+    fetchSchoolDataWatcherSaga(),
+    fetchFacilitiesDataWatcherSaga(),
+    fetchTeamsDataWatcherSaga(),
     updateProfileWatcherSaga(),
   ]);
 }

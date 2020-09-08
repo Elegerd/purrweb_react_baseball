@@ -6,44 +6,36 @@ import { ReactComponent as Throws } from "@assets/svg/throws.svg";
 import { ReactComponent as Bats } from "@assets/svg/bats.svg";
 import { ReactComponent as Edit } from "@assets/svg/edit.svg";
 import { letterToUppercase } from "@helpers/utilities";
-import {
-  facilitiesRequest,
-  schoolsRequest,
-  teamsRequest,
-} from "@helpers/dataRequest";
 import AvatarForm from "../avatarForm/AvatarForm";
 import ProfileForm from "@view/pages/profile/profileForm/ProfileForm";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSchoolsData } from "@routines/schoolsRoutines";
+import { fetchTeamsData } from "@routines/teamsRoutines";
+import { fetchFacilitiesData } from "@routines/facilitiesRoutines";
 import PropTypes from "prop-types";
 import { ProfileContext } from "@view/pages/profile/Profile";
 import "./sidebar.css";
+import { getSchools, getSchoolsIsLoading } from "@selectors/schoolsSelector";
+import {
+  getFacilities,
+  getFacilitiesIsLoading,
+} from "@selectors/facilitiesSelector";
+import { getTeams, getTeamsIsLoading } from "@selectors/teamsSelector";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
   const { profile } = useContext(ProfileContext);
   const [isEditing, setIsEditing] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [schools, setSchools] = useState([]);
-  const [teams, setTeams] = useState([]);
-  const [facilities, setFacilities] = useState([]);
+  const schools = useSelector(getSchools);
+  const facilities = useSelector(getFacilities);
+  const teams = useSelector(getTeams);
 
   useEffect(() => {
-    if (isEditing)
-      (async () => {
-        try {
-          const promises = [
-            schoolsRequest({}),
-            teamsRequest({}),
-            facilitiesRequest({}),
-          ];
-          setIsLoading(true);
-          const response = await Promise.all(promises);
-          setSchools(response[0]);
-          setTeams(response[1]);
-          setFacilities(response[2]);
-          setIsLoading(false);
-        } catch (e) {
-          console.error(e);
-        }
-      })();
+    if (isEditing) {
+      dispatch(fetchSchoolsData());
+      dispatch(fetchTeamsData());
+      dispatch(fetchFacilitiesData());
+    }
   }, [isEditing]);
 
   const renderPersonalInfo = () => {
@@ -163,7 +155,6 @@ const Sidebar = () => {
           <AvatarForm profile={profile} />
           <ProfileForm
             profile={profile}
-            isLoading={isLoading}
             schools={schools}
             teams={teams}
             facilities={facilities}

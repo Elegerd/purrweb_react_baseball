@@ -17,17 +17,12 @@ const CardStatistic = () => {
     tabRef.current.node.click();
   };
 
-  const menuBattingItems = [
-    <MenuItem className="dropdown-panel__item" key="1">
-      Summary
-    </MenuItem>,
-    <MenuItem className="dropdown-panel__item" key="2">
-      Charts
-    </MenuItem>,
-    <MenuItem className="dropdown-panel__item" key="3">
-      Log
-    </MenuItem>,
-  ];
+  const menuBattingItems = (items) =>
+    items.map((value, index) => (
+      <MenuItem className="dropdown-panel__item" key={index}>
+        {value}
+      </MenuItem>
+    ));
 
   const menuBatting = (
     <Menu
@@ -35,16 +30,16 @@ const CardStatistic = () => {
       onClick={handleOnClickItem}
       className="dropdown-panel dropdown-statistic"
     >
-      {menuBattingItems}
+      {menuBattingItems(["Summary", "Charts", "Log"])}
     </Menu>
   );
 
   const renderBatting = () => {
     return (
       <TabPanel>
-        {selectedItem === "1" && <Summary />}
-        {selectedItem === "2" && <Charts />}
-        {selectedItem === "3" && <Log />}
+        {selectedItem === "0" && <Summary />}
+        {selectedItem === "1" && <Charts />}
+        {selectedItem === "2" && <Log />}
       </TabPanel>
     );
   };

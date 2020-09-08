@@ -41,6 +41,8 @@ module.exports = {
       "@sagas": path.resolve(PATHS.src, "store/sagas"),
       "@selectors": path.resolve(PATHS.src, "store/selectors"),
       "@helpers": path.resolve(PATHS.src, "helpers"),
+      "@hoc": path.resolve(PATHS.src, "hoc"),
+      "@constants": path.resolve(PATHS.src, "constants"),
       "@services": path.resolve(PATHS.src, "services"),
       "@assets": path.resolve(PATHS.src, "assets"),
     },

@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router";
 import Auth from "@view/pages/auth/Auth";
 import NotFound from "@view/pages/notFound/NotFound";
-import PrivateRoute from "@commonComponents/privateRoute/PrivateRoute";
+import PrivateRoute from "@hoc/privateRoute/PrivateRoute";
 import SignIn from "@view/pages/auth/signIn/SignIn";
 import SignUp from "@view/pages/auth/signUp/SignUp";
 import Profile from "@view/pages/profile/Profile";

@@ -33,8 +33,11 @@ const SignUpForm = ({ role }) => {
         <form className="sign-form" onSubmit={handleSubmit}>
           <div className="sign-form__sf-input">
             <div className="sf-input__container">
-              <Field name="email" type="email" validate={required}>
-                {({ input, meta }) => (
+              <Field
+                name="email"
+                type="email"
+                validate={required}
+                render={({ input, meta }) => (
                   <div>
                     <input placeholder="Email" {...input} />
                     {meta.error && meta.touched && (
@@ -42,7 +45,7 @@ const SignUpForm = ({ role }) => {
                     )}
                   </div>
                 )}
-              </Field>
+              />
             </div>
             <span className="sf-input__icon">
               <FontAwesomeIcon className="icon icon-user" icon={faUser} />
@@ -50,8 +53,11 @@ const SignUpForm = ({ role }) => {
           </div>
           <div className="sign-form__sf-input">
             <div className="sf-input__container">
-              <Field name="password" type="password" validate={required}>
-                {({ input, meta }) => (
+              <Field
+                name="password"
+                type="password"
+                validate={required}
+                render={({ input, meta }) => (
                   <div>
                     <input placeholder="Password" {...input} />
                     {meta.error && meta.touched && (
@@ -59,7 +65,7 @@ const SignUpForm = ({ role }) => {
                     )}
                   </div>
                 )}
-              </Field>
+              />
             </div>
             <span className="sf-input__icon">
               <FontAwesomeIcon className="icon icon-lock" icon={faLock} />
@@ -71,8 +77,7 @@ const SignUpForm = ({ role }) => {
                 name="password_confirmation"
                 type="password"
                 validate={required}
-              >
-                {({ input, meta }) => (
+                render={({ input, meta }) => (
                   <div>
                     <input placeholder="Confirm Password" {...input} />
                     {meta.error && meta.touched && (
@@ -80,7 +85,7 @@ const SignUpForm = ({ role }) => {
                     )}
                   </div>
                 )}
-              </Field>
+              />
             </div>
             <span className="sf-input__icon">
               <FontAwesomeIcon className="icon icon-check" icon={faCheck} />

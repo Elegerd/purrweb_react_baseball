@@ -3,12 +3,20 @@ import ReactLoading from "react-loading";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Field } from "react-final-form";
 import { required } from "@helpers/validators";
+import {
+  positionOptions,
+  schoolYearOptions,
+  throwAndBatOptions,
+} from "@constants";
 import CustomInput from "@commonComponents/customInput/CustomInput";
 import CustomTextarea from "@commonComponents/customTextarea/CustomTextarea";
 import CustomSelect from "@commonComponents/customSelect/CustomSelect";
 import { updateProfile } from "@routines/profileRoutines";
 import { getProfileIsRequesting } from "@selectors/profileSelector";
 import { ProfileContext } from "@view/pages/profile/Profile";
+import { getSchoolsIsLoading } from "@selectors/schoolsSelector";
+import { getFacilitiesIsLoading } from "@selectors/facilitiesSelector";
+import { getTeamsIsLoading } from "@selectors/teamsSelector";
 import PropTypes from "prop-types";
 import "./profileForm.css";
 
@@ -17,13 +25,16 @@ const ProfileForm = ({
   teams,
   facilities,
   schools,
-  isLoading,
   onChangeIsEditing,
   handleOnClickCancel = () => {},
 }) => {
   const { updateProfile: setProfile } = useContext(ProfileContext);
   const dispatch = useDispatch();
+  const isLoadingSchool = useSelector(getSchoolsIsLoading);
+  const isLoadingFacilities = useSelector(getFacilitiesIsLoading);
+  const isLoadingTeams = useSelector(getTeamsIsLoading);
   const isRequesting = useSelector(getProfileIsRequesting);
+
   const onSubmit = (values) => {
     const profile = { ...values };
     const callback = (profile) => {
@@ -50,41 +61,40 @@ const ProfileForm = ({
     });
     dispatch(updateProfile({ profile, callback }));
   };
-  const [defaultFacultyOptions, setDefaultFacultyOptions] = useState(undefined);
-  const [defaultTeamOptions, setDefaultTeamOptions] = useState(undefined);
-  const [defaultSchoolOption, setDefaultSchoolOption] = useState(undefined);
-  const [defaultThrowOption, setDefaultThrowOption] = useState(undefined);
-  const [defaultBatOption, setDefaultBatOption] = useState(undefined);
-  const [defaultSchoolYear, setDefaultSchoolYear] = useState(undefined);
-  const [defaultPosition, setDefaultPosition] = useState(undefined);
-  const [defaultPosition2, setDefaultPosition2] = useState(undefined);
+  const [defaultValues, setDefaultValues] = useState({});
 
   useEffect(() => {
-    setDefaultThrowOption(
-      getDefaultValue(throwAndBatOptions, profile.throws_hand)
-    );
-    setDefaultBatOption(getDefaultValue(throwAndBatOptions, profile.bats_hand));
-    setDefaultSchoolYear(
-      getDefaultValue(schoolYearOptions, profile.school_year)
-    );
-    setDefaultPosition(getDefaultValue(positionOptions, profile.position));
-    setDefaultPosition2(getDefaultValue(positionOptions, profile.position2));
+    setDefaultValues({
+      ...defaultValues,
+      throws_hand: getDefaultValue(throwAndBatOptions, profile.throws_hand),
+      bats_hand: getDefaultValue(throwAndBatOptions, profile.bats_hand),
+      school_year: getDefaultValue(schoolYearOptions, profile.school_year),
+      position: getDefaultValue(positionOptions, profile.position),
+      position2: getDefaultValue(positionOptions, profile.position2),
+    });
   }, []);
 
   useEffect(() => {
-    if (!isLoading) {
-      setDefaultFacultyOptions(
-        getDefaultValues(facultyOptions, profile.facilities)
-      );
-      setDefaultSchoolOption(
-        getDefaultValue(
+    if (!isLoadingFacilities)
+      setDefaultValues((prevState) => ({
+        ...prevState,
+        facilities: getDefaultValues(facultyOptions, profile.facilities),
+      }));
+    if (!isLoadingSchool)
+      setDefaultValues((prevState) => ({
+        ...prevState,
+        school: getDefaultValue(
           schoolOptions,
           profile.school ? profile.school.id : undefined
-        )
-      );
-      setDefaultTeamOptions(getDefaultValues(teamOptions, profile.teams));
-    }
-  }, [isLoading]);
+        ),
+      }));
+
+    if (!isLoadingTeams)
+      setDefaultValues((prevState) => ({
+        ...prevState,
+        teams: getDefaultValues(teamOptions, profile.teams),
+      }));
+  }, [isLoadingFacilities, isLoadingSchool, isLoadingTeams]);
 
   const teamOptions = teams.map((team) => {
     return { value: team.id, label: team.name };
@@ -97,29 +107,6 @@ const ProfileForm = ({
   const facultyOptions = facilities.map((faculty) => {
     return { value: faculty.id, label: faculty.u_name };
   });
-
-  const schoolYearOptions = [
-    { value: "freshman", label: "Freshman" },
-    { value: "sophomore", label: "Sophomore" },
-    { value: "junior", label: "Junior" },
-    { value: "senior", label: "Senior" },
-    { value: "none", label: "None" },
-  ];
-
-  const throwAndBatOptions = [
-    { value: "r", label: "R" },
-    { value: "l", label: "L" },
-  ];
-
-  const positionOptions = [
-    { value: "catcher", label: "Catcher" },
-    { value: "first_base", label: "First Base" },
-    { value: "second_base", label: "Second Base" },
-    { value: "shortstop", label: "Shortstop" },
-    { value: "third_base", label: "Third Base" },
-    { value: "outfield", label: "Outfield" },
-    { value: "pitcher", label: "Pitcher" },
-  ];
 
   const renderBlockTitle = (title) => (
     <div className="edit-profile__block-title">
@@ -138,89 +125,84 @@ const ProfileForm = ({
   return (
     <Form
       onSubmit={onSubmit}
-      render={({
-        handleSubmit,
-        form,
-        errors,
-        submitting,
-        pristine,
-        values,
-      }) => {
+      render={({ handleSubmit, errors }) => {
         return (
           <form className="edit-profile" onSubmit={handleSubmit}>
             <div className="edit-profile__names">
               <Field
-                defaultValue={profile.first_name}
                 name="first_name"
                 type="text"
                 validate={required}
-              >
-                {({ input, meta }) => (
+                defaultValue={profile.first_name}
+                render={(props) => (
                   <CustomInput
                     placeholder={"First Name *"}
                     title={"First Name *"}
-                    input={input}
-                    error={meta.error && meta.touched ? meta.error : null}
+                    {...props}
                   />
                 )}
-              </Field>
+              />
               <Field
                 defaultValue={profile.last_name}
                 name="last_name"
                 type="text"
                 validate={required}
-              >
-                {({ input, meta }) => (
+                render={(props) => (
                   <CustomInput
                     placeholder={"Last Name *"}
                     title={"Last Name *"}
-                    input={input}
-                    error={meta.error && meta.touched ? meta.error : null}
+                    {...props}
                   />
                 )}
-              </Field>
+              />
             </div>
             <div className="edit-profile__position">
-              <Field defaultValue={defaultPosition} name="position">
-                {({ input, meta }) => (
+              <Field
+                name="position"
+                defaultValue={defaultValues.position}
+                render={(props) => (
                   <CustomSelect
                     placeholder={"Position in Game *"}
                     title={"Position in Game *"}
                     options={positionOptions}
-                    input={input}
+                    {...props}
                   />
                 )}
-              </Field>
+              />
             </div>
             <div className="edit-profile__position2">
-              <Field defaultValue={defaultPosition2} name="position2">
-                {({ input, meta }) => (
+              <Field
+                name="position2"
+                defaultValue={defaultValues.position2}
+                render={(props) => (
                   <CustomSelect
                     placeholder={"Secondary Position in Game"}
                     options={[
                       { value: undefined, label: "-" },
                       ...positionOptions,
                     ]}
-                    input={input}
+                    {...props}
                   />
                 )}
-              </Field>
+              />
             </div>
             {renderBlockTitle("Personal Info")}
             <div className="edit-profile__age">
-              <Field defaultValue={profile.age} name="age" validate={required}>
-                {({ input, meta }) => (
+              <Field
+                defaultValue={profile.age}
+                name="age"
+                validate={required}
+                render={(props) => (
                   <CustomInput
                     type="number"
                     step="1"
                     min="0"
                     placeholder={"Age *"}
                     title={"Age *"}
-                    input={input}
-                    error={meta.error && meta.touched ? meta.error : null}
+                    {...props}
                   />
                 )}
-              </Field>
+              />
             </div>
             <div className="edit-profile__feet-and-inches">
               <div className="feet-and-inches__container">
@@ -228,36 +210,32 @@ const ProfileForm = ({
                   defaultValue={profile.feet}
                   name="feet"
                   validate={required}
-                >
-                  {({ input, meta }) => (
+                  render={(props) => (
                     <CustomInput
                       type="number"
                       step="1"
                       min="0"
                       placeholder={"Feet *"}
                       title={"Feet *"}
-                      input={input}
-                      error={meta.error && meta.touched ? meta.error : null}
+                      {...props}
                     />
                   )}
-                </Field>
+                />
                 <Field
                   defaultValue={profile.inches}
                   name="inches"
                   validate={required}
-                >
-                  {({ input, meta }) => (
+                  render={(props) => (
                     <CustomInput
                       step="1"
                       min="0"
                       type="number"
                       placeholder={"Inches *"}
                       title={"Inches *"}
-                      input={input}
-                      error={meta.error && meta.touched ? meta.error : null}
+                      {...props}
                     />
                   )}
-                </Field>
+                />
               </div>
             </div>
             <div className="edit-profile__weight">
@@ -265,117 +243,125 @@ const ProfileForm = ({
                 defaultValue={profile.weight}
                 name="weight"
                 validate={required}
-              >
-                {({ input, meta }) => (
+                render={(props) => (
                   <CustomInput
                     type="number"
                     step="1"
                     min="1"
                     placeholder={"Weight *"}
                     title={"Weight *"}
-                    input={input}
-                    error={meta.error && meta.touched ? meta.error : null}
+                    {...props}
                   />
                 )}
-              </Field>
+              />
             </div>
             <div className="edit-profile__throws-and-bats">
               <div className="throws-and-bats__container">
                 <Field
-                  defaultValue={defaultThrowOption}
                   name="throws_hand"
                   validate={required}
-                >
-                  {({ input, meta }) => (
+                  defaultValue={defaultValues.throws_hand}
+                  render={(props) => (
                     <CustomSelect
                       title={"Throws *"}
                       placeholder={"Throws *"}
                       options={throwAndBatOptions}
-                      input={input}
-                      error={meta.error && meta.touched ? meta.error : null}
+                      {...props}
                     />
                   )}
-                </Field>
-                <Field defaultValue={defaultBatOption} name="bats_hand">
-                  {({ input, meta }) => (
+                />
+                <Field
+                  name="bats_hand"
+                  validate={required}
+                  defaultValue={defaultValues.bats_hand}
+                  render={(props) => (
                     <CustomSelect
                       title={"Bats *"}
                       placeholder={"Bats *"}
                       options={throwAndBatOptions}
-                      input={input}
-                      error={meta.error && meta.touched ? meta.error : null}
+                      {...props}
                     />
                   )}
-                </Field>
+                />
               </div>
             </div>
             {renderBlockTitle("School")}
             <div className="edit-profile__school">
-              <Field defaultValue={defaultSchoolOption} name="school">
-                {({ input, meta }) => (
+              <Field
+                defaultValue={defaultValues.school}
+                name="school"
+                render={(props) => (
                   <CustomSelect
-                    isLoading={isLoading}
+                    isLoading={isLoadingSchool}
                     isSearchable={true}
                     placeholder={"School"}
                     options={schoolOptions}
-                    input={input}
+                    {...props}
                   />
                 )}
-              </Field>
+              />
             </div>
             <div className="edit-profile__school-year">
-              <Field defaultValue={defaultSchoolYear} name="school_year">
-                {({ input, meta }) => (
+              <Field
+                name="school_year"
+                defaultValue={defaultValues.school_year}
+                render={(props) => (
                   <CustomSelect
                     isSearchable={true}
                     placeholder={"School Year"}
                     options={schoolYearOptions}
-                    input={input}
+                    {...props}
                   />
                 )}
-              </Field>
+              />
             </div>
             <div className="edit-profile__teams">
-              <Field defaultValue={defaultTeamOptions} name="teams">
-                {({ input, meta }) => (
+              <Field
+                defaultValue={defaultValues.teams}
+                name="teams"
+                render={(props) => (
                   <CustomSelect
-                    isLoading={isLoading}
+                    isLoading={isLoadingTeams}
                     isMulti={true}
                     isClearable={false}
                     isSearchable={true}
                     placeholder={"Team"}
                     options={teamOptions}
-                    input={input}
+                    {...props}
                   />
                 )}
-              </Field>
+              />
             </div>
             {renderBlockTitle("Facility")}
             <div className="edit-profile__facility">
-              <Field defaultValue={defaultFacultyOptions} name="facilities">
-                {({ input, meta }) => (
+              <Field
+                defaultValue={defaultValues.facilities}
+                name="facilities"
+                render={(props) => (
                   <CustomSelect
-                    isLoading={isLoading}
+                    isLoading={isLoadingFacilities}
                     isMulti={true}
                     isClearable={false}
                     isSearchable={true}
                     placeholder={"Facility"}
                     options={facultyOptions}
-                    input={input}
+                    {...props}
                   />
                 )}
-              </Field>
+              />
             </div>
             {renderBlockTitle("About")}
             <div className="edit-profile__facility">
-              <Field defaultValue={profile.biography} name="biography">
-                {({ input, meta }) => (
+              <Field
+                defaultValue={profile.biography}
+                name="biography"
+                render={(props) => (
                   <CustomTextarea
                     placeholder={"Describe yourself in a few words"}
-                    input={input}
+                    {...props}
                   />
                 )}
-              </Field>
+              />
             </div>
             {Object.keys(errors).length ? (
               <span className="error">* Fill out the required fields</span>
@@ -412,7 +398,6 @@ const ProfileForm = ({
 
 ProfileForm.propTypes = {
   profile: PropTypes.object,
-  isLoading: PropTypes.bool,
   handleOnClickCancel: PropTypes.func,
   onChangeIsEditing: PropTypes.func,
   schools: PropTypes.array,

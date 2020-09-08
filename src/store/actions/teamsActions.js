@@ -1,0 +1,3 @@
+export const FETCH_TEAMS_DATA = "FETCH_TEAMS_DATA";
+
+export const UPDATE_TEAMS = "UPDATE_TEAMS";

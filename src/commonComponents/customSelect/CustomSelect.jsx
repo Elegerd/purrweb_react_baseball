@@ -7,7 +7,7 @@ const CustomSelect = ({
   input,
   title,
   placeholder,
-  error,
+  meta,
   isSearchable = false,
   isMulti = false,
   ...rest
@@ -178,9 +178,11 @@ const CustomSelect = ({
           />
           <label className="custom-base-select__label">{placeholder}</label>
         </div>
-        {error && (
-          <span className="error">{`${title.replace("*", "")} ${error}`}</span>
-        )}
+        {meta.error && meta.touched ? (
+          <span className="error">{`${title.replace("*", "")} ${
+            meta.error
+          }`}</span>
+        ) : null}
       </div>
     </div>
   );
@@ -192,7 +194,7 @@ CustomSelect.propTypes = {
   isMulti: PropTypes.bool,
   title: PropTypes.string,
   placeholder: PropTypes.string,
-  error: PropTypes.string,
+  meta: PropTypes.object,
 };
 
 export default CustomSelect;

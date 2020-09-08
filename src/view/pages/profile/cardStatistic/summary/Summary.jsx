@@ -19,7 +19,7 @@ const Summary = () => {
           </div>{" "}
         </div>
       ) : (
-        <div className="summary__empty">There's no info yet!</div>
+        <div className="summary__empty">{"There's no info yet!"}</div>
       )}
     </>
   );
