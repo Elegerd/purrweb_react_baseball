@@ -1,3 +1,6 @@
+import { Item as MenuItem } from "rc-menu";
+import React from "react";
+
 export const schoolYearOptions = [
   { value: "freshman", label: "Freshman" },
   { value: "sophomore", label: "Sophomore" },
@@ -20,6 +23,17 @@ export const positionOptions = [
   { value: "outfield", label: "Outfield" },
   { value: "pitcher", label: "Pitcher" },
 ];
+
+export const pitchTypes = [
+  "None",
+  "Four Seam Fastball",
+  "Two Seam Fastball",
+  "Curveball",
+  "Changeup",
+  "Slider",
+];
+
+export const sessionTypes = ["None", "Game", "Practice"];
 
 export const initProfile = {
   first_name: "",

@@ -178,11 +178,34 @@ aside {
   font-weight: 400;
 }
 
+.user-info .like-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0;
+  display: block;
+  border-radius: 4px;
+  box-shadow: none;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 400;
+}
+
 .user-info .edit-button:focus {
   outline: none;
 }
 
-.user-info .edit-button span {
+.like-button:hover,
+.like-button:focus,
+.like-button:active,
+.like-button:active:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.user-info .edit-button span,
+.user-info .like-button span {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;

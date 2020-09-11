@@ -1,11 +1,11 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signOut } from "@routines/authRoutines";
+import { signOut } from "@ducks/auth/authRoutines";
 import { ReactComponent as BaseballCloud } from "@assets/svg/baseballCloud.svg";
 import { ReactComponent as Arrow } from "@assets/svg/arrow.svg";
 import { Link } from "react-router-dom";
-import { getProfile } from "@selectors/profileSelector";
+import { getProfile } from "@ducks/profile/profileSelector";
 import Dropdown from "rc-dropdown";
 import Menu, { Item as MenuItem } from "rc-menu";
 import "./header.css";

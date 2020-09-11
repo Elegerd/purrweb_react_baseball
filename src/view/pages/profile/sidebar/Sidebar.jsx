@@ -1,30 +1,28 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ReactComponent as Age } from "@assets/svg/age.svg";
 import { ReactComponent as Height } from "@assets/svg/height.svg";
 import { ReactComponent as Weight } from "@assets/svg/weight.svg";
 import { ReactComponent as Throws } from "@assets/svg/throws.svg";
 import { ReactComponent as Bats } from "@assets/svg/bats.svg";
 import { ReactComponent as Edit } from "@assets/svg/edit.svg";
+import { ReactComponent as Heart } from "@assets/svg/heart.svg";
+import { ReactComponent as HeartFill } from "@assets/svg/heartFill.svg";
 import { letterToUppercase } from "@helpers/utilities";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSchoolsData } from "@ducks/school/schoolsRoutines";
+import { fetchTeamsData } from "@ducks/team/teamsRoutines";
+import { fetchFacilitiesData } from "@ducks/facility/facilitiesRoutines";
+import { getSchools } from "@ducks/school/schoolsSelector";
+import { getFacilities } from "@ducks/facility/facilitiesSelector";
+import { getTeams } from "@ducks/team/teamsSelector";
 import AvatarForm from "../avatarForm/AvatarForm";
 import ProfileForm from "@view/pages/profile/profileForm/ProfileForm";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchSchoolsData } from "@routines/schoolsRoutines";
-import { fetchTeamsData } from "@routines/teamsRoutines";
-import { fetchFacilitiesData } from "@routines/facilitiesRoutines";
+import user from "@assets/img/user.png";
 import PropTypes from "prop-types";
-import { ProfileContext } from "@view/pages/profile/Profile";
 import "./sidebar.css";
-import { getSchools, getSchoolsIsLoading } from "@selectors/schoolsSelector";
-import {
-  getFacilities,
-  getFacilitiesIsLoading,
-} from "@selectors/facilitiesSelector";
-import { getTeams, getTeamsIsLoading } from "@selectors/teamsSelector";
 
-const Sidebar = () => {
+const Sidebar = ({ profile, isUserProfile }) => {
   const dispatch = useDispatch();
-  const { profile } = useContext(ProfileContext);
   const [isEditing, setIsEditing] = useState(false);
   const schools = useSelector(getSchools);
   const facilities = useSelector(getFacilities);
@@ -66,19 +64,27 @@ const Sidebar = () => {
 
   const renderUserInfo = () => {
     const { avatar, first_name, last_name, position, position2 } = profile;
+    const avatarUrl = avatar ? avatar : user;
     return (
       <div className="user-info">
-        <button className="edit-button" onClick={handleOnClickEdit}>
-          <span>
-            <Edit />
-          </span>
-        </button>
+        {isUserProfile === true && (
+          <button className="edit-button" onClick={handleOnClickEdit}>
+            <span>
+              <Edit />
+            </span>
+          </button>
+        )}
+        {isUserProfile === false && (
+          <button className="like-button" onClick={handleOnClickLike}>
+            <span>{profile.favorite ? <Heart /> : <HeartFill />}</span>
+          </button>
+        )}
         <div className="user-info__avatar">
           <div className="avatar__container">
             <div
               className="avatar"
               alt={`User Photo - ${first_name} ${last_name}`}
-              style={{ backgroundImage: `url(${avatar})` }}
+              style={{ backgroundImage: `url(${avatarUrl})` }}
             />
           </div>
         </div>
@@ -104,6 +110,11 @@ const Sidebar = () => {
   const handleOnClickEdit = (e) => {
     e.preventDefault();
     setIsEditing(true);
+  };
+
+  const handleOnClickLike = (e) => {
+    e.preventDefault();
+    console.log("LIKE");
   };
 
   const handleOnClickCancel = (e) => {
@@ -175,6 +186,7 @@ const Sidebar = () => {
 
 Sidebar.propTypes = {
   profile: PropTypes.object,
+  isUserProfile: PropTypes.bool,
 };
 
 export default Sidebar;

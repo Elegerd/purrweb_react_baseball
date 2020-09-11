@@ -1,0 +1,130 @@
+.profile__container .summary-events-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.profile__container .summary-card {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 100%;
+  min-width: 0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.profile__container .recent-events {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  max-width: 100%;
+  min-width: 0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.summary-card__title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.summary-card__title > div {
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 400;
+  -webkit-text-align: center;
+  text-align: center;
+  color: #667784;
+  font-size: 18px;
+  font-weight: 900;
+  color: #414f5a;
+}
+
+.summary-card__content {
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+}
+
+.recent-events__title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.recent-events__title > div {
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 400;
+  -webkit-text-align: center;
+  text-align: center;
+  color: #667784;
+  font-size: 18px;
+  font-weight: 900;
+  color: #414f5a;
+}
+
+.summary-card__content > .summary-card__sc-item {
+  width: max-content;
+  padding: 16px 24px 0 0;
+}
+
+.summary-card__sc-item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.sc-item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-between;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: space-between;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.sc-item__title {
+  font-size: 16px;
+  color: #667784;
+}
+
+.sc-item__value {
+  font-size: 16px;
+  color: #667784;
+  font-weight: 700;
+}
+
+.recent-events__empty-message {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: #667784;
+  font-size: 16px;
+}
+
+.sc-item__progress-bar {
+  width: 100%;
+  max-width: 300px;
+}

@@ -18,3 +18,10 @@ export const toBase64 = (file) =>
     reader.onload = () => resolve(reader.result);
     reader.onerror = (error) => reject(error);
   });
+
+export const profileIsPitching = (profile) =>
+  profile.position === "pitcher" || profile.position === "pitcher";
+
+export const profileIsBatting = (profile) =>
+  (profile.position && profile.position !== "pitcher") ||
+  (profile.position2 && profile.position2 !== "pitcher");

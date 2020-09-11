@@ -1,64 +1,59 @@
-import React, { useEffect, useState, createContext } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "@view/pages/profile/sidebar/Sidebar";
-import { getProfile, getProfileIsLoading } from "@selectors/profileSelector";
+import {
+  getProfile,
+  getProfileIsLoading,
+} from "@ducks/profile/profileSelector";
 import Spinner from "@commonComponents/spinner/Spinner";
-import { profileDataRequest } from "@helpers/profileRequest";
-import PitcherSummary from "./pitcherSummary/PitcherSummary";
+import { fetchViewedProfileData } from "@ducks/viewedProfile/viewedProfileRoutines";
+import CardSummary from "./cardSummary/CardSummary";
 import CardStatistic from "./cardStatistic/CardStatistic";
+import {
+  getViewedProfile,
+  getViewedProfileError,
+  getViewedProfileIsLoading,
+} from "@ducks/viewedProfile/viewedProfileSelector";
 import PropTypes from "prop-types";
 import "./profile.css";
 
-export const ProfileContext = createContext();
-
 const Profile = ({ match: { params } }) => {
-  const [hasError, setHasError] = useState(null);
-  const [userProfile, setUserProfile] = useState(null);
+  const dispatch = useDispatch();
+  const [isUserProfile, setIsUserProfile] = useState(null);
   const currentProfile = useSelector(getProfile);
-  const isLoading = useSelector(getProfileIsLoading);
+  const viewedProfile = useSelector(getViewedProfile);
+  const isLoadingViewedProfile = useSelector(getViewedProfileIsLoading);
+  const viewedProfileError = useSelector(getViewedProfileError);
+  const isLoadingProfile = useSelector(getProfileIsLoading);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const profileId =
-          typeof params.id !== "undefined" ? params.id : currentProfile.id;
-        const {
-          data: { profile },
-        } = await profileDataRequest({ id: profileId });
-        setUserProfile(profile);
-        setHasError(null);
-      } catch (e) {
-        setHasError(e);
-      }
-    })();
+    const profileId =
+      typeof params.id !== "undefined" ? params.id : currentProfile.id;
+    setIsUserProfile(typeof params.id === "undefined");
+    dispatch(fetchViewedProfileData({ id: profileId }));
   }, [params]);
 
-  const updateProfile = (profile) => {
-    setUserProfile(profile);
-  };
-
-  return !currentProfile || !userProfile || isLoading ? (
+  return !currentProfile ||
+    !viewedProfile ||
+    isLoadingProfile ||
+    isLoadingViewedProfile ? (
     <Spinner />
   ) : (
     <>
-      {hasError ? (
-        <div className="profile-error">{hasError}</div>
+      {viewedProfileError ? (
+        <div className="profile-error">{viewedProfileError}</div>
       ) : (
-        <ProfileContext.Provider
-          value={{ profile: userProfile, updateProfile }}
-        >
-          <div className="profile">
-            <div className="profile__container">
-              <div className="profile__content">
-                <Sidebar />
-                <main className="profile__main">
-                  <PitcherSummary />
-                  <CardStatistic />
-                </main>
-              </div>
+        <div className="profile">
+          <div className="profile__container">
+            <div className="profile__content">
+              <Sidebar profile={viewedProfile} isUserProfile={isUserProfile} />
+              <main className="profile__main">
+                <CardSummary />
+                <CardStatistic isUserProfile={isUserProfile} />
+              </main>
             </div>
           </div>
-        </ProfileContext.Provider>
+        </div>
       )}
     </>
   );

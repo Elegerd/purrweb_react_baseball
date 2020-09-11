@@ -1,35 +1,39 @@
-import React, { useState } from "react";
-import "./charts.css";
+import React, { useEffect, useState } from "react";
 import Menu, { Item as MenuItem } from "rc-menu";
 import { ReactComponent as Arrow } from "@assets/svg/arrow2.svg";
 import Dropdown from "rc-dropdown";
+import { pitchTypes } from "@constants";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getBattingGraph,
+  getBattingGraphIsLoading,
+} from "@ducks/battingGraph/battingGraphSelector";
+import { fetchBattingGraphData } from "@ducks/battingGraph/battingGraphRoutines";
+import Spinner from "@commonComponents/spinner/Spinner";
+import PropTypes from "prop-types";
+import "./charts.css";
 
 const Charts = () => {
+  const dispatch = useDispatch();
+  const batterGraph = useSelector(getBattingGraph);
+  const isLoadingBatterGraph = useSelector(getBattingGraphIsLoading);
   const [selectedItem, setSelectedItem] = useState(null);
 
-  const menuTypeItems = [
-    <MenuItem className="dropdown-panel__item" key="None">
-      None
-    </MenuItem>,
-    <MenuItem className="dropdown-panel__item" key="Four Seam Fastball">
-      Four Seam Fastball
-    </MenuItem>,
-    <MenuItem className="dropdown-panel__item" key="Two Seam Fastball">
-      Two Seam Fastball
-    </MenuItem>,
-    <MenuItem className="dropdown-panel__item" key="Curveball">
-      Curveball
-    </MenuItem>,
-    <MenuItem className="dropdown-panel__item" key="Changeup">
-      Changeup
-    </MenuItem>,
-    <MenuItem className="dropdown-panel__item" key="Slider">
-      Slider
-    </MenuItem>,
-  ];
+  useEffect(() => {
+    dispatch(fetchBattingGraphData({ pitch_type: selectedItem }));
+  }, [selectedItem]);
+
+  const getMenuTypeItems = (items) =>
+    items.map((item, index) => (
+      <MenuItem className="dropdown-panel__item" data-item={item} key={index}>
+        {item}
+      </MenuItem>
+    ));
 
   const handleOnClickItem = (e) => {
-    setSelectedItem(e.key !== "None" ? e.key : null);
+    setSelectedItem(
+      e.item.props["data-item"] !== "None" ? e.item.props["data-item"] : null
+    );
   };
 
   const menuType = (
@@ -38,7 +42,7 @@ const Charts = () => {
       onClick={handleOnClickItem}
       className="dropdown-panel dropdown-statistic"
     >
-      {menuTypeItems}
+      {getMenuTypeItems(pitchTypes)}
     </Menu>
   );
 
@@ -57,10 +61,18 @@ const Charts = () => {
         </div>
       </div>
       <div className="charts__content">
-        {true ? "There's no info yet!" : null}
+        {isLoadingBatterGraph ? (
+          <Spinner />
+        ) : (
+          <>{batterGraph ? "There's no info yet!" : null}</>
+        )}
       </div>
     </div>
   );
+};
+
+Charts.propTypes = {
+  type: PropTypes.string,
 };
 
 export default Charts;

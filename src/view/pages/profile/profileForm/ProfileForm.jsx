@@ -11,12 +11,11 @@ import {
 import CustomInput from "@commonComponents/customInput/CustomInput";
 import CustomTextarea from "@commonComponents/customTextarea/CustomTextarea";
 import CustomSelect from "@commonComponents/customSelect/CustomSelect";
-import { updateProfile } from "@routines/profileRoutines";
-import { getProfileIsRequesting } from "@selectors/profileSelector";
-import { ProfileContext } from "@view/pages/profile/Profile";
-import { getSchoolsIsLoading } from "@selectors/schoolsSelector";
-import { getFacilitiesIsLoading } from "@selectors/facilitiesSelector";
-import { getTeamsIsLoading } from "@selectors/teamsSelector";
+import { updateProfile } from "@ducks/profile/profileRoutines";
+import { getProfileIsRequesting } from "@ducks/profile/profileSelector";
+import { getSchoolsIsLoading } from "@ducks/school/schoolsSelector";
+import { getFacilitiesIsLoading } from "@ducks/facility/facilitiesSelector";
+import { getTeamsIsLoading } from "@ducks/team/teamsSelector";
 import PropTypes from "prop-types";
 import "./profileForm.css";
 
@@ -28,7 +27,6 @@ const ProfileForm = ({
   onChangeIsEditing,
   handleOnClickCancel = () => {},
 }) => {
-  const { updateProfile: setProfile } = useContext(ProfileContext);
   const dispatch = useDispatch();
   const isLoadingSchool = useSelector(getSchoolsIsLoading);
   const isLoadingFacilities = useSelector(getFacilitiesIsLoading);
@@ -38,7 +36,6 @@ const ProfileForm = ({
   const onSubmit = (values) => {
     const profile = { ...values };
     const callback = (profile) => {
-      setProfile(profile);
       onChangeIsEditing(false);
     };
     profile.bats_hand = profile.bats_hand ? profile.bats_hand.value : "none";

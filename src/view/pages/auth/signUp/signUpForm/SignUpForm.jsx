@@ -4,9 +4,9 @@ import { Form, Field } from "react-final-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faUser, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { signUp } from "@routines/authRoutines";
+import { signUp } from "@ducks/auth/authRoutines";
 import { required } from "@helpers/validators";
-import { getAuthIsLoading } from "@selectors/authSelector";
+import { getAuthIsLoading } from "@ducks/auth/authSelector";
 import PropTypes from "prop-types";
 import "./signUpForm.css";
 
