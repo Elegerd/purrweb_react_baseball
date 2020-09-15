@@ -13,13 +13,25 @@ import "./sessions.css";
 const Sessions = () => {
   const dispatch = useDispatch();
   const profileEvents = useSelector(getProfileEvents);
-
-  useEffect(() => {
-    dispatch(fetchProfileEventsData());
-  }, []);
-
   const [selectedItem, setSelectedItem] = useState(null);
   const [startDate, setStartDate] = useState(null);
+
+  useEffect(() => {
+    const date = startDate
+      ? startDate.getDate() +
+        "-" +
+        (startDate.getMonth() + 1) +
+        "-" +
+        startDate.getFullYear()
+      : undefined;
+    const event_type = selectedItem ? selectedItem : undefined;
+    dispatch(
+      fetchProfileEventsData({
+        date,
+        event_type,
+      })
+    );
+  }, [selectedItem, startDate]);
 
   const getMenuTypeItems = (items) =>
     items.map((item, index) => (
@@ -44,13 +56,18 @@ const Sessions = () => {
     </Menu>
   );
 
+  const handleOnClickClear = (e) => {
+    setSelectedItem(null);
+    setStartDate(null);
+  };
+
   return (
     <div className="statistic-sessions">
       <div className="statistic-sessions__header">
         <div className="statistic-sessions__title">Sessions</div>
         <div className="statistic-sessions__actions">
           <div className="ss-actions__clear">
-            <button>Clear Filters</button>
+            <button onClick={handleOnClickClear}>Clear Filters</button>
           </div>
           <div className="ss-actions__datepicker">
             <CustomDatePicker
@@ -97,7 +114,7 @@ const Sessions = () => {
           </div>
         </div>
         <div className="ss-table__content">
-          {true ? "The player haven't had any sessions yet!" : null}
+          {profileEvents ? "The player haven't had any sessions yet!" : null}
         </div>
       </div>
     </div>

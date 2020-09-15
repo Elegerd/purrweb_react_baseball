@@ -183,32 +183,6 @@ header nav a {
   color: #788b99;
 }
 
-.dropdown-header::before {
-  content: "";
-  width: 0;
-  height: 0;
-  position: absolute;
-  top: -8px;
-  left: 142px;
-  z-index: 2;
-  border-style: solid;
-  border-width: 0 8px 8px 8px;
-  border-color: transparent transparent #ffffff transparent;
-}
-
-.dropdown-header::after {
-  content: "";
-  width: 0;
-  height: 0;
-  position: absolute;
-  top: -9px;
-  right: 25px;
-  z-index: 1;
-  border-style: solid;
-  border-width: 0 8px 8px 8px;
-  border-color: transparent transparent rgba(0, 0, 0, 0.15) transparent;
-}
-
 .dropdown-panel__button {
   display: block;
   padding: 7px 19px 10px 18px;

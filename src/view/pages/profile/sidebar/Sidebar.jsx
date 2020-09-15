@@ -76,7 +76,7 @@ const Sidebar = ({ profile, isUserProfile }) => {
         )}
         {isUserProfile === false && (
           <button className="like-button" onClick={handleOnClickLike}>
-            <span>{profile.favorite ? <Heart /> : <HeartFill />}</span>
+            <span>{profile.favorite ? <HeartFill /> : <Heart />}</span>
           </button>
         )}
         <div className="user-info__avatar">

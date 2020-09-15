@@ -9,6 +9,7 @@ export function profileDataRequest({ id }) {
           id
           first_name
           last_name
+          favorite
           position
           position2
           school_year

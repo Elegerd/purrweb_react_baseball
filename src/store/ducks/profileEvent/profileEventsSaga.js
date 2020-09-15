@@ -15,6 +15,7 @@ function* fetchProfileEventsDataFlow({ payload }) {
       profile_id: profile.id,
       count: 10,
       offset: 0,
+      ...payload,
     });
     yield put(fetchProfileEventsData.success(profileEvents));
   } catch (error) {

@@ -53,13 +53,7 @@ export function pitchingGraphRequest({ profile_id, pitch_type = "" }) {
     );
 }
 
-export function pitchingLogRequest({
-  profile_id,
-  batter_name = "",
-  pitch_type = "",
-  count = 0,
-  offset = 10,
-}) {
+export function pitchingLogRequest(data) {
   return request
     .post("api/v1/graphql", {
       query: `
@@ -88,13 +82,7 @@ export function pitchingLogRequest({
       }
     `,
       variables: {
-        input: {
-          profile_id: profile_id,
-          count,
-          offset,
-          batter_name,
-          pitch_type,
-        },
+        input: data,
       },
     })
     .then(

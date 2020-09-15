@@ -1,0 +1,44 @@
+.log-batting__item:nth-child(1),
+.log-batting__row-item:nth-child(1) {
+  width: 19.5%;
+  -webkit-flex: 1 0 19.5%;
+  -ms-flex: 1 0 19.5%;
+  flex: 1 0 19.5%;
+  min-width: 0;
+}
+
+.log-batting__item:nth-child(2),
+.log-batting__row-item:nth-child(2) {
+  width: 19.5%;
+  -webkit-flex: 1 0 19.5%;
+  -ms-flex: 1 0 19.5%;
+  flex: 1 0 19.5%;
+  min-width: 0;
+}
+
+.log-batting__item:nth-child(3),
+.log-batting__row-item:nth-child(3) {
+  width: 21%;
+  -webkit-flex: 1 0 21%;
+  -ms-flex: 1 0 21%;
+  flex: 1 0 21%;
+  min-width: 0;
+}
+
+.log-batting__item:nth-child(4),
+.log-batting__row-item:nth-child(4) {
+  width: 21%;
+  -webkit-flex: 1 0 21%;
+  -ms-flex: 1 0 21%;
+  flex: 1 0 21%;
+  min-width: 0;
+}
+
+.log-batting__item:nth-child(5),
+.log-batting__row-item:nth-child(5) {
+  width: 19.5%;
+  -webkit-flex: 1 0 19.5%;
+  -ms-flex: 1 0 19.5%;
+  flex: 1 0 19.5%;
+  min-width: 0;
+}

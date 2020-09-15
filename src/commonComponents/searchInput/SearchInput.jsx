@@ -1,5 +1,6 @@
 import React from "react";
 import { ReactComponent as Search } from "@assets/svg/search.svg";
+import { DebounceInput } from "react-debounce-input";
 import PropTypes from "prop-types";
 import "./searchInput.css";
 
@@ -11,7 +12,11 @@ const SearchInput = ({ ...rest }) => {
           <Search />
         </span>
       </button>
-      <input className="search-input__input" {...rest} />
+      <DebounceInput
+        debounceTimeout={500}
+        className="search-input__input"
+        {...rest}
+      />
     </div>
   );
 };

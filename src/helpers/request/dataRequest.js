@@ -129,7 +129,7 @@ export function teamsRequest({ search = "" }) {
     );
 }
 
-export function profileEventsRequest({ profile_id, count = 0, offset = 10 }) {
+export function profileEventsRequest(data) {
   return request
     .post("api/v1/graphql", {
       query: `
@@ -145,7 +145,7 @@ export function profileEventsRequest({ profile_id, count = 0, offset = 10 }) {
         }
       }
     `,
-      variables: { input: { profile_id: profile_id, count, offset } },
+      variables: { input: data },
     })
     .then(
       ({

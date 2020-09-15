@@ -13,6 +13,8 @@ function* fetchPitchingLogDataFlow({ payload }) {
     yield put(fetchPitchingLogData.request());
     const battingLog = yield call(pitchingLogRequest, {
       profile_id: id,
+      count: 10,
+      offset: 0,
       ...payload,
     });
     yield put(fetchPitchingLogData.success(battingLog));

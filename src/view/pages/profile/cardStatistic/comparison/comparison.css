@@ -1,0 +1,109 @@
+.comparison__container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  display: block;
+}
+
+.comparison__header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.c-header__left-profile {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c-header__avatar {
+  display: block;
+  -webkit-flex: 0 0 40px;
+  -ms-flex: 0 0 40px;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  margin-right: 8px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.left-profile__button {
+  padding: 0;
+  font-size: 16px;
+  line-height: 19px;
+  color: #414f5a;
+  white-space: nowrap;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+}
+
+.left-profile__button:hover,
+.left-profile__button:focus,
+.left-profile__button:active,
+.left-profile__button:active:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.c-header__avatar > div {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.c-header__right-profile {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  overflow: visible !important;
+}
+
+.rp-search {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: block;
+  position: relative;
+  overflow: visible !important;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.comparison__content .comparison-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.comparison-row {
+  min-height: 44px;
+  margin-bottom: 6px;
+}
+
+.comparison-age {
+  margin-top: 15px;
+}
+
+.comparison-height {
+  min-height: 44px;
+  margin-bottom: 6px;
+}
+
+.comparison-weight {
+  min-height: 44px;
+  margin-bottom: 6px;
+}

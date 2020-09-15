@@ -1,6 +1,3 @@
-import { Item as MenuItem } from "rc-menu";
-import React from "react";
-
 export const schoolYearOptions = [
   { value: "freshman", label: "Freshman" },
   { value: "sophomore", label: "Sophomore" },

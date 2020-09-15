@@ -1,24 +1,32 @@
-import React, { useRef, useState } from "react";
-import { useSelector } from "react-redux";
-import { getViewedProfile } from "@ducks/viewedProfile/viewedProfileSelector";
+import React, { useRef, useState, useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Menu, { Item as MenuItem } from "rc-menu";
 import Dropdown from "rc-dropdown";
-import Summary from "@view/pages/profile/cardStatistic/summary/Summary";
-import Charts from "@view/pages/profile/cardStatistic/charts/Charts";
-import Log from "@view/pages/profile/cardStatistic/log/Log";
+import BattingSummary from "@view/pages/profile/cardStatistic/battingSummary/BattingSummary";
+import BattingCharts from "@view/pages/profile/cardStatistic/battingCharts/BattingCharts";
+import BattingLog from "@view/pages/profile/cardStatistic/battingLog/BattingLog";
+import PitchingSummary from "@view/pages/profile/cardStatistic/pitchingSummary/PitchingSummary";
+import PitchingCharts from "@view/pages/profile/cardStatistic/pitchingCharts/PitchingCharts";
+import PitchingLog from "@view/pages/profile/cardStatistic/pitchingLog/PitchingLog";
 import Sessions from "@view/pages/profile/cardStatistic/sussions/Sessions";
+import Comparison from "@view/pages/profile/cardStatistic/comparison/Comparison";
 import { profileIsBatting, profileIsPitching } from "@helpers/utilities";
 import PropTypes from "prop-types";
 import "./cardStatistic.css";
+import "./summary.css";
+import "./log.css";
 
-const CardStatistic = ({ isUserProfile }) => {
+const CardStatistic = ({ profile, isUserProfile }) => {
   const tabBattingRef = useRef(null);
   const tabPitchingRef = useRef(null);
   const [selectedItem, setSelectedItem] = useState("0");
-  const viewedProfile = useSelector(getViewedProfile);
-  const isPitching = profileIsPitching(viewedProfile);
-  const isBatting = profileIsBatting(viewedProfile);
+  const [isPitching, setIsPitching] = useState(false);
+  const [isBatting, setIsBatting] = useState(false);
+
+  useEffect(() => {
+    setIsPitching(profileIsPitching(profile));
+    setIsBatting(profileIsBatting(profile));
+  }, []);
 
   const handleOnClickBattingItem = (e) => {
     setSelectedItem(e.key);
@@ -60,9 +68,9 @@ const CardStatistic = ({ isUserProfile }) => {
   const renderPitching = () => {
     return (
       <TabPanel>
-        {selectedItem === "0" && <Summary type={"pitching"} />}
-        {selectedItem === "1" && <Charts type={"pitching"} />}
-        {selectedItem === "2" && <Log type={"pitching"} />}
+        {selectedItem === "0" && <PitchingSummary />}
+        {selectedItem === "1" && <PitchingCharts />}
+        {selectedItem === "2" && <PitchingLog />}
       </TabPanel>
     );
   };
@@ -70,9 +78,9 @@ const CardStatistic = ({ isUserProfile }) => {
   const renderBatting = () => {
     return (
       <TabPanel>
-        {selectedItem === "0" && <Summary type={"batting"} />}
-        {selectedItem === "1" && <Charts type={"batting"} />}
-        {selectedItem === "2" && <Log type={"batting"} />}
+        {selectedItem === "0" && <BattingSummary />}
+        {selectedItem === "1" && <BattingCharts />}
+        {selectedItem === "2" && <BattingLog />}
       </TabPanel>
     );
   };
@@ -88,7 +96,7 @@ const CardStatistic = ({ isUserProfile }) => {
   const renderComparison = () => {
     return (
       <TabPanel>
-        <h2>Any content 3</h2>
+        <Comparison />
       </TabPanel>
     );
   };
@@ -111,12 +119,12 @@ const CardStatistic = ({ isUserProfile }) => {
               </Dropdown>
             </Tab>
           )}
-          <Tab>Session Reports</Tab>
+          {isUserProfile && <Tab>Session Reports</Tab>}
           <Tab>Comparison</Tab>
         </TabList>
         {isPitching && renderPitching()}
         {isBatting && renderBatting()}
-        {renderSessions()}
+        {isUserProfile && renderSessions()}
         {renderComparison()}
       </Tabs>
     </div>
@@ -124,6 +132,7 @@ const CardStatistic = ({ isUserProfile }) => {
 };
 
 CardStatistic.propTypes = {
+  profile: PropTypes.object,
   isUserProfile: PropTypes.bool,
 };
 

@@ -8,7 +8,7 @@
   flex-direction: column;
 }
 
-.top-batting {
+.summary-top {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -19,7 +19,7 @@
   margin-top: 15px;
 }
 
-.top-batting__title {
+.summary-top__title {
   font-size: 24px;
   line-height: 1.25;
   font-weight: 400;
@@ -34,7 +34,7 @@
   text-align: left;
 }
 
-.average-batting {
+.summary-average {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -46,7 +46,7 @@
   margin-top: 30px;
 }
 
-.average-batting__title {
+.summary-average__title {
   font-size: 24px;
   line-height: 1.25;
   font-weight: 400;
@@ -76,6 +76,33 @@
   -ms-flex-pack: center;
   justify-content: center;
   min-height: 420px;
+  color: #667784;
+  font-size: 16px;
+}
+
+.summary__row-empty {
+  background: #ffffff;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 300;
+  color: #667784;
+  border-radius: 4px;
+}
+
+.summary__row-empty > div {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-top: 8px;
   color: #667784;
   font-size: 16px;
 }

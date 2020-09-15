@@ -10,6 +10,9 @@ import { viewedProfileReducer } from "./viewedProfile/viewedProfileReducer";
 import { battingSummaryReducer } from "./battingSummary/battingSummaryReducer";
 import { battingGraphReducer } from "./battingGraph/battingGraphReducer";
 import { battingLogReducer } from "./battingLog/battingLogReducer";
+import { pitchingSummaryReducer } from "./pitchingSummary/pitchingSummaryReducer";
+import { pitchingGraphReducer } from "@ducks/pitchingGraph/pitchingGraphReducer";
+import { pitchingLogReducer } from "@ducks/pitchingLog/pitchingLogReducer";
 
 const rootReducer = (history) =>
   combineReducers({
@@ -24,6 +27,9 @@ const rootReducer = (history) =>
     battingSummary: battingSummaryReducer,
     battingGraph: battingGraphReducer,
     battingLog: battingLogReducer,
+    pitchingSummary: pitchingSummaryReducer,
+    pitchingGraph: pitchingGraphReducer,
+    pitchingLog: pitchingLogReducer,
   });
 
 export default rootReducer;

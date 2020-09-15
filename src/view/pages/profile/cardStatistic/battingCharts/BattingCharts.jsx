@@ -11,9 +11,9 @@ import {
 import { fetchBattingGraphData } from "@ducks/battingGraph/battingGraphRoutines";
 import Spinner from "@commonComponents/spinner/Spinner";
 import PropTypes from "prop-types";
-import "./charts.css";
+import "./battingCharts.css";
 
-const Charts = () => {
+const BattingCharts = () => {
   const dispatch = useDispatch();
   const batterGraph = useSelector(getBattingGraph);
   const isLoadingBatterGraph = useSelector(getBattingGraphIsLoading);
@@ -71,8 +71,8 @@ const Charts = () => {
   );
 };
 
-Charts.propTypes = {
+BattingCharts.propTypes = {
   type: PropTypes.string,
 };
 
-export default Charts;
+export default BattingCharts;

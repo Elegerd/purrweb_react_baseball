@@ -12,7 +12,6 @@ import CardStatistic from "./cardStatistic/CardStatistic";
 import {
   getViewedProfile,
   getViewedProfileError,
-  getViewedProfileIsLoading,
 } from "@ducks/viewedProfile/viewedProfileSelector";
 import PropTypes from "prop-types";
 import "./profile.css";
@@ -22,9 +21,8 @@ const Profile = ({ match: { params } }) => {
   const [isUserProfile, setIsUserProfile] = useState(null);
   const currentProfile = useSelector(getProfile);
   const viewedProfile = useSelector(getViewedProfile);
-  const isLoadingViewedProfile = useSelector(getViewedProfileIsLoading);
-  const viewedProfileError = useSelector(getViewedProfileError);
   const isLoadingProfile = useSelector(getProfileIsLoading);
+  const viewedProfileError = useSelector(getViewedProfileError);
 
   useEffect(() => {
     const profileId =
@@ -33,10 +31,7 @@ const Profile = ({ match: { params } }) => {
     dispatch(fetchViewedProfileData({ id: profileId }));
   }, [params]);
 
-  return !currentProfile ||
-    !viewedProfile ||
-    isLoadingProfile ||
-    isLoadingViewedProfile ? (
+  return !currentProfile || !viewedProfile || isLoadingProfile ? (
     <Spinner />
   ) : (
     <>
@@ -48,8 +43,14 @@ const Profile = ({ match: { params } }) => {
             <div className="profile__content">
               <Sidebar profile={viewedProfile} isUserProfile={isUserProfile} />
               <main className="profile__main">
-                <CardSummary />
-                <CardStatistic isUserProfile={isUserProfile} />
+                <CardSummary
+                  profile={viewedProfile}
+                  isUserProfile={isUserProfile}
+                />
+                <CardStatistic
+                  profile={viewedProfile}
+                  isUserProfile={isUserProfile}
+                />
               </main>
             </div>
           </div>
