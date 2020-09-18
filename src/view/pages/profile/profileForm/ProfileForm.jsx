@@ -16,6 +16,7 @@ import { getProfileIsRequesting } from "@ducks/profile/profileSelector";
 import { getSchoolsIsLoading } from "@ducks/school/schoolsSelector";
 import { getFacilitiesIsLoading } from "@ducks/facility/facilitiesSelector";
 import { getTeamsIsLoading } from "@ducks/team/teamsSelector";
+import { setProfileValidField } from "@helpers/utilities";
 import PropTypes from "prop-types";
 import "./profileForm.css";
 
@@ -34,28 +35,8 @@ const ProfileForm = ({
   const isRequesting = useSelector(getProfileIsRequesting);
 
   const onSubmit = (values) => {
-    const profile = { ...values };
-    const callback = (profile) => {
-      onChangeIsEditing(false);
-    };
-    profile.bats_hand = profile.bats_hand ? profile.bats_hand.value : "none";
-    profile.throws_hand = profile.throws_hand
-      ? profile.throws_hand.value
-      : "none";
-    profile.position = profile.position ? profile.position.value : null;
-    profile.position2 = profile.position2 ? profile.position2.value : null;
-    profile.facilities = profile.facilities.map((faculty) => {
-      return { id: faculty.value, u_name: faculty.label };
-    });
-    profile.school = profile.school
-      ? { id: profile.school.value, name: profile.school.label }
-      : null;
-    profile.school_year = profile.school_year
-      ? profile.school_year.value
-      : null;
-    profile.teams = profile.teams.map((team) => {
-      return { id: team.value, name: team.label };
-    });
+    const profile = setProfileValidField({ ...values });
+    const callback = () => onChangeIsEditing(false);
     dispatch(updateProfile({ profile, callback }));
   };
   const [defaultValues, setDefaultValues] = useState({});

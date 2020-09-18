@@ -6,7 +6,10 @@ import {
   updateProfileRequest,
 } from "@helpers/request/profileRequest";
 import { getProfile } from "./profileSelector";
-import { handleRequestError } from "@helpers/utilities";
+import {
+  getRequiredProfileFields,
+  handleRequestError,
+} from "@helpers/utilities";
 
 export function* fetchProfileDataWatcherSaga() {
   yield takeEvery(fetchProfileData.TRIGGER, fetchProfileDataFlow);
@@ -37,27 +40,11 @@ function* updateProfileFlow({ payload }) {
   try {
     yield put(updateProfile.request());
     const profile = yield select(getProfile);
-    const allField = { ...profile, ...payload.profile };
-    const result = {
-      id: allField.id,
-      first_name: allField.first_name,
-      last_name: allField.last_name,
-      position: allField.position,
-      position2: allField.position2 || null,
-      avatar: allField.avatar,
-      throws_hand: allField.throws_hand,
-      bats_hand: allField.bats_hand,
-      biography: allField.biography || "",
-      school_year: allField.school_year || null,
-      feet: allField.feet,
-      inches: allField.inches,
-      weight: allField.weight,
-      age: allField.age,
-      school: allField.school || "",
-      teams: allField.teams || [],
-      facilities: allField.facilities || [],
-    };
-    const response = yield call(updateProfileRequest, result);
+    const fullProfile = getRequiredProfileFields({
+      ...profile,
+      ...payload.profile,
+    });
+    const response = yield call(updateProfileRequest, fullProfile);
     yield call(handleRequestError, response);
     const {
       data: { update_profile },

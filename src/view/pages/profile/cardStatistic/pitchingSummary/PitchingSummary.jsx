@@ -1,13 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPitchingSummaryData } from "@ducks/pitchingSummary/pitchingSummaryRoutines";
-import { getPitchingSummary } from "@ducks/pitchingSummary/pitchingSummarySelector";
+import {
+  getPitchingSummary,
+  getPitchingSummaryIsLoading,
+} from "@ducks/pitchingSummary/pitchingSummarySelector";
 import PropTypes from "prop-types";
 import "./pitchingSummary.css";
+import Spinner from "@commonComponents/spinner/Spinner";
 
 const PitchingSummary = () => {
   const dispatch = useDispatch();
   const pitchingSummary = useSelector(getPitchingSummary);
+  const isLoadingPitchingSummary = useSelector(getPitchingSummaryIsLoading);
 
   useEffect(() => {
     dispatch(fetchPitchingSummaryData({}));
@@ -45,6 +50,13 @@ const PitchingSummary = () => {
       </div>
     );
   };
+
+  if (isLoadingPitchingSummary)
+    return (
+      <div className="summary__empty">
+        <Spinner />
+      </div>
+    );
 
   return (
     <>

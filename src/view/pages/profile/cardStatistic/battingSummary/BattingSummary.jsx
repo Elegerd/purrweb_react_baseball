@@ -1,13 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBattingSummaryData } from "@ducks/battingSummary/battingSummaryRoutines";
-import { getBattingSummary } from "@ducks/battingSummary/battingSummarySelector";
+import {
+  getBattingSummary,
+  getBattingSummaryIsLoading,
+} from "@ducks/battingSummary/battingSummarySelector";
 import PropTypes from "prop-types";
 import "./battingSummary.css";
+import Spinner from "@commonComponents/spinner/Spinner";
 
 const BattingSummary = () => {
   const dispatch = useDispatch();
   const battingSummary = useSelector(getBattingSummary);
+  const isLoadingBattingSummary = useSelector(getBattingSummaryIsLoading);
 
   useEffect(() => {
     dispatch(fetchBattingSummaryData({}));
@@ -49,6 +54,13 @@ const BattingSummary = () => {
       </div>
     );
   };
+
+  if (isLoadingBattingSummary)
+    return (
+      <div className="summary__empty">
+        <Spinner />
+      </div>
+    );
 
   return (
     <>

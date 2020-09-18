@@ -13,6 +13,7 @@ import { battingLogReducer } from "./battingLog/battingLogReducer";
 import { pitchingSummaryReducer } from "./pitchingSummary/pitchingSummaryReducer";
 import { pitchingGraphReducer } from "@ducks/pitchingGraph/pitchingGraphReducer";
 import { pitchingLogReducer } from "@ducks/pitchingLog/pitchingLogReducer";
+import { userReducer } from "@ducks/user/userReducer";
 
 const rootReducer = (history) =>
   combineReducers({
@@ -23,6 +24,7 @@ const rootReducer = (history) =>
     schools: schoolsReducer,
     facilities: facilitiesReducer,
     teams: teamsReducer,
+    users: userReducer,
     profileEvents: profileEventsReducer,
     battingSummary: battingSummaryReducer,
     battingGraph: battingGraphReducer,

@@ -193,3 +193,35 @@ export function updateFavoriteProfileRequest({ profile_id, favorite }) {
     })
     .then(({ data }) => data);
 }
+
+export function profileNamesRequest(data) {
+  return request
+    .post("api/v1/graphql", {
+      query: `
+      query ProfileNames($input:FilterProfileNamesInput!) {
+        profile_names(input: $input) {
+          profile_names { 
+            id
+            position
+            first_name
+            last_name
+            inches
+            feet
+            weight
+            age 
+          }
+        }
+      }
+    `,
+      variables: { input: data },
+    })
+    .then(
+      ({
+        data: {
+          data: {
+            profile_names: { profile_names },
+          },
+        },
+      }) => profile_names
+    );
+}

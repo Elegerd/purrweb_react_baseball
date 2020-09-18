@@ -45,3 +45,14 @@ export const initProfile = {
   school: null,
   school_year: null,
 };
+
+export const topBattingType = [
+  { id: 0, title: "Distance", field: "distance" },
+  { id: 1, title: "Launch Angle", field: "launch_angle" },
+  { id: 2, title: "Exit Velocity", field: "exit_velocity" },
+];
+
+export const topPitchingType = [
+  { id: 0, title: "Pitch Velocity", field: "velocity" },
+  { id: 1, title: "Spin Rate", field: "spin_rate" },
+];

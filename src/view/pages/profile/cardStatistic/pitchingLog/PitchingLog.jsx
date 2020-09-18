@@ -65,8 +65,6 @@ const PitchingLog = ({}) => {
     );
   }, [searchValue, selectedItem, activePage]);
 
-  console.log(pitchingLog);
-
   const renderRows = (items) => {
     return items.length ? (
       items.map((item, index) => (
