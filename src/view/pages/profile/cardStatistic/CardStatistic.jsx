@@ -26,7 +26,7 @@ const CardStatistic = ({ profile, isUserProfile }) => {
   useEffect(() => {
     setIsPitching(profileIsPitching(profile));
     setIsBatting(profileIsBatting(profile));
-  }, []);
+  }, [profile]);
 
   const handleOnClickBattingItem = (e) => {
     setSelectedItem(e.key);

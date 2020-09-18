@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSchoolsData } from "@ducks/school/schoolsRoutines";
 import { fetchTeamsData } from "@ducks/team/teamsRoutines";
 import { fetchFacilitiesData } from "@ducks/facility/facilitiesRoutines";
+import { likeProfile } from "@ducks/profile/profileRoutines";
 import { getSchools } from "@ducks/school/schoolsSelector";
 import { getFacilities } from "@ducks/facility/facilitiesSelector";
 import { getTeams } from "@ducks/team/teamsSelector";
@@ -114,7 +115,8 @@ const Sidebar = ({ profile, isUserProfile }) => {
 
   const handleOnClickLike = (e) => {
     e.preventDefault();
-    console.log("LIKE");
+    const { id: profile_id, favorite } = profile;
+    dispatch(likeProfile({ profile_id, favorite: !favorite }));
   };
 
   const handleOnClickCancel = (e) => {

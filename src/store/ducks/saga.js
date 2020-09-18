@@ -8,6 +8,7 @@ import {
 import {
   fetchProfileDataWatcherSaga,
   updateProfileWatcherSaga,
+  likeProfileWatcherSaga,
 } from "./profile/profileSaga";
 import { fetchSchoolDataWatcherSaga } from "./school/schoolsSaga";
 import { fetchFacilitiesDataWatcherSaga } from "./facility/facilitiesSaga";
@@ -34,6 +35,7 @@ export default function* rootSaga() {
     fetchFacilitiesDataWatcherSaga(),
     fetchTeamsDataWatcherSaga(),
     updateProfileWatcherSaga(),
+    likeProfileWatcherSaga(),
     fetchProfileEventsDataWatcherSaga(),
     fetchBattingSummaryDataWatcherSaga(),
     fetchBattingGraphDataWatcherSaga(),

@@ -1,6 +1,7 @@
 import {
   fetchProfileData,
   updateProfile,
+  likeProfile,
 } from "@ducks/profile/profileRoutines";
 import { createReducer } from "../createReducer";
 import {
@@ -56,7 +57,30 @@ const handleUpdateProfile = {
     };
   },
   ...handleFailure(updateProfile),
-  [updateProfile.FULFILL]: (state, { payload }) => ({
+  [updateProfile.FULFILL]: (state) => ({
+    ...state,
+    requesting: false,
+    error: null,
+  }),
+};
+
+const handleLikeProfile = {
+  ...handleTrigger(likeProfile),
+  [likeProfile.REQUEST]: (state) => ({
+    ...state,
+    requesting: true,
+    error: null,
+  }),
+  [likeProfile.SUCCESS]: (state, { payload }) => ({
+    ...state,
+    data: {
+      ...state.data,
+      ...payload,
+    },
+    error: null,
+  }),
+  ...handleFailure(likeProfile),
+  [likeProfile.FULFILL]: (state) => ({
     ...state,
     requesting: false,
     error: null,
@@ -67,4 +91,5 @@ export const profileReducer = createReducer(initialState)({
   ...handleFetchProfileData,
   ...handleSignOut,
   ...handleUpdateProfile,
+  ...handleLikeProfile,
 });

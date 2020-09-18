@@ -1,8 +1,13 @@
 import { call, put, takeEvery, select } from "redux-saga/effects";
-import { fetchProfileData, updateProfile } from "./profileRoutines";
+import {
+  fetchProfileData,
+  likeProfile,
+  updateProfile,
+} from "./profileRoutines";
 import {
   currentProfileDataRequest,
   profileDataRequest,
+  updateFavoriteProfileRequest,
   updateProfileRequest,
 } from "@helpers/request/profileRequest";
 import { getProfile } from "./profileSelector";
@@ -17,6 +22,10 @@ export function* fetchProfileDataWatcherSaga() {
 
 export function* updateProfileWatcherSaga() {
   yield takeEvery(updateProfile.TRIGGER, updateProfileFlow);
+}
+
+export function* likeProfileWatcherSaga() {
+  yield takeEvery(likeProfile.TRIGGER, likeProfileFlow);
 }
 
 function* fetchProfileDataFlow({ payload }) {
@@ -55,5 +64,23 @@ function* updateProfileFlow({ payload }) {
     yield put(updateProfile.failure(error.message));
   } finally {
     yield put(updateProfile.fulfill());
+  }
+}
+
+function* likeProfileFlow({ payload }) {
+  try {
+    yield put(likeProfile.request());
+    const response = yield call(updateFavoriteProfileRequest, payload);
+    yield call(handleRequestError, response);
+    const {
+      data: { update_favorite_profile },
+    } = response;
+    yield put(
+      likeProfile.success({ favorite: update_favorite_profile.favorite })
+    );
+  } catch (error) {
+    yield put(likeProfile.failure(error.message));
+  } finally {
+    yield put(likeProfile.fulfill());
   }
 }
