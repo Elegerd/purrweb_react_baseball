@@ -15,17 +15,20 @@ import { Link } from "react-router-dom";
 import { getObjectById } from "@helpers/utilities";
 import Spinner from "@commonComponents/spinner/Spinner";
 import { updateFavoriteProfileRequest } from "@helpers/request/profileRequest";
+import PropTypes from "prop-types";
 import "./battingLeaderboard.css";
 
-const BattingLeaderboard = () => {
+const BattingLeaderboard = ({ filter }) => {
   const dispatch = useDispatch();
   const [selectedType, setSelectedType] = useState(leaderboardBattingTypes[0]);
   const battingLeaderboard = useSelector(getBattingLeaderboard);
   const isLoadingLeaderboard = useSelector(getBattingLeaderboardIsLoading);
 
   useEffect(() => {
-    dispatch(fetchBattingLeaderboardData({ type: selectedType.field }));
-  }, [selectedType]);
+    dispatch(
+      fetchBattingLeaderboardData({ ...filter, type: selectedType.field })
+    );
+  }, [filter, selectedType]);
 
   const handleOnClickMenuItem = (e) => {
     const type = getObjectById(
@@ -37,7 +40,9 @@ const BattingLeaderboard = () => {
 
   const handleOnClickFavorite = (data) => async () => {
     await updateFavoriteProfileRequest(data);
-    dispatch(fetchBattingLeaderboardData({ type: selectedType.field }));
+    dispatch(
+      fetchBattingLeaderboardData({ ...filter, type: selectedType.field })
+    );
   };
 
   const menuItems = leaderboardBattingTypes.map((item, index) => (
@@ -134,6 +139,10 @@ const BattingLeaderboard = () => {
       </div>
     </div>
   );
+};
+
+BattingLeaderboard.propTypes = {
+  filter: PropTypes.object,
 };
 
 export default BattingLeaderboard;

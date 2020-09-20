@@ -103,12 +103,15 @@
 .rp-search__input > input::-webkit-input-placeholder {
   color: #48bbff;
 }
+
 .rp-search__input > input:-ms-input-placeholder {
   color: #48bbff;
 }
+
 .rp-search__input > input::-moz-placeholder {
   color: #48bbff;
 }
+
 .rp-search__input > input:-moz-placeholder {
   color: #48bbff;
 }
@@ -116,12 +119,15 @@
 .rp-search__input > input:focus::-webkit-input-placeholder {
   color: #788b99;
 }
+
 .rp-search__input > input:focus:-ms-input-placeholder {
   color: #788b99;
 }
+
 .rp-search__input > input:focus::-moz-placeholder {
   color: #788b99;
 }
+
 .rp-search__input > input:focus:-moz-placeholder {
   color: #788b99;
 }

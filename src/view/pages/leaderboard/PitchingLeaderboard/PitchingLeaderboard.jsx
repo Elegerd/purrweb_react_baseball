@@ -18,17 +18,20 @@ import { faHeart as faHeartO } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
 import { getObjectById } from "@helpers/utilities";
 import Spinner from "@commonComponents/spinner/Spinner";
+import PropTypes from "prop-types";
 import "./pitchingLeaderboard.css";
 
-const PitchingLeaderboard = () => {
+const PitchingLeaderboard = ({ filter }) => {
   const dispatch = useDispatch();
   const [selectedType, setSelectedType] = useState(leaderboardPitchingTypes[0]);
   const patchingLeaderboard = useSelector(getPitchingLeaderboard);
   const isLoadingLeaderboard = useSelector(getPitchingLeaderboardIsLoading);
 
   useEffect(() => {
-    dispatch(fetchPitchingLeaderboardData({ type: selectedType.field }));
-  }, [selectedType]);
+    dispatch(
+      fetchPitchingLeaderboardData({ ...filter, type: selectedType.field })
+    );
+  }, [filter, selectedType]);
 
   const handleOnClickMenuItem = (e) => {
     const type = getObjectById(
@@ -55,7 +58,9 @@ const PitchingLeaderboard = () => {
 
   const handleOnClickFavorite = (data) => async () => {
     await updateFavoriteProfileRequest(data);
-    dispatch(fetchPitchingLeaderboardData({ type: selectedType.field }));
+    dispatch(
+      fetchPitchingLeaderboardData({ ...filter, type: selectedType.field })
+    );
   };
 
   const renderHeader = () => (
@@ -135,6 +140,10 @@ const PitchingLeaderboard = () => {
       </div>
     </div>
   );
+};
+
+PitchingLeaderboard.propTypes = {
+  filter: PropTypes.object,
 };
 
 export default PitchingLeaderboard;

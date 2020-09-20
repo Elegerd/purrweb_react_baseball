@@ -1,0 +1,85 @@
+.hidden-input {
+  display: block;
+  font-size: 16px;
+  line-height: 19px;
+  min-height: 38px;
+  font-weight: 400;
+  color: #788b99;
+  -webkit-transition: width 0.5s;
+  transition: width 0.5s;
+  border: 0;
+}
+
+.hidden-input::-webkit-input-placeholder {
+  color: #48bbff;
+}
+
+.hidden-input:-ms-input-placeholder {
+  color: #48bbff;
+}
+
+.hidden-input::-moz-placeholder {
+  color: #48bbff;
+}
+
+.hidden-input:-moz-placeholder {
+  color: #48bbff;
+}
+
+.hidden-input::-webkit-input-placeholder {
+  color: #48bbff;
+}
+
+.hidden-input:-ms-input-placeholder {
+  color: #48bbff;
+}
+
+.hidden-input::-moz-placeholder {
+  color: #48bbff;
+}
+
+.hidden-input:-moz-placeholder {
+  color: #48bbff;
+}
+
+.hidden-input:focus::-webkit-input-placeholder {
+  color: #788b99;
+}
+
+.hidden-input:focus:-ms-input-placeholder {
+  color: #788b99;
+}
+
+.hidden-input:focus::-moz-placeholder {
+  color: #788b99;
+}
+
+.hidden-input:focus:-moz-placeholder {
+  color: #788b99;
+}
+
+.hidden-input::-webkit-outer-spin-button,
+.hidden-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.hidden-input:focus {
+  width: 180px;
+}
+
+.hidden-input:focus,
+.hidden-input:active,
+.hidden-input:active:focus {
+  border-bottom: 1px solid #48bbff;
+  outline: none;
+  color: #788b99;
+  padding-bottom: 6px;
+}
+
+.hidden-input__container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
