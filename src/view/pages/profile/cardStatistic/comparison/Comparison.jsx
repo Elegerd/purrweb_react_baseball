@@ -60,7 +60,7 @@ const Comparison = ({}) => {
     setSelectedType(type);
   };
 
-  const menuUsers = (
+  const renderMenuUsers = () => (
     <Menu
       selectable={false}
       onClick={handleOnClickUser}
@@ -180,7 +180,7 @@ const Comparison = ({}) => {
                 "dropdown-comparison__hidden": !profileNames.length,
               })}
               trigger={["click"]}
-              overlay={menuUsers}
+              overlay={renderMenuUsers()}
             >
               {renderInput()}
             </Dropdown>

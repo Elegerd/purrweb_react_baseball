@@ -33,26 +33,23 @@ const Sessions = () => {
     );
   }, [selectedItem, startDate]);
 
-  const getMenuTypeItems = (items) =>
-    items.map((item, index) => (
-      <MenuItem className="dropdown-panel__item" data-item={item} key={index}>
-        {item}
-      </MenuItem>
-    ));
-
   const handleOnClickItem = (e) => {
     setSelectedItem(
       e.item.props["data-item"] !== "None" ? e.item.props["data-item"] : null
     );
   };
 
-  const menuType = (
+  const renderMenuType = () => (
     <Menu
       selectable={false}
       onClick={handleOnClickItem}
       className="dropdown-panel dropdown-statistic"
     >
-      {getMenuTypeItems(sessionTypes)}
+      {sessionTypes.map((item, index) => (
+        <MenuItem className="dropdown-panel__item" data-item={item} key={index}>
+          {item}
+        </MenuItem>
+      ))}
     </Menu>
   );
 
@@ -93,7 +90,7 @@ const Sessions = () => {
           <div className="ss-actions__type">
             <ButtonDropdown
               trigger={["click"]}
-              overlay={menuType}
+              overlay={renderMenuType()}
               text={`Type ${selectedItem ? selectedItem : ""}`}
               arrowContainerClass={"ss-actions__arrow"}
             />

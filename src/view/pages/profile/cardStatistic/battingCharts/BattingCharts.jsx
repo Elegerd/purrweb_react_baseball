@@ -22,26 +22,23 @@ const BattingCharts = () => {
     dispatch(fetchBattingGraphData({ pitch_type: selectedItem }));
   }, [selectedItem]);
 
-  const getMenuTypeItems = (items) =>
-    items.map((item, index) => (
-      <MenuItem className="dropdown-panel__item" data-item={item} key={index}>
-        {item}
-      </MenuItem>
-    ));
-
   const handleOnClickItem = (e) => {
     setSelectedItem(
       e.item.props["data-item"] !== "None" ? e.item.props["data-item"] : null
     );
   };
 
-  const menuType = (
+  const renderMenuType = () => (
     <Menu
       selectable={false}
       onClick={handleOnClickItem}
       className="dropdown-panel dropdown-statistic"
     >
-      {getMenuTypeItems(pitchTypes)}
+      {pitchTypes.map((item, index) => (
+        <MenuItem className="dropdown-panel__item" data-item={item} key={index}>
+          {item}
+        </MenuItem>
+      ))}
     </Menu>
   );
 
@@ -51,7 +48,7 @@ const BattingCharts = () => {
         <div className="charts__pitch-type">
           <ButtonDropdown
             trigger={["click"]}
-            overlay={menuType}
+            overlay={renderMenuType()}
             text={`Pitch Type ${selectedItem ? selectedItem : ""}`}
             arrowContainerClass={"charts-actions__arrow"}
           />

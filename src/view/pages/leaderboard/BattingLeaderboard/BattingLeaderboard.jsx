@@ -51,7 +51,7 @@ const BattingLeaderboard = () => {
     </MenuItem>
   ));
 
-  const menuVelocity = (
+  const menuVelocity = () => (
     <Menu selectable={false} className="dropdown-panel dropdown-leaderboard">
       {menuItems}
     </Menu>
@@ -116,7 +116,7 @@ const BattingLeaderboard = () => {
       <div className="leaderboard__velocity">
         <ButtonDropdown
           trigger={["click"]}
-          overlay={menuVelocity}
+          overlay={menuVelocity()}
           text={selectedType.title}
           buttonClass={"lv-button"}
           arrowContainerClass={"lv-button__arrow"}

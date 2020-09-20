@@ -32,6 +32,8 @@ export const pitchTypes = [
 
 export const sessionTypes = ["None", "Game", "Practice"];
 
+export const cardStatisticItems = ["Summary", "Charts", "Log"];
+
 export const initProfile = {
   first_name: "",
   last_name: "",
@@ -89,4 +91,26 @@ export const leaderboardPitchingHeader = [
 export const leaderboardPitchingTypes = [
   { id: 0, title: "Pitch Velocity", field: "pitch_velocity" },
   { id: 1, title: "Spin Rate", field: "spin_rate" },
+];
+
+export const filterDate = [
+  { id: 0, title: "All", field: null },
+  { id: 1, title: "Last Week", field: "last_week" },
+  { id: 2, title: "Last Month", field: "last_week" },
+];
+
+export const filterPositions = [
+  { id: 0, title: "All", field: null },
+  { id: 1, title: "Catcher", field: "catcher" },
+  { id: 2, title: "First Base", field: "first_base" },
+  { id: 3, title: "Second Base", field: "second_base" },
+  { id: 4, title: "Shortstop", field: "shortstop" },
+  { id: 5, title: "Third Base", field: "third_base" },
+  { id: 6, title: "Outfield", field: "outfield" },
+  { id: 7, title: "Pitcher", field: "pitcher" },
+];
+
+export const filterFavorite = [
+  { id: 0, title: "All", field: false },
+  { id: 1, title: "Favorite", field: true },
 ];

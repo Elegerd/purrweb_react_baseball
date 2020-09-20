@@ -22,26 +22,23 @@ const PitchingLog = ({}) => {
   const [searchValue, setSearchValue] = useState("");
   const [selectedItem, setSelectedItem] = useState(null);
 
-  const getMenuTypeItems = (items) =>
-    items.map((item, index) => (
-      <MenuItem className="dropdown-panel__item" data-item={item} key={index}>
-        {item}
-      </MenuItem>
-    ));
-
   const handleOnClickItem = (e) => {
     setSelectedItem(
       e.item.props["data-item"] !== "None" ? e.item.props["data-item"] : null
     );
   };
 
-  const menuType = (
+  const renderMenuType = () => (
     <Menu
       selectable={false}
       onClick={handleOnClickItem}
       className="dropdown-panel dropdown-statistic"
     >
-      {getMenuTypeItems(pitchTypes)}
+      {pitchTypes.map((item, index) => (
+        <MenuItem className="dropdown-panel__item" data-item={item} key={index}>
+          {item}
+        </MenuItem>
+      ))}
     </Menu>
   );
 
@@ -110,7 +107,7 @@ const PitchingLog = ({}) => {
         <div className="log-search__type">
           <ButtonDropdown
             trigger={["click"]}
-            overlay={menuType}
+            overlay={renderMenuType()}
             text={`Pitch Type ${selectedItem ? selectedItem : ""}`}
             arrowContainerClass={"log-search__arrow"}
           />

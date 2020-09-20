@@ -11,6 +11,7 @@ import PitchingLog from "@view/pages/profile/cardStatistic/pitchingLog/PitchingL
 import Sessions from "@view/pages/profile/cardStatistic/sussions/Sessions";
 import Comparison from "@view/pages/profile/cardStatistic/comparison/Comparison";
 import { profileIsBatting, profileIsPitching } from "@helpers/utilities";
+import { cardStatisticItems } from "@constants";
 import PropTypes from "prop-types";
 import "./cardStatistic.css";
 import "./summary.css";
@@ -38,30 +39,31 @@ const CardStatistic = ({ profile, isUserProfile }) => {
     tabPitchingRef.current.node.click();
   };
 
-  const menuBattingItems = (items) =>
-    items.map((value, index) => (
-      <MenuItem className="dropdown-panel__item" key={index}>
-        {value}
-      </MenuItem>
-    ));
-
-  const menuBatting = (
+  const renderMenuBatting = () => (
     <Menu
       selectable={false}
       onClick={handleOnClickBattingItem}
       className="dropdown-panel dropdown-statistic"
     >
-      {menuBattingItems(["Summary", "Charts", "Log"])}
+      {cardStatisticItems.map((value, index) => (
+        <MenuItem className="dropdown-panel__item" key={index}>
+          {value}
+        </MenuItem>
+      ))}
     </Menu>
   );
 
-  const menuPitching = (
+  const renderMenuPitching = () => (
     <Menu
       selectable={false}
       onClick={handleOnClickPitchingItem}
       className="dropdown-panel dropdown-statistic"
     >
-      {menuBattingItems(["Summary", "Charts", "Log"])}
+      {cardStatisticItems.map((value, index) => (
+        <MenuItem className="dropdown-panel__item" key={index}>
+          {value}
+        </MenuItem>
+      ))}
     </Menu>
   );
 
@@ -107,14 +109,14 @@ const CardStatistic = ({ profile, isUserProfile }) => {
         <TabList>
           {isPitching && (
             <Tab ref={tabPitchingRef}>
-              <Dropdown overlay={menuPitching}>
+              <Dropdown overlay={renderMenuPitching()}>
                 <span>Pitching</span>
               </Dropdown>
             </Tab>
           )}
           {isBatting && (
             <Tab ref={tabBattingRef}>
-              <Dropdown overlay={menuBatting}>
+              <Dropdown overlay={renderMenuBatting()}>
                 <span>Batting</span>
               </Dropdown>
             </Tab>

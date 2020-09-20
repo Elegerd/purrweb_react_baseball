@@ -23,26 +23,22 @@ const Header = () => {
     history.push("/profile");
   };
 
-  const menuItems = [
-    <MenuItem
-      onClick={handleOnClickProfile}
-      className="dropdown-panel__item"
-      key="1"
-    >
-      My Profile
-    </MenuItem>,
-    <MenuItem
-      onClick={handleOnClickLogOut}
-      className="dropdown-panel__item"
-      key="2"
-    >
-      Log Out
-    </MenuItem>,
-  ];
-
-  const menu = (
+  const renderMenuHeader = () => (
     <Menu selectable={false} className="dropdown-panel dropdown-header">
-      {menuItems}
+      <MenuItem
+        onClick={handleOnClickProfile}
+        className="dropdown-panel__item"
+        key="1"
+      >
+        My Profile
+      </MenuItem>
+      <MenuItem
+        onClick={handleOnClickLogOut}
+        className="dropdown-panel__item"
+        key="2"
+      >
+        Log Out
+      </MenuItem>
     </Menu>
   );
 
@@ -78,7 +74,7 @@ const Header = () => {
                 <div className="header-panel__dropdown-panel">
                   <ButtonDropdown
                     trigger={["click"]}
-                    overlay={menu}
+                    overlay={renderMenuHeader()}
                     text={`${profile.first_name} ${profile.last_name}`}
                     buttonClass={"dropdown-panel__button"}
                     arrowContainerClass={"dropdown-panel__arrow"}

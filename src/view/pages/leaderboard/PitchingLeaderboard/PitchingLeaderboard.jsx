@@ -38,20 +38,18 @@ const PitchingLeaderboard = () => {
     setSelectedType(type);
   };
 
-  const menuItems = leaderboardPitchingTypes.map((item) => (
-    <MenuItem
-      onClick={handleOnClickMenuItem}
-      className="dropdown-panel__item"
-      data-item={item.id}
-      key={item.id}
-    >
-      {item.title}
-    </MenuItem>
-  ));
-
-  const menuVelocity = (
+  const renderMenuVelocity = () => (
     <Menu selectable={false} className="dropdown-panel dropdown-leaderboard">
-      {menuItems}
+      {leaderboardPitchingTypes.map((item) => (
+        <MenuItem
+          onClick={handleOnClickMenuItem}
+          className="dropdown-panel__item"
+          data-item={item.id}
+          key={item.id}
+        >
+          {item.title}
+        </MenuItem>
+      ))}
     </Menu>
   );
 
@@ -119,7 +117,7 @@ const PitchingLeaderboard = () => {
       <div className="leaderboard__velocity">
         <ButtonDropdown
           trigger={["click"]}
-          overlay={menuVelocity}
+          overlay={renderMenuVelocity()}
           text={selectedType.title}
           buttonClass={"lv-button"}
           arrowContainerClass={"lv-button__arrow"}
