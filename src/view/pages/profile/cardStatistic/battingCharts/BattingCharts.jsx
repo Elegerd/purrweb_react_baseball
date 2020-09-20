@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Menu, { Item as MenuItem } from "rc-menu";
-import { ReactComponent as Arrow } from "@assets/svg/arrow2.svg";
-import Dropdown from "rc-dropdown";
+import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
 import { pitchTypes } from "@constants";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -50,14 +49,12 @@ const BattingCharts = () => {
     <div className="charts__wrapper">
       <div className="charts__actions">
         <div className="charts__pitch-type">
-          <Dropdown trigger={["click"]} overlay={menuType}>
-            <button>
-              Pitch Type {selectedItem ? `(${selectedItem})` : null}
-              <span className="charts-actions__arrow">
-                <Arrow />
-              </span>
-            </button>
-          </Dropdown>
+          <ButtonDropdown
+            trigger={["click"]}
+            overlay={menuType}
+            text={`Pitch Type ${selectedItem ? selectedItem : ""}`}
+            arrowContainerClass={"charts-actions__arrow"}
+          />
         </div>
       </div>
       <div className="charts__content">

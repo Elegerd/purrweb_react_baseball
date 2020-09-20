@@ -10,7 +10,7 @@ import { getUsers, getUsersIsLoading } from "@ducks/user/userSelector";
 import ReactLoading from "react-loading";
 import { getObjectById } from "@helpers/utilities";
 import { topBattingType, topPitchingType } from "@constants";
-import { ReactComponent as Arrow } from "@assets/svg/arrow2.svg";
+import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
 import { profileDataRequest } from "@helpers/request/profileRequest";
 import classNames from "classnames";
 import PropTypes from "prop-types";
@@ -220,15 +220,15 @@ const Comparison = ({}) => {
             <div>
               <div className="top-batting-values__container">
                 <div className="tbv-actions">
-                  <Dropdown trigger={["click"]} overlay={menuType}>
-                    <button className="tbv-actions__button">
-                      Top Batting Values
-                      {selectedType ? ` - ${selectedType.title}` : null}
-                      <span>
-                        <Arrow />
-                      </span>
-                    </button>
-                  </Dropdown>
+                  <ButtonDropdown
+                    trigger={["click"]}
+                    overlay={menuType}
+                    text={`Top Batting Values ${
+                      selectedType ? ` - ${selectedType.title}` : ""
+                    }`}
+                    buttonClass={"tbv-actions__button"}
+                    arrowContainerClass={"log-search__arrow"}
+                  />
                 </div>
               </div>
               <div className="top-batting-values__table">

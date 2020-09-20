@@ -22,6 +22,8 @@ import { fetchPitchingSummaryDataWatcherSaga } from "./pitchingSummary/pitchingS
 import { fetchPitchingLogDataWatcherSaga } from "./pitchingLog/pitchingLogSaga";
 import { fetchPitchingGraphDataWatcherSaga } from "./pitchingGraph/pitchingGraphSaga";
 import { fetchUserDataWatcherSaga } from "./user/userSaga";
+import { fetchPitchingLeaderboardWatcherSaga } from "./pitchingLeaderboard/pitchingLeaderboardSaga";
+import { fetchBattingLeaderboardWatcherSaga } from "./battingLeaderboard/battingLeaderboardSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -44,5 +46,7 @@ export default function* rootSaga() {
     fetchPitchingGraphDataWatcherSaga(),
     fetchPitchingLogDataWatcherSaga(),
     fetchUserDataWatcherSaga(),
+    fetchBattingLeaderboardWatcherSaga(),
+    fetchPitchingLeaderboardWatcherSaga(),
   ]);
 }

@@ -1,12 +1,12 @@
 import request from "../request";
 
-export function leaderBoardBattingRequest({ type }) {
+export function leaderBoardBattingRequest(data) {
   return request
     .post("api/v1/graphql", {
       query: `
       query LeaderboardBatting($input:FilterLeaderboardInput!) {
         leaderboard_batting(input: $input) {
-          leaderboard_batting { 
+          leaderboard_batting {
             batter_name
             exit_velocity
             launch_angle
@@ -26,7 +26,40 @@ export function leaderBoardBattingRequest({ type }) {
         }
       }
     `,
-      variables: { input: { type } },
+      variables: { input: data },
+    })
+    .then(({ data }) => data);
+}
+
+export function leaderBoardPitchingRequest(data) {
+  return request
+    .post("api/v1/graphql", {
+      query: `
+      query LeaderboardPitching($input:FilterLeaderboardInput!) {
+        leaderboard_pitching(input: $input) {
+          leaderboard_pitching {
+            pitcher_name
+            pitch_type
+            velocity
+            spin_rate
+            vertical_break
+            horizontal_break
+            pitcher_datraks_id
+            age
+            school {
+              id
+              name
+            }
+            teams {
+              id
+              name
+            }
+            favorite
+          }
+        }
+      }
+    `,
+      variables: { input: data },
     })
     .then(({ data }) => data);
 }

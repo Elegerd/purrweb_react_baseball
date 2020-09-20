@@ -13,5 +13,7 @@ export { default as battingSummary } from "./battingSummary";
 export { default as pitchingGraph } from "./pitchingGraph";
 export { default as pitchingLog } from "./pitchingLog";
 export { default as pitchingSummary } from "./pitchingSummary";
+export { default as battingLeaderboard } from "./battingLeaderboard";
+export { default as pitchingLeaderboard } from "./pitchingLeaderboard";
 
 export default reducer;

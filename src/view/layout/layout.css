@@ -18,6 +18,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-button {
+  cursor: pointer;
+}
+
 .button {
   white-space: nowrap;
   display: -webkit-box;

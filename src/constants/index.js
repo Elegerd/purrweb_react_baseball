@@ -56,3 +56,37 @@ export const topPitchingType = [
   { id: 0, title: "Pitch Velocity", field: "velocity" },
   { id: 1, title: "Spin Rate", field: "spin_rate" },
 ];
+
+export const leaderboardBattingHeader = [
+  "Rank",
+  "Batter Name",
+  "Age",
+  "School",
+  "Teams",
+  "Exit Velocity",
+  "Launch Angle",
+  "Distance",
+  "Favorite",
+];
+
+export const leaderboardBattingTypes = [
+  { id: 0, title: "Exit Velocity", field: "exit_velocity" },
+  { id: 1, title: "Carry Distance", field: "carry_distance" },
+];
+
+export const leaderboardPitchingHeader = [
+  "Rank",
+  "Pitcher Name",
+  "Age",
+  "School",
+  "Teams",
+  "Pitch Type",
+  "Velocity",
+  "Spin Rate",
+  "Favorite",
+];
+
+export const leaderboardPitchingTypes = [
+  { id: 0, title: "Pitch Velocity", field: "pitch_velocity" },
+  { id: 1, title: "Spin Rate", field: "spin_rate" },
+];

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CustomDatePicker from "@commonComponents/customDatePicker/CustomDatePicker";
 import { ReactComponent as Calendar } from "@assets/svg/calendar.svg";
 import { ReactComponent as Arrow } from "@assets/svg/arrow2.svg";
-import Dropdown from "rc-dropdown";
+import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
 import Menu, { Item as MenuItem } from "rc-menu";
 import { sessionTypes } from "@constants";
 import { fetchProfileEventsData } from "@ducks/profileEvent/profileEventsRoutines";
@@ -91,14 +91,12 @@ const Sessions = () => {
             />
           </div>
           <div className="ss-actions__type">
-            <Dropdown trigger={["click"]} overlay={menuType}>
-              <button>
-                Type {selectedItem ? `(${selectedItem})` : null}
-                <span className="ss-actions__arrow">
-                  <Arrow />
-                </span>
-              </button>
-            </Dropdown>
+            <ButtonDropdown
+              trigger={["click"]}
+              overlay={menuType}
+              text={`Type ${selectedItem ? selectedItem : ""}`}
+              arrowContainerClass={"ss-actions__arrow"}
+            />
           </div>
         </div>
       </div>

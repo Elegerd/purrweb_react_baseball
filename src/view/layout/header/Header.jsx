@@ -6,7 +6,7 @@ import { ReactComponent as BaseballCloud } from "@assets/svg/baseballCloud.svg";
 import { ReactComponent as Arrow } from "@assets/svg/arrow.svg";
 import { Link } from "react-router-dom";
 import { getProfile } from "@ducks/profile/profileSelector";
-import Dropdown from "rc-dropdown";
+import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
 import Menu, { Item as MenuItem } from "rc-menu";
 import "./header.css";
 
@@ -76,14 +76,14 @@ const Header = () => {
                   </Link>
                 </div>
                 <div className="header-panel__dropdown-panel">
-                  <Dropdown trigger={["click"]} overlay={menu}>
-                    <button className="dropdown-panel__button">
-                      {`${profile.first_name} ${profile.last_name}`}
-                      <span className="dropdown-panel__arrow">
-                        <Arrow />
-                      </span>
-                    </button>
-                  </Dropdown>
+                  <ButtonDropdown
+                    trigger={["click"]}
+                    overlay={menu}
+                    text={`${profile.first_name} ${profile.last_name}`}
+                    buttonClass={"dropdown-panel__button"}
+                    arrowContainerClass={"dropdown-panel__arrow"}
+                    arrowComponent={Arrow}
+                  />
                 </div>
               </div>
             </div>

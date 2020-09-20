@@ -312,3 +312,24 @@ button {
   box-shadow: none;
   border: none;
 }
+
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.blue-icon {
+  color: #48bbff;
+}
+
+.fa-heart-o:before {
+  content: "\f08a";
+}
+
+.fa-heart:before {
+  content: "\f004";
+}

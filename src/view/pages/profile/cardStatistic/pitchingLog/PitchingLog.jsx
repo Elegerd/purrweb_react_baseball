@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Menu, { Item as MenuItem } from "rc-menu";
 import { pitchTypes } from "@constants/index";
-import { ReactComponent as Arrow } from "@assets/svg/arrow2.svg";
-import Dropdown from "rc-dropdown";
+import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
 import SearchInput from "@commonComponents/searchInput/SearchInput";
 import {
   getPitchingLog,
@@ -109,14 +108,12 @@ const PitchingLog = ({}) => {
           name="player_name"
         />
         <div className="log-search__type">
-          <Dropdown trigger={["click"]} overlay={menuType}>
-            <button>
-              Pitch Type {selectedItem ? `(${selectedItem})` : null}
-              <span className="log-search__arrow">
-                <Arrow />
-              </span>
-            </button>
-          </Dropdown>
+          <ButtonDropdown
+            trigger={["click"]}
+            overlay={menuType}
+            text={`Pitch Type ${selectedItem ? selectedItem : ""}`}
+            arrowContainerClass={"log-search__arrow"}
+          />
         </div>
       </div>
       <div className="log-search__title">Pitching Log</div>
