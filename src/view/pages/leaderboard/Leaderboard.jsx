@@ -51,7 +51,7 @@ const Leaderboard = () => {
   const filter = {
     date: date.field || undefined,
     age: age || undefined,
-    favorite: favorite.field || undefined,
+    favorite: favorite.field ? 1 : undefined,
     position: position.field || undefined,
     school: schoolName || undefined,
     team: teamName || undefined,
