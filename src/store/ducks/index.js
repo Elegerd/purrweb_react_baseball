@@ -3,7 +3,7 @@ export { default as battingGraph } from "./battingGraph";
 export { default as battingLeaderboard } from "./battingLeaderboard";
 export { default as battingLog } from "./battingLog";
 export { default as battingSummary } from "./battingSummary";
-export { default as facility } from "./facilities";
+export { default as facilities } from "./facilities";
 export { default as pitchingGraph } from "./pitchingGraph";
 export { default as pitchingLeaderboard } from "./pitchingLeaderboard";
 export { default as pitchingLog } from "./pitchingLog";
