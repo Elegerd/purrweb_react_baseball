@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactLoading from "react-loading";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Field } from "react-final-form";
@@ -11,11 +11,11 @@ import {
 import CustomInput from "@commonComponents/customInput/CustomInput";
 import CustomTextarea from "@commonComponents/customTextarea/CustomTextarea";
 import CustomSelect from "@commonComponents/customSelect/CustomSelect";
-import { updateProfile } from "@ducks/profile/profileRoutines";
-import { getProfileIsRequesting } from "@ducks/profile/profileSelector";
-import { getSchoolsIsLoading } from "@ducks/school/schoolsSelector";
-import { getFacilitiesIsLoading } from "@ducks/facility/facilitiesSelector";
-import { getTeamsIsLoading } from "@ducks/team/teamsSelector";
+import { updateProfile } from "@ducks/profile/routines";
+import { getProfileIsRequesting } from "@ducks/profile/selector";
+import { getSchoolsIsLoading } from "@ducks/schools/selector";
+import { getFacilitiesIsLoading } from "@ducks/facilities/selector";
+import { getTeamsIsLoading } from "@ducks/teams/selector";
 import { setProfileValidField } from "@helpers/utilities";
 import PropTypes from "prop-types";
 import "./profileForm.css";

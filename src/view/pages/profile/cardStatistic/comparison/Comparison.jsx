@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getViewedProfile } from "@ducks/viewedProfile/viewedProfileSelector";
+import { getViewedProfile } from "@ducks/viewedProfile/selector";
 import user from "@assets/img/user.png";
 import { Search } from "@commonComponents/svg";
 import Dropdown from "rc-dropdown";
 import Menu, { Item as MenuItem } from "rc-menu";
-import { fetchUserData } from "@ducks/user/userRoutines";
-import { getUsers, getUsersIsLoading } from "@ducks/user/userSelector";
+import { fetchUserData } from "@ducks/users/routines";
+import { getUsers, getUsersIsLoading } from "@ducks/users/selector";
 import ReactLoading from "react-loading";
 import { getObjectById } from "@helpers/utilities";
 import { topBattingType, topPitchingType } from "@constants";

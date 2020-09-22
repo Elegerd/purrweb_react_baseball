@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Menu, { Item as MenuItem } from "rc-menu";
 import { leaderboardBattingHeader, leaderboardBattingTypes } from "@constants";
 import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
-import { fetchBattingLeaderboardData } from "@ducks/battingLeaderboard/battingLeaderboardRoutines";
+import { fetchBattingLeaderboardData } from "@ducks/battingLeaderboard/routines";
 import {
   getBattingLeaderboard,
   getBattingLeaderboardIsLoading,
-} from "@ducks/battingLeaderboard/battingLeaderboardSelector";
+} from "@ducks/battingLeaderboard/selector";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartO } from "@fortawesome/free-regular-svg-icons";

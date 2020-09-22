@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "@view/pages/profile/sidebar/Sidebar";
-import {
-  getProfile,
-  getProfileIsLoading,
-} from "@ducks/profile/profileSelector";
+import { getProfile, getProfileIsLoading } from "@ducks/profile/selector";
 import Spinner from "@commonComponents/spinner/Spinner";
-import { fetchViewedProfileData } from "@ducks/viewedProfile/viewedProfileRoutines";
+import { fetchViewedProfileData } from "@ducks/viewedProfile/routines";
 import CardSummary from "./cardSummary/CardSummary";
 import CardStatistic from "./cardStatistic/CardStatistic";
 import {
   getViewedProfile,
   getViewedProfileError,
-} from "@ducks/viewedProfile/viewedProfileSelector";
+} from "@ducks/viewedProfile/selector";
 import PropTypes from "prop-types";
 import "./profile.css";
 

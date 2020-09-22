@@ -5,10 +5,10 @@ import "./index.css";
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import configureStore from "@ducks/configureStore";
+import configureStore from "@store/configureStore";
 import { ConnectedRouter } from "connected-react-router";
 import history from "@helpers/history";
-import Layout from "@/view/layout/Layout";
+import Layout from "@view/layout/Layout";
 
 const store = configureStore();
 

@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPitchingSummaryData } from "@ducks/pitchingSummary/pitchingSummaryRoutines";
+import { fetchPitchingSummaryData } from "@ducks/pitchingSummary/routines";
 import {
   getPitchingSummary,
   getPitchingSummaryIsLoading,
-} from "@ducks/pitchingSummary/pitchingSummarySelector";
+} from "@ducks/pitchingSummary/selector";
 import PropTypes from "prop-types";
 import "./pitchingSummary.css";
 import Spinner from "@commonComponents/spinner/Spinner";

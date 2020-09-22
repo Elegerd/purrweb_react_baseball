@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBattingSummaryData } from "@ducks/battingSummary/battingSummaryRoutines";
+import { fetchBattingSummaryData } from "@ducks/battingSummary/routines";
 import {
   getBattingSummary,
   getBattingSummaryIsLoading,
-} from "@ducks/battingSummary/battingSummarySelector";
+} from "@ducks/battingSummary/selector";
+import Spinner from "@commonComponents/spinner/Spinner";
 import PropTypes from "prop-types";
 import "./battingSummary.css";
-import Spinner from "@commonComponents/spinner/Spinner";
 
 const BattingSummary = () => {
   const dispatch = useDispatch();

@@ -6,12 +6,12 @@ import {
   leaderboardPitchingHeader,
   leaderboardPitchingTypes,
 } from "@constants";
-import { fetchPitchingLeaderboardData } from "@ducks/pitchingLeaderboard/pitchingLeaderboardRoutines";
+import { fetchPitchingLeaderboardData } from "@ducks/pitchingLeaderboard/routines";
 import { updateFavoriteProfileRequest } from "@helpers/request/profileRequest";
 import {
   getPitchingLeaderboard,
   getPitchingLeaderboardIsLoading,
-} from "@ducks/pitchingLeaderboard/pitchingLeaderboardSelector";
+} from "@ducks/pitchingLeaderboard/selector";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartO } from "@fortawesome/free-regular-svg-icons";

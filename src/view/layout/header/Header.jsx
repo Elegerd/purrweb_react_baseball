@@ -5,7 +5,7 @@ import { signOut } from "@ducks/auth/routines";
 import { BaseballCloud } from "@commonComponents/svg";
 import { TriangularArrow } from "@commonComponents/svg";
 import { Link } from "react-router-dom";
-import { getProfile } from "@ducks/profile/profileSelector";
+import { getProfile } from "@ducks/profile/selector";
 import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
 import Menu, { Item as MenuItem } from "rc-menu";
 import "./header.css";

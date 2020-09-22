@@ -6,8 +6,8 @@ import { Arrow } from "@commonComponents/svg";
 import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
 import Menu, { Item as MenuItem } from "rc-menu";
 import { sessionTypes } from "@constants";
-import { fetchProfileEventsData } from "@ducks/profileEvent/profileEventsRoutines";
-import { getProfileEvents } from "@ducks/profileEvent/profileEventsSelector";
+import { fetchProfileEventsData } from "@ducks/profileEvent/routines";
+import { getProfileEvents } from "@ducks/profileEvent/selector";
 import "./sessions.css";
 
 const Sessions = () => {

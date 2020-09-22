@@ -4,14 +4,14 @@ import {
   signOut,
   tokenVerification,
 } from "@ducks/auth/routines";
-import { createReducer } from "../createReducer";
+import { createReducer } from "../../createReducer";
 import {
   handleFailure,
   handleFulfill,
   handleSuccess,
   handleRequest,
   handleTrigger,
-} from "../baseHandleActions";
+} from "../../baseHandleActions";
 
 const initialState = {
   data: null,

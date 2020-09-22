@@ -10,12 +10,9 @@ import {
 import Menu, { Item as MenuItem } from "rc-menu";
 import { getObjectById } from "@helpers/utilities";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProfilesData } from "@ducks/profiles/profilesRoutines";
+import { fetchProfilesData } from "@ducks/profiles/routines";
 import Pagination from "react-paginate";
-import {
-  getProfiles,
-  getProfilesIsLoading,
-} from "@ducks/profiles/profilesSelector";
+import { getProfiles, getProfilesIsLoading } from "@ducks/profiles/selector";
 import Spinner from "@commonComponents/spinner/Spinner";
 import SearchInput from "@commonComponents/searchInput/SearchInput";
 import { Link } from "react-router-dom";

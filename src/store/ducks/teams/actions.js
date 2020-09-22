@@ -1,0 +1,1 @@
+export const FETCH_TEAMS_DATA = "FETCH_TEAMS_DATA";

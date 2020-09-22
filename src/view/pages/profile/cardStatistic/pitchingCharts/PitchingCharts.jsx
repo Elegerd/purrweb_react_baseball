@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getBattingGraph,
   getBattingGraphIsLoading,
-} from "@ducks/battingGraph/battingGraphSelector";
-import { fetchBattingGraphData } from "@ducks/battingGraph/battingGraphRoutines";
+} from "@ducks/battingGraph/selector";
+import { fetchBattingGraphData } from "@ducks/battingGraph/routines";
 import Spinner from "@commonComponents/spinner/Spinner";
 import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
 import PropTypes from "prop-types";

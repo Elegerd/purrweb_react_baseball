@@ -7,8 +7,8 @@ import SearchInput from "@commonComponents/searchInput/SearchInput";
 import {
   getBattingLog,
   getBattingLogIsLoading,
-} from "@ducks/battingLog/battingLogSelector";
-import { fetchBattingLogData } from "@ducks/battingLog/battingLogRoutines";
+} from "@ducks/battingLog/selector";
+import { fetchBattingLogData } from "@ducks/battingLog/routines";
 import Spinner from "@commonComponents/spinner/Spinner";
 import Pagination from "react-paginate";
 import PropTypes from "prop-types";
