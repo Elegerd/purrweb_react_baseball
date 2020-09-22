@@ -1,9 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signOut } from "@ducks/auth/authRoutines";
-import { ReactComponent as BaseballCloud } from "@assets/svg/baseballCloud.svg";
-import { ReactComponent as Arrow } from "@assets/svg/arrow.svg";
+import { signOut } from "@ducks/auth/routines";
+import { BaseballCloud } from "@commonComponents/svg";
+import { TriangularArrow } from "@commonComponents/svg";
 import { Link } from "react-router-dom";
 import { getProfile } from "@ducks/profile/profileSelector";
 import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
@@ -78,7 +78,7 @@ const Header = () => {
                     text={`${profile.first_name} ${profile.last_name}`}
                     buttonClass={"dropdown-panel__button"}
                     arrowContainerClass={"dropdown-panel__arrow"}
-                    arrowComponent={Arrow}
+                    arrowComponent={TriangularArrow}
                   />
                 </div>
               </div>

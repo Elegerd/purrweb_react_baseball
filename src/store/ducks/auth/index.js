@@ -1,3 +1,3 @@
-import { authReducer } from "./authReducer";
+import { reducer } from "./reducer";
 
-export default authReducer;
+export default reducer;

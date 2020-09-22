@@ -7,6 +7,7 @@ import SignIn from "@view/pages/auth/signIn/SignIn";
 import SignUp from "@view/pages/auth/signUp/SignUp";
 import Profile from "@view/pages/profile/Profile";
 import Leaderboard from "@view/pages/leaderboard/Leaderboard";
+import Network from "@view/pages/network/Network";
 import PropTypes from "prop-types";
 
 const Routes = ({ auth }) => {
@@ -15,6 +16,7 @@ const Routes = ({ auth }) => {
     <Switch>
       <PrivateRoute exact path={"/"} component={Leaderboard} />
       <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
+      <PrivateRoute exact path="/network" component={Network} />
       <PrivateRoute exact path="/profile" component={Profile} />
       <PrivateRoute path="/profile/:id" component={Profile} />
       <Route

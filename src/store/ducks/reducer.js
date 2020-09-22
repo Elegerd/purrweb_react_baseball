@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
-import { authReducer } from "./auth/authReducer";
+import { reducer } from "./auth/reducer";
 import { profileReducer } from "./profile/profileReducer";
+import { profilesReducer } from "@ducks/profiles/profilesReducer";
 import { schoolsReducer } from "./school/schoolsReducer";
 import { facilitiesReducer } from "./facility/facilitiesReducer";
 import { teamsReducer } from "./team/teamsReducer";
@@ -20,9 +21,10 @@ import { battingLeaderboardReducer } from "@ducks/battingLeaderboard/battingLead
 const rootReducer = (history) =>
   combineReducers({
     router: connectRouter(history),
-    auth: authReducer,
+    auth: reducer,
     profile: profileReducer,
     viewedProfile: viewedProfileReducer,
+    profiles: profilesReducer,
     schools: schoolsReducer,
     facilities: facilitiesReducer,
     teams: teamsReducer,

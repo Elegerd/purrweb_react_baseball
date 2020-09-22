@@ -4,7 +4,7 @@ import {
   signUpWatcherSaga,
   signOutWatcherSaga,
   tokenVerificationWatcherSaga,
-} from "./auth/authSaga";
+} from "./auth/saga";
 import {
   fetchProfileDataWatcherSaga,
   updateProfileWatcherSaga,
@@ -24,6 +24,7 @@ import { fetchPitchingGraphDataWatcherSaga } from "./pitchingGraph/pitchingGraph
 import { fetchUserDataWatcherSaga } from "./user/userSaga";
 import { fetchPitchingLeaderboardWatcherSaga } from "./pitchingLeaderboard/pitchingLeaderboardSaga";
 import { fetchBattingLeaderboardWatcherSaga } from "./battingLeaderboard/battingLeaderboardSaga";
+import { fetchProfilesDataWatcherSaga } from "@ducks/profiles/profilesSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -32,6 +33,7 @@ export default function* rootSaga() {
     signOutWatcherSaga(),
     tokenVerificationWatcherSaga(),
     fetchProfileDataWatcherSaga(),
+    fetchProfilesDataWatcherSaga(),
     fetchViewedProfileDataWatcherSaga(),
     fetchSchoolDataWatcherSaga(),
     fetchFacilitiesDataWatcherSaga(),

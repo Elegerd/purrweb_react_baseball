@@ -4,7 +4,7 @@ import {
   signUp,
   signOut,
   tokenVerification,
-} from "@ducks/auth/authRoutines";
+} from "@ducks/auth/routines";
 import { fetchProfileData } from "@ducks/profile/profileRoutines";
 import {
   signInRequest,

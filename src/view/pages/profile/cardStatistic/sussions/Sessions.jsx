@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CustomDatePicker from "@commonComponents/customDatePicker/CustomDatePicker";
-import { ReactComponent as Calendar } from "@assets/svg/calendar.svg";
-import { ReactComponent as Arrow } from "@assets/svg/arrow2.svg";
+import { Calendar } from "@commonComponents/svg";
+import { Arrow } from "@commonComponents/svg";
 import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
 import Menu, { Item as MenuItem } from "rc-menu";
 import { sessionTypes } from "@constants";

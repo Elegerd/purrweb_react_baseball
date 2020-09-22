@@ -3,7 +3,7 @@ import {
   signUp,
   signOut,
   tokenVerification,
-} from "@ducks/auth/authRoutines";
+} from "@ducks/auth/routines";
 import { createReducer } from "../createReducer";
 import {
   handleFailure,
@@ -51,7 +51,7 @@ const handleTokenVerification = {
   ...handleFulfill(tokenVerification),
 };
 
-export const authReducer = createReducer(initialState)({
+export const reducer = createReducer(initialState)({
   ...handleSignIn,
   ...handleSignUp,
   ...handleSignOut,

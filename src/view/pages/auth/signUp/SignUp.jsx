@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SignUpForm from "./signUpForm/SignUpForm";
 import { Link } from "react-router-dom";
-import { ReactComponent as Check } from "@assets/svg/check.svg";
+import { Check } from "@commonComponents/svg";
 import classNames from "classnames";
 import "./signUp.css";
 

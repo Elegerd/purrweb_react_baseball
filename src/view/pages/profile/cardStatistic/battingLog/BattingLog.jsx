@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Menu, { Item as MenuItem } from "rc-menu";
-import { pitchTypes } from "@constants/index";
+import { battingLogHeader, pitchTypes } from "@constants/index";
 import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
 import SearchInput from "@commonComponents/searchInput/SearchInput";
 import {
@@ -115,19 +115,14 @@ const BattingLog = ({}) => {
       ) : (
         <div className="log-search__log-table">
           <div className="log-table__header c-table__header">
-            <div className="log-batting__item c-table__header-item">Date</div>
-            <div className="log-batting__item c-table__header-item">
-              Pitcher Name
-            </div>
-            <div className="log-batting__item c-table__header-item">
-              Pitcher Handedness
-            </div>
-            <div className="log-batting__item c-table__header-item">
-              Pitch Type
-            </div>
-            <div className="log-batting__item c-table__header-item">
-              Pitch Call
-            </div>
+            {battingLogHeader.map((item, index) => (
+              <div
+                key={index}
+                className="log-batting__item c-table__header-item"
+              >
+                {item}
+              </div>
+            ))}
           </div>
           {battingLog && battingLog.total_count ? (
             <div>

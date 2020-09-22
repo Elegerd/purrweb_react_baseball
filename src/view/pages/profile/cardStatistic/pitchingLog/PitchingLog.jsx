@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Menu, { Item as MenuItem } from "rc-menu";
-import { pitchTypes } from "@constants/index";
+import { pitchingLogHeader, pitchTypes } from "@constants/index";
 import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
 import SearchInput from "@commonComponents/searchInput/SearchInput";
 import {
@@ -121,25 +121,14 @@ const PitchingLog = ({}) => {
       ) : (
         <div className="log-search__log-table">
           <div className="log-table__header c-table__header">
-            <div className="log-pitching__item c-table__header-item">Date</div>
-            <div className="log-pitching__item c-table__header-item">
-              Batter Name
-            </div>
-            <div className="log-pitching__item c-table__header-item">
-              Pitch Type
-            </div>
-            <div className="log-pitching__item c-table__header-item">
-              Pitch Call
-            </div>
-            <div className="log-pitching__item c-table__header-item">
-              Velocity
-            </div>
-            <div className="log-pitching__item c-table__header-item">
-              Spin Rate
-            </div>
-            <div className="log-pitching__item c-table__header-item">
-              Spin Axis
-            </div>
+            {pitchingLogHeader.map((item, index) => (
+              <div
+                key={index}
+                className="log-pitching__item c-table__header-item"
+              >
+                {item}
+              </div>
+            ))}
           </div>
           {pitchingLog && pitchingLog.total_count ? (
             <div>

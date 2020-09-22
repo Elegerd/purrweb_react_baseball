@@ -4,8 +4,8 @@ import { Form, Field } from "react-final-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { signIn } from "@ducks/auth/authRoutines";
-import { getAuthIsLoading } from "@ducks/auth/authSelector";
+import { signIn } from "@ducks/auth/routines";
+import { getAuthIsLoading } from "@ducks/auth/selector";
 import "./signInForm.css";
 
 const SignInForm = () => {

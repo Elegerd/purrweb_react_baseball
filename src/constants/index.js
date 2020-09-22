@@ -71,6 +71,33 @@ export const leaderboardBattingHeader = [
   "Favorite",
 ];
 
+export const networkHeader = [
+  "Player Name",
+  "Sessions",
+  "School",
+  "Teams",
+  "Age",
+  "Favorite",
+];
+
+export const pitchingLogHeader = [
+  "Date",
+  "Batter Name",
+  "Pitch Type",
+  "Pitch Call",
+  "Velocity",
+  "Spin Rate",
+  "Spin Axis",
+];
+
+export const battingLogHeader = [
+  "Date",
+  "Pitcher Name",
+  "Pitcher Handedness",
+  "Pitch Type",
+  "Pitch Call",
+];
+
 export const leaderboardBattingTypes = [
   { id: 0, title: "Exit Velocity", field: "exit_velocity" },
   { id: 1, title: "Carry Distance", field: "carry_distance" },
@@ -113,4 +140,10 @@ export const filterPositions = [
 export const filterFavorite = [
   { id: 0, title: "All", field: false },
   { id: 1, title: "Favorite", field: true },
+];
+
+export const filterShow = [
+  { id: 0, title: "10", field: 10 },
+  { id: 1, title: "15", field: 15 },
+  { id: 2, title: "25", field: 25 },
 ];

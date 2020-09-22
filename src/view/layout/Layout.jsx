@@ -4,12 +4,12 @@ import Header from "@view/layout/header/Header";
 import Footer from "@view/layout/footer/Footer";
 import Routes from "@view/pages/Routes";
 import Spinner from "@commonComponents/spinner/Spinner";
-import { getAuth } from "@ducks/auth/authSelector";
+import { getAuth } from "@ducks/auth/selector";
 import {
   getProfile,
   getProfileIsLoading,
 } from "@ducks/profile/profileSelector";
-import { tokenVerification } from "@ducks/auth/authRoutines";
+import { tokenVerification } from "@ducks/auth/routines";
 import "./layout.css";
 
 const Layout = () => {

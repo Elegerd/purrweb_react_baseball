@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { ReactComponent as Age } from "@assets/svg/age.svg";
-import { ReactComponent as Height } from "@assets/svg/height.svg";
-import { ReactComponent as Weight } from "@assets/svg/weight.svg";
-import { ReactComponent as Throws } from "@assets/svg/throws.svg";
-import { ReactComponent as Bats } from "@assets/svg/bats.svg";
-import { ReactComponent as Edit } from "@assets/svg/edit.svg";
-import { ReactComponent as Heart } from "@assets/svg/heart.svg";
-import { ReactComponent as HeartFill } from "@assets/svg/heartFill.svg";
+import {
+  Heart,
+  HeartFill,
+  Age,
+  Height,
+  Weight,
+  Throws,
+  Bats,
+  Edit,
+} from "@commonComponents/svg";
 import { letterToUppercase } from "@helpers/utilities";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSchoolsData } from "@ducks/school/schoolsRoutines";

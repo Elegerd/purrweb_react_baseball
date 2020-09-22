@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactComponent as Search } from "@assets/svg/search.svg";
+import { Search } from "@commonComponents/svg";
 import { DebounceInput } from "react-debounce-input";
 import PropTypes from "prop-types";
 import "./searchInput.css";

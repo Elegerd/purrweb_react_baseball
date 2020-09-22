@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getViewedProfile } from "@ducks/viewedProfile/viewedProfileSelector";
 import user from "@assets/img/user.png";
-import { ReactComponent as Search } from "@assets/svg/search.svg";
+import { Search } from "@commonComponents/svg";
 import Dropdown from "rc-dropdown";
 import Menu, { Item as MenuItem } from "rc-menu";
 import { fetchUserData } from "@ducks/user/userRoutines";

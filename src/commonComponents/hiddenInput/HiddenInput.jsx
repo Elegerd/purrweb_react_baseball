@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ReactComponent as Arrow } from "@assets/svg/arrow2.svg";
+import { Arrow } from "@commonComponents/svg";
 import PropTypes from "prop-types";
 import "./hiddenInput.css";
 

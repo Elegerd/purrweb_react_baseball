@@ -15,5 +15,6 @@ export { default as pitchingLog } from "./pitchingLog";
 export { default as pitchingSummary } from "./pitchingSummary";
 export { default as battingLeaderboard } from "./battingLeaderboard";
 export { default as pitchingLeaderboard } from "./pitchingLeaderboard";
+export { default as profiles } from "./profiles";
 
 export default reducer;

@@ -4,7 +4,7 @@ import {
   SIGN_UP,
   SIGN_OUT,
   TOKEN_VERIFICATION,
-} from "@ducks/auth/authActions";
+} from "@ducks/auth/actions";
 
 export const signIn = createRoutine(SIGN_IN);
 

@@ -11,7 +11,7 @@ import {
   handleSuccess,
   handleTrigger,
 } from "../baseHandleActions";
-import { signOut } from "@ducks/auth/authRoutines";
+import { signOut } from "@ducks/auth/routines";
 
 const initialState = {
   data: null,
