@@ -5,9 +5,9 @@ import {
   getPitchingSummary,
   getPitchingSummaryIsLoading,
 } from "@ducks/pitchingSummary/selector";
+import Spinner from "@commonComponents/spinner/Spinner";
 import PropTypes from "prop-types";
 import "./pitchingSummary.css";
-import Spinner from "@commonComponents/spinner/Spinner";
 
 const PitchingSummary = () => {
   const dispatch = useDispatch();

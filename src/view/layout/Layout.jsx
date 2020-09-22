@@ -12,7 +12,6 @@ import "./layout.css";
 const Layout = () => {
   const dispatch = useDispatch();
   const auth = useSelector(getAuth);
-  const profile = useSelector(getProfile);
   const isLoadingProfile = useSelector(getProfileIsLoading);
 
   useEffect(() => {
@@ -23,7 +22,7 @@ const Layout = () => {
     <>
       <Header />
       <div className="main-content">
-        {!profile || isLoadingProfile ? <Spinner /> : <Routes auth={auth} />}
+        {isLoadingProfile ? <Spinner /> : <Routes auth={auth} />}
       </div>
       <Footer />
     </>

@@ -1,25 +1,18 @@
 import React, { useEffect, useState } from "react";
-import HiddenInput from "@commonComponents/hiddenInput/HiddenInput";
-import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
-import {
-  filterFavorite,
-  filterPositions,
-  filterShow,
-  networkHeader,
-} from "@constants/index";
-import Menu, { Item as MenuItem } from "rc-menu";
-import { getObjectById } from "@helpers/utilities";
+import { filterFavorite, filterPositions, filterShow } from "@constants/index";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfilesData } from "@ducks/profiles/routines";
 import Pagination from "react-paginate";
 import { getProfiles, getProfilesIsLoading } from "@ducks/profiles/selector";
 import Spinner from "@commonComponents/spinner/Spinner";
 import SearchInput from "@commonComponents/searchInput/SearchInput";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as faHeartO } from "@fortawesome/free-regular-svg-icons";
+import NetworkTableHeader from "./networkTableHeader/NetworkTableHeader";
+import NetworkTableRow from "./networkTableRow/NetworkTableRow";
+import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
+import HiddenInput from "@commonComponents/hiddenInput/HiddenInput";
+import Menu, { MenuItem } from "rc-menu";
 import { updateFavoriteProfileRequest } from "@helpers/request/profileRequest";
+import { getObjectById } from "@helpers/utilities";
 import "./network.css";
 
 const Network = () => {
@@ -60,21 +53,6 @@ const Network = () => {
     activePage,
   ]);
 
-  const handleOnClickShowItem = (e) => {
-    const type = getObjectById(filterShow, e.item.props["data-item"]);
-    setShow(type);
-  };
-
-  const handleOnClickPositionItem = (e) => {
-    const type = getObjectById(filterPositions, e.item.props["data-item"]);
-    setPosition(type);
-  };
-
-  const handleOnClickFavoriteItem = (e) => {
-    const type = getObjectById(filterFavorite, e.item.props["data-item"]);
-    setFavorite(type);
-  };
-
   const handleOnClickFavorite = (data) => async () => {
     await updateFavoriteProfileRequest(data);
     const offset = activePage ? Math.ceil(activePage * show.field) : 0;
@@ -113,51 +91,30 @@ const Network = () => {
     setActivePage(selected);
   };
 
-  const renderHeader = () => {
-    return (
-      <div className="c-table__header">
-        <div className="ss-table__header network-table__header">
-          {networkHeader.map((item, index) => (
-            <div className="network__header-item" key={index}>
-              {item}
-            </div>
-          ))}
-        </div>
-      </div>
-    );
+  const handleOnClickShowItem = (e) => {
+    const type = getObjectById(filterShow, e.item.props["data-item"]);
+    setShow(type);
+  };
+
+  const handleOnClickPositionItem = (e) => {
+    const type = getObjectById(filterPositions, e.item.props["data-item"]);
+    setPosition(type);
+  };
+
+  const handleOnClickFavoriteItem = (e) => {
+    const type = getObjectById(filterFavorite, e.item.props["data-item"]);
+    setFavorite(type);
   };
 
   const renderRows = () => {
     return (
       profileList &&
       profileList.profiles.map((item, index) => (
-        <div key={index} className="network-row network__row c-table__row">
-          <div className="network-row__item">
-            <Link className="network-row__link" to={`/profile/${item.id}`}>
-              {`${item.first_name} ${item.last_name}`}
-            </Link>
-          </div>
-          <div className="network-row__item">
-            {item.events.length ? item.events.length : "-"}
-          </div>
-          <div className="network-row__item">
-            {item.school ? item.school.name : "-"}
-          </div>
-          <div className="network-row__item">
-            {item.teams.length ? item.teams[0].name : "-"}
-          </div>
-          <div className="network-row__item">{item.age || "-"}</div>
-          <div className="network-row__item">
-            <FontAwesomeIcon
-              className="icon blue-icon icon-button"
-              onClick={handleOnClickFavorite({
-                profile_id: item.id,
-                favorite: !item.favorite,
-              })}
-              icon={item.favorite ? faHeart : faHeartO}
-            />
-          </div>
-        </div>
+        <NetworkTableRow
+          item={item}
+          key={index}
+          onClickFavorite={handleOnClickFavorite}
+        />
       ))
     );
   };
@@ -230,49 +187,49 @@ const Network = () => {
             </div>
           </div>
         </div>
-        <div className="network__filter">
-          <div className="n-filter__total-count">
-            Available Players
-            {profileList ? ` (${profileList.total_count})` : " (-)"}
-          </div>
-          <div className="n-filter__player-name">
-            <SearchInput
-              value={playerName}
-              onChange={(e) => setPlayerName(e.target.value)}
-              placeholder="Player Name"
-              name="player_name"
-            />
-          </div>
+      </div>
+      <div className="network__filter">
+        <div className="n-filter__total-count">
+          Available Players
+          {profileList ? ` (${profileList.total_count})` : " (-)"}
         </div>
-        <div className="network__content">
-          <div className="network__table c-table">
-            {renderHeader()}
-            {isLoadingProfiles ? (
-              <div className="network__spinner-container">
-                <Spinner />
-              </div>
-            ) : profileList && profileList.total_count ? (
-              <>
-                <div className="c-table__content">{renderRows()}</div>
-                <Pagination
-                  previousLabel={"«"}
-                  nextLabel={"»"}
-                  forcePage={activePage}
-                  containerClassName={"pagination"}
-                  activeClassName={"active"}
-                  disabledClassName={"disabled"}
-                  marginPagesDisplayed={1}
-                  pageCount={Math.ceil(profileList.total_count / show.field)}
-                  pageRangeDisplayed={3}
-                  onPageChange={handlePageChange}
-                />
-              </>
-            ) : (
-              <div className="network-table__empty c-table__content">
-                {"There's no info yet!"}
-              </div>
-            )}
-          </div>
+        <div className="n-filter__player-name">
+          <SearchInput
+            value={playerName}
+            onChange={(e) => setPlayerName(e.target.value)}
+            placeholder="Player Name"
+            name="player_name"
+          />
+        </div>
+      </div>
+      <div className="network__content">
+        <div className="network__table c-table">
+          <NetworkTableHeader />
+          {isLoadingProfiles ? (
+            <div className="network__spinner-container">
+              <Spinner />
+            </div>
+          ) : profileList && profileList.total_count ? (
+            <>
+              <div className="c-table__content">{renderRows()}</div>
+              <Pagination
+                previousLabel={"«"}
+                nextLabel={"»"}
+                forcePage={activePage}
+                containerClassName={"pagination"}
+                activeClassName={"active"}
+                disabledClassName={"disabled"}
+                marginPagesDisplayed={1}
+                pageCount={Math.ceil(profileList.total_count / show.field)}
+                pageRangeDisplayed={3}
+                onPageChange={handlePageChange}
+              />
+            </>
+          ) : (
+            <div className="network-table__empty c-table__content">
+              {"There's no info yet!"}
+            </div>
+          )}
         </div>
       </div>
     </div>

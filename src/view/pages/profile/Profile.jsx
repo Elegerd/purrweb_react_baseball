@@ -23,9 +23,15 @@ const Profile = ({ match: { params } }) => {
 
   useEffect(() => {
     const profileId =
-      typeof params.id !== "undefined" ? params.id : currentProfile.id;
-    setIsUserProfile(typeof params.id === "undefined");
-    dispatch(fetchViewedProfileData({ id: profileId }));
+      typeof params.id !== "undefined"
+        ? params.id
+        : currentProfile
+        ? currentProfile.id
+        : null;
+    if (profileId) {
+      setIsUserProfile(typeof params.id === "undefined");
+      dispatch(fetchViewedProfileData({ id: profileId }));
+    }
   }, [params]);
 
   return !currentProfile || !viewedProfile || isLoadingProfile ? (
