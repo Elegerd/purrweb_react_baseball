@@ -1,8 +1,8 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
 import PropTypes from "prop-types";
-import "./avatarForm.css";
 import { toBase64 } from "@helpers/utilities";
+import "./avatarForm.css";
 
 const AvatarForm = ({ profile }) => {
   const onSubmit = async (values) => {
@@ -12,13 +12,7 @@ const AvatarForm = ({ profile }) => {
   return (
     <Form
       onSubmit={onSubmit}
-      render={({
-        handleSubmit,
-        form,
-        submitting,
-        pristine,
-        values: { avatarFile },
-      }) => {
+      render={({ handleSubmit, form, values: { avatarFile } }) => {
         const isChooseAvatar = avatarFile;
         const avatar = isChooseAvatar ? avatarFile.base64 : profile.avatar;
         return (

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import Select from "react-select";
-import customStyles from "./customSelectStyle";
+import customSelectStyle from "./customSelectStyle";
 import "./customSelect.css";
 
 const CustomSelect = ({
@@ -13,12 +13,34 @@ const CustomSelect = ({
   isMulti = false,
   ...rest
 }) => {
+  const customSelectMultiStyle = useMemo(() => {
+    return {
+      input: (provided) => ({
+        ...provided,
+        color: "#667784",
+        paddingLeft: isMulti ? "8px" : "0",
+        marginLeft: isMulti ? "5px" : "0",
+      }),
+      valueContainer: (provided) => ({
+        ...provided,
+        minHeight: "38px",
+        padding: "0",
+        fontSize: "16px",
+        fontWeight: "400",
+        color: "#667784",
+        paddingLeft: isMulti ? "0" : "16px",
+        overflow: "hidden",
+        cursor: "default",
+      }),
+    };
+  }, [isMulti]);
+
   return (
     <div className="custom-base-select">
       <div className="custom-base-select__container">
         <div className="custom-base-select__input">
           <Select
-            styles={customStyles}
+            styles={{ ...customSelectMultiStyle, ...customSelectStyle }}
             placeholder={placeholder}
             isSearchable={isSearchable}
             isMulti={isMulti}

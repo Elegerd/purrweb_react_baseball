@@ -55,7 +55,7 @@ function* updateProfileFlow({ payload }) {
       data: { update_profile },
     } = response;
     yield put(updateProfile.success(update_profile.profile));
-    yield call(payload.callback(update_profile.profile));
+    yield call(payload.callback, update_profile.profile);
   } catch (error) {
     yield put(updateProfile.failure(error.message));
   } finally {

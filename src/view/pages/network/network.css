@@ -323,14 +323,13 @@
 .network-row__link:hover {
   color: #48bbff;
   -webkit-text-decoration: underline;
-  text-decoration: underline;;
+  text-decoration: underline;
 }
 
 .network-row__link:focus,
 .network-row__link:active {
   outline: none;
 }
-
 
 .network__table .c-table__header {
   display: flex;

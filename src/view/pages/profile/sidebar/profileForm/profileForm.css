@@ -128,7 +128,8 @@
 .edit-profile__school,
 .edit-profile__school-year,
 .edit-profile__teams,
-.edit-profile__facility {
+.edit-profile__facility,
+.edit-profile__about {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;

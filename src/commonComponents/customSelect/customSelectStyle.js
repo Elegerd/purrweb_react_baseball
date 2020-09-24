@@ -40,14 +40,6 @@ const customStyles = {
   indicatorSeparator: () => ({
     display: "none",
   }),
-  input: (provided) => {
-    return {
-      ...provided,
-      color: "#667784",
-      paddingLeft: isMulti ? "8px" : "0",
-      marginLeft: isMulti ? "5px" : "0",
-    };
-  },
   placeholder: (provided, { isFocused }) => ({
     position: "absolute",
     right: "0",
@@ -64,17 +56,6 @@ const customStyles = {
     overflow: "hidden",
     webkitTextOverflow: "ellipsis",
     textOverflow: "ellipsis",
-  }),
-  valueContainer: (provided) => ({
-    ...provided,
-    minHeight: "38px",
-    padding: "0",
-    fontSize: "16px",
-    fontWeight: "400",
-    color: "#667784",
-    paddingLeft: isMulti ? "0" : "16px",
-    overflow: "hidden",
-    cursor: "default",
   }),
   multiValue: (provided) => ({
     ...provided,
