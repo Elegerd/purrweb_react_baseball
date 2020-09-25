@@ -43,6 +43,9 @@ export const setProfileValidField = (profile) => {
   profile.school = profile.school
     ? { id: profile.school.value, name: profile.school.label }
     : "";
+  profile.feet = parseInt(profile.feet, 10) || 1;
+  profile.inches = parseInt(profile.inches, 10) || 0;
+  profile.weight = parseInt(profile.weight, 10) || 1;
   profile.age = parseInt(profile.age, 10) || 1;
   profile.school_year = profile.school_year ? profile.school_year.value : null;
   profile.teams = profile.teams.map((team) => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Field } from "react-final-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -29,7 +29,7 @@ const SignUpForm = ({ role }) => {
         }
         return errors;
       }}
-      render={({ handleSubmit, form, submitting, pristine, values }) => (
+      render={({ handleSubmit }) => (
         <form className="sign-form" onSubmit={handleSubmit}>
           <div className="sign-form__sf-input">
             <div className="sf-input__container">
@@ -109,4 +109,4 @@ SignUpForm.propTypes = {
   role: PropTypes.string.isRequired,
 };
 
-export default SignUpForm;
+export default memo(SignUpForm);

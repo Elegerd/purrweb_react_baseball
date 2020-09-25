@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Edit, Heart, HeartFill } from "@commonComponents/svg";
 import { letterToUppercase } from "@helpers/utilities";
 import user from "@assets/img/user.png";
@@ -57,4 +57,4 @@ UserInfo.propTypes = {
   onClickLike: PropTypes.func,
 };
 
-export default UserInfo;
+export default memo(UserInfo);

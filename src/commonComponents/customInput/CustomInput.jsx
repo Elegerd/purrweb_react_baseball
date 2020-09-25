@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
 import "./customInput.css";
 
@@ -27,4 +27,4 @@ CustomInput.propTypes = {
   meta: PropTypes.object,
 };
 
-export default CustomInput;
+export default memo(CustomInput);

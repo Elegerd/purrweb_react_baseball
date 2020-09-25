@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Field } from "react-final-form";
 import CustomTextarea from "@commonComponents/customTextarea/CustomTextarea";
 import PropTypes from "prop-types";
@@ -29,4 +29,4 @@ AboutProfileBlock.propTypes = {
   profile: PropTypes.object,
 };
 
-export default AboutProfileBlock;
+export default memo(AboutProfileBlock);

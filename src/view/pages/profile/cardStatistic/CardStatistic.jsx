@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Menu, { Item as MenuItem } from "rc-menu";
 import Dropdown from "rc-dropdown";
@@ -39,69 +39,66 @@ const CardStatistic = ({ profile, isUserProfile }) => {
     tabPitchingRef.current.node.click();
   };
 
-  const renderMenuBatting = () => (
-    <Menu
-      selectable={false}
-      onClick={handleOnClickBattingItem}
-      className="dropdown-panel dropdown-statistic"
-    >
-      {cardStatisticItems.map((value, index) => (
-        <MenuItem className="dropdown-panel__item" key={index}>
-          {value}
-        </MenuItem>
-      ))}
-    </Menu>
+  const renderMenuBatting = useCallback(
+    () => (
+      <Menu
+        selectable={false}
+        onClick={handleOnClickBattingItem}
+        className="dropdown-panel dropdown-statistic"
+      >
+        {cardStatisticItems.map((value, index) => (
+          <MenuItem className="dropdown-panel__item" key={index}>
+            {value}
+          </MenuItem>
+        ))}
+      </Menu>
+    ),
+    [cardStatisticItems]
   );
 
-  const renderMenuPitching = () => (
-    <Menu
-      selectable={false}
-      onClick={handleOnClickPitchingItem}
-      className="dropdown-panel dropdown-statistic"
-    >
-      {cardStatisticItems.map((value, index) => (
-        <MenuItem className="dropdown-panel__item" key={index}>
-          {value}
-        </MenuItem>
-      ))}
-    </Menu>
+  const renderMenuPitching = useCallback(
+    () => (
+      <Menu
+        selectable={false}
+        onClick={handleOnClickPitchingItem}
+        className="dropdown-panel dropdown-statistic"
+      >
+        {cardStatisticItems.map((value, index) => (
+          <MenuItem className="dropdown-panel__item" key={index}>
+            {value}
+          </MenuItem>
+        ))}
+      </Menu>
+    ),
+    [cardStatisticItems]
   );
 
-  const renderPitching = () => {
-    return (
+  const renderTabPanels = () => (
+    <>
+      {isPitching && (
+        <TabPanel>
+          {selectedItem === "0" && <PitchingSummary />}
+          {selectedItem === "1" && <PitchingCharts />}
+          {selectedItem === "2" && <PitchingLog />}
+        </TabPanel>
+      )}
+      {isBatting && (
+        <TabPanel>
+          {selectedItem === "0" && <BattingSummary />}
+          {selectedItem === "1" && <BattingCharts />}
+          {selectedItem === "2" && <BattingLog />}
+        </TabPanel>
+      )}
+      {isUserProfile && (
+        <TabPanel>
+          <Sessions />
+        </TabPanel>
+      )}
       <TabPanel>
-        {selectedItem === "0" && <PitchingSummary />}
-        {selectedItem === "1" && <PitchingCharts />}
-        {selectedItem === "2" && <PitchingLog />}
+        <Comparison profile={profile} />
       </TabPanel>
-    );
-  };
-
-  const renderBatting = () => {
-    return (
-      <TabPanel>
-        {selectedItem === "0" && <BattingSummary />}
-        {selectedItem === "1" && <BattingCharts />}
-        {selectedItem === "2" && <BattingLog />}
-      </TabPanel>
-    );
-  };
-
-  const renderSessions = () => {
-    return (
-      <TabPanel>
-        <Sessions />
-      </TabPanel>
-    );
-  };
-
-  const renderComparison = () => {
-    return (
-      <TabPanel>
-        <Comparison />
-      </TabPanel>
-    );
-  };
+    </>
+  );
 
   return (
     <div className="card-statistic c-card">
@@ -124,10 +121,7 @@ const CardStatistic = ({ profile, isUserProfile }) => {
           {isUserProfile && <Tab>Session Reports</Tab>}
           <Tab>Comparison</Tab>
         </TabList>
-        {isPitching && renderPitching()}
-        {isBatting && renderBatting()}
-        {isUserProfile && renderSessions()}
-        {renderComparison()}
+        {renderTabPanels()}
       </Tabs>
     </div>
   );

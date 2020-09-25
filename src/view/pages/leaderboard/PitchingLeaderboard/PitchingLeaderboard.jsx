@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
-import Menu, { Item as MenuItem } from "rc-menu";
+import CustomMenu from "@commonComponents/customMenu/CustomMenu";
 import {
   leaderboardPitchingHeader,
   leaderboardPitchingTypes,
@@ -41,21 +41,6 @@ const PitchingLeaderboard = ({ filter }) => {
     setSelectedType(type);
   };
 
-  const renderMenuVelocity = () => (
-    <Menu selectable={false} className="dropdown-panel dropdown-leaderboard">
-      {leaderboardPitchingTypes.map((item) => (
-        <MenuItem
-          onClick={handleOnClickMenuItem}
-          className="dropdown-panel__item"
-          data-item={item.id}
-          key={item.id}
-        >
-          {item.title}
-        </MenuItem>
-      ))}
-    </Menu>
-  );
-
   const handleOnClickFavorite = (data) => async () => {
     await updateFavoriteProfileRequest(data);
     dispatch(
@@ -63,22 +48,25 @@ const PitchingLeaderboard = ({ filter }) => {
     );
   };
 
-  const renderHeader = () => (
-    <div className="c-table__header">
-      <div className="ss-table__header leaderboard-table__header">
-        {leaderboardPitchingHeader.map((item, index) => (
-          <div
-            className="leaderboard-pitching__header-item leaderboard-header-item"
-            key={index}
-          >
-            {item}
-          </div>
-        ))}
+  const renderHeader = useCallback(
+    () => (
+      <div className="c-table__header">
+        <div className="ss-table__header leaderboard-table__header">
+          {leaderboardPitchingHeader.map((item, index) => (
+            <div
+              className="leaderboard-pitching__header-item leaderboard-header-item"
+              key={index}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    ),
+    [leaderboardPitchingHeader]
   );
 
-  const renderRows = () => {
+  const renderRows = useCallback(() => {
     return patchingLeaderboard.map((item, index) => (
       <div
         key={index}
@@ -115,14 +103,19 @@ const PitchingLeaderboard = ({ filter }) => {
         </div>
       </div>
     ));
-  };
+  }, [patchingLeaderboard]);
 
   return (
     <div className="leaderboard__content">
       <div className="leaderboard__velocity">
         <ButtonDropdown
           trigger={["click"]}
-          overlay={renderMenuVelocity()}
+          overlay={() => (
+            <CustomMenu
+              items={leaderboardPitchingTypes}
+              onClick={handleOnClickMenuItem}
+            />
+          )}
           text={selectedType.title}
           buttonClass={"lv-button"}
           arrowContainerClass={"lv-button__arrow"}
@@ -146,4 +139,4 @@ PitchingLeaderboard.propTypes = {
   filter: PropTypes.object,
 };
 
-export default PitchingLeaderboard;
+export default memo(PitchingLeaderboard);

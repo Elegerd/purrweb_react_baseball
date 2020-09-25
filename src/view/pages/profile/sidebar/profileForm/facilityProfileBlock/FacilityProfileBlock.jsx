@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useMemo, useState } from "react";
 import { Field } from "react-final-form";
 import CustomSelect from "@commonComponents/customSelect/CustomSelect";
 import { useSelector } from "react-redux";
@@ -9,9 +9,13 @@ const FacilityProfileBlock = ({ profileFacilities, facilities }) => {
   const isLoadingFacilities = useSelector(getFacilitiesIsLoading);
   const [selectedFacilities, setSelectedFacilities] = useState([]);
 
-  const facultyOptions = facilities.map((faculty) => {
-    return { value: faculty.id, label: faculty.u_name };
-  });
+  const facultyOptions = useMemo(
+    () =>
+      facilities.map((faculty) => {
+        return { value: faculty.id, label: faculty.u_name };
+      }),
+    [facilities]
+  );
 
   useEffect(() => {
     if (!isLoadingFacilities)
@@ -51,4 +55,4 @@ FacilityProfileBlock.propTypes = {
   facilities: PropTypes.array,
 };
 
-export default FacilityProfileBlock;
+export default memo(FacilityProfileBlock);

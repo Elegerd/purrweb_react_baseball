@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { Arrow } from "@commonComponents/svg";
 import PropTypes from "prop-types";
 import "./hiddenInput.css";
@@ -43,4 +43,4 @@ HiddenInput.propTypes = {
   arrowContainerClass: PropTypes.string,
 };
 
-export default HiddenInput;
+export default memo(HiddenInput);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Menu, { Item as MenuItem } from "rc-menu";
 import { pitchingLogHeader, pitchTypes } from "@constants/index";
@@ -28,18 +28,25 @@ const PitchingLog = ({}) => {
     );
   };
 
-  const renderMenuType = () => (
-    <Menu
-      selectable={false}
-      onClick={handleOnClickItem}
-      className="dropdown-panel dropdown-statistic"
-    >
-      {pitchTypes.map((item, index) => (
-        <MenuItem className="dropdown-panel__item" data-item={item} key={index}>
-          {item}
-        </MenuItem>
-      ))}
-    </Menu>
+  const renderMenuType = useCallback(
+    () => (
+      <Menu
+        selectable={false}
+        onClick={handleOnClickItem}
+        className="dropdown-panel dropdown-statistic"
+      >
+        {pitchTypes.map((item, index) => (
+          <MenuItem
+            className="dropdown-panel__item"
+            data-item={item}
+            key={index}
+          >
+            {item}
+          </MenuItem>
+        ))}
+      </Menu>
+    ),
+    [pitchTypes]
   );
 
   const handlePageChange = (data) => {

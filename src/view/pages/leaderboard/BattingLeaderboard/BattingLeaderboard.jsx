@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Menu, { Item as MenuItem } from "rc-menu";
 import { leaderboardBattingHeader, leaderboardBattingTypes } from "@constants";
 import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
+import CustomMenu from "@commonComponents/customMenu/CustomMenu";
 import { fetchBattingLeaderboardData } from "@ducks/battingLeaderboard/routines";
 import {
   getBattingLeaderboard,
@@ -45,39 +45,25 @@ const BattingLeaderboard = ({ filter }) => {
     );
   };
 
-  const menuItems = leaderboardBattingTypes.map((item, index) => (
-    <MenuItem
-      onClick={handleOnClickMenuItem}
-      className="dropdown-panel__item"
-      data-item={item.id}
-      key={item.id}
-    >
-      {item.title}
-    </MenuItem>
-  ));
-
-  const menuVelocity = () => (
-    <Menu selectable={false} className="dropdown-panel dropdown-leaderboard">
-      {menuItems}
-    </Menu>
-  );
-
-  const renderHeader = () => (
-    <div className="c-table__header">
-      <div className="ss-table__header leaderboard-table__header">
-        {leaderboardBattingHeader.map((item, index) => (
-          <div
-            className="leaderboard-batting__header-item leaderboard-header-item"
-            key={index}
-          >
-            {item}
-          </div>
-        ))}
+  const renderHeader = useCallback(
+    () => (
+      <div className="c-table__header">
+        <div className="ss-table__header leaderboard-table__header">
+          {leaderboardBattingHeader.map((item, index) => (
+            <div
+              className="leaderboard-batting__header-item leaderboard-header-item"
+              key={index}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    ),
+    [leaderboardBattingHeader]
   );
 
-  const renderRows = () => {
+  const renderRows = useCallback(() => {
     return battingLeaderboard.map((item, index) => (
       <div
         key={index}
@@ -114,14 +100,19 @@ const BattingLeaderboard = ({ filter }) => {
         </div>
       </div>
     ));
-  };
+  }, [battingLeaderboard]);
 
   return (
     <div className="leaderboard__content">
       <div className="leaderboard__velocity">
         <ButtonDropdown
           trigger={["click"]}
-          overlay={menuVelocity()}
+          overlay={() => (
+            <CustomMenu
+              items={leaderboardBattingTypes}
+              onClick={handleOnClickMenuItem}
+            />
+          )}
           text={selectedType.title}
           buttonClass={"lv-button"}
           arrowContainerClass={"lv-button__arrow"}
@@ -145,4 +136,4 @@ BattingLeaderboard.propTypes = {
   filter: PropTypes.object,
 };
 
-export default BattingLeaderboard;
+export default memo(BattingLeaderboard);

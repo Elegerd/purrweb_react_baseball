@@ -19,7 +19,7 @@ const SignInForm = () => {
   return (
     <Form
       onSubmit={onSubmit}
-      render={({ handleSubmit, form, submitting, pristine, values }) => (
+      render={({ handleSubmit }) => (
         <form className="sign-form" onSubmit={handleSubmit}>
           <div className="sign-form__sf-input">
             <div className="sf-input__container">

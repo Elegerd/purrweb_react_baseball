@@ -7,6 +7,7 @@ import {
   handleRequest,
   handleTrigger,
 } from "../../baseHandleActions";
+import { likeProfile } from "./routines";
 
 const initialState = {
   data: null,
@@ -22,6 +23,30 @@ const handleFetchViewedProfileData = {
   ...handleFulfill(fetchViewedProfileData),
 };
 
+const handleLikeProfile = {
+  ...handleTrigger(likeProfile),
+  [likeProfile.REQUEST]: (state) => ({
+    ...state,
+    requesting: true,
+    error: null,
+  }),
+  [likeProfile.SUCCESS]: (state, { payload }) => ({
+    ...state,
+    data: {
+      ...state.data,
+      ...payload,
+    },
+    error: null,
+  }),
+  ...handleFailure(likeProfile),
+  [likeProfile.FULFILL]: (state) => ({
+    ...state,
+    requesting: false,
+    error: null,
+  }),
+};
+
 export const reducer = createReducer(initialState)({
   ...handleFetchViewedProfileData,
+  ...handleLikeProfile,
 });

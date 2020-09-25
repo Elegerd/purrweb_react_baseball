@@ -217,6 +217,16 @@
   min-height: 420px;
 }
 
+.network-row__item-v {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 100%;
+  -webkit-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+
 .network__header-item:nth-child(1),
 .network-row__item:nth-child(1) {
   width: 19.5%;
@@ -363,3 +373,4 @@
   position: relative;
   width: 130px;
 }
+

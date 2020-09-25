@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
 import "./customTextarea.css";
 
@@ -20,4 +20,4 @@ CustomTextarea.propTypes = {
   placeholder: PropTypes.string,
 };
 
-export default CustomTextarea;
+export default memo(CustomTextarea);

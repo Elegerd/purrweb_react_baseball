@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Field } from "react-final-form";
 import { required } from "@helpers/validators";
 import CustomInput from "@commonComponents/customInput/CustomInput";
@@ -122,4 +122,4 @@ PersonalProfileBlock.propTypes = {
   defaultValues: PropTypes.object,
 };
 
-export default PersonalProfileBlock;
+export default memo(PersonalProfileBlock);

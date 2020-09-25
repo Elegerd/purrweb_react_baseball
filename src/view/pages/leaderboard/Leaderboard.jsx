@@ -4,7 +4,7 @@ import BattingLeaderboard from "./BattingLeaderboard/BattingLeaderboard";
 import PitchingLeaderboard from "./PitchingLeaderboard/PitchingLeaderboard";
 import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
 import HiddenInput from "@commonComponents/hiddenInput/HiddenInput";
-import Menu, { Item as MenuItem } from "rc-menu";
+import CustomMenu from "@commonComponents/customMenu/CustomMenu";
 import { filterDate, filterPositions, filterFavorite } from "@constants";
 import { getObjectById } from "@helpers/utilities";
 import "./leaderboard.css";
@@ -32,22 +32,6 @@ const Leaderboard = () => {
     setFavorite(type);
   };
 
-  const renderMenu = (items, onClick) => {
-    return (
-      <Menu selectable={false} onClick={onClick} className="dropdown-panel">
-        {items.map((item) => (
-          <MenuItem
-            className="dropdown-panel__item"
-            data-item={item.id}
-            key={item.id}
-          >
-            {item.title}
-          </MenuItem>
-        ))}
-      </Menu>
-    );
-  };
-
   const filter = {
     date: date.field || undefined,
     age: age || undefined,
@@ -69,7 +53,12 @@ const Leaderboard = () => {
                 text={`Date${date.field ? ` (${date.title})` : ""}`}
                 buttonClass={"l-header-filters__button"}
                 arrowContainerClass={"l-header-filters__arrow"}
-                overlay={renderMenu(filterDate, handleOnClickDateItem)}
+                overlay={() => (
+                  <CustomMenu
+                    items={filterDate}
+                    onClick={handleOnClickDateItem}
+                  />
+                )}
               />
             </div>
             <div className="l-header-filters__school">
@@ -98,7 +87,12 @@ const Leaderboard = () => {
                 text={`${position.field ? `${position.title}` : "Position"}`}
                 buttonClass={"l-header-filters__button"}
                 arrowContainerClass={"l-header-filters__arrow"}
-                overlay={renderMenu(filterPositions, handleOnClickPositionItem)}
+                overlay={() => (
+                  <CustomMenu
+                    items={filterPositions}
+                    onClick={handleOnClickPositionItem}
+                  />
+                )}
               />
             </div>
             <div className="l-header-filters__age">
@@ -120,7 +114,12 @@ const Leaderboard = () => {
                 text={`${favorite.field ? `${favorite.title}` : "All"}`}
                 buttonClass={"l-header-filters__button"}
                 arrowContainerClass={"l-header-filters__arrow"}
-                overlay={renderMenu(filterFavorite, handleOnClickFavoriteItem)}
+                overlay={() => (
+                  <CustomMenu
+                    items={filterFavorite}
+                    onClick={handleOnClickFavoriteItem}
+                  />
+                )}
               />
             </div>
           </div>

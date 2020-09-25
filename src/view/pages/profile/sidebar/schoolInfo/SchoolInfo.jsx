@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { letterToUppercase } from "@helpers/utilities";
 import PropTypes from "prop-types";
 
@@ -41,4 +41,4 @@ SchoolInfo.propTypes = {
   profile: PropTypes.object,
 };
 
-export default SchoolInfo;
+export default memo(SchoolInfo);

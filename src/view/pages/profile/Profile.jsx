@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "@view/pages/profile/sidebar/Sidebar";
 import { getProfile, getProfileIsLoading } from "@ducks/profile/selector";
@@ -44,14 +44,17 @@ const Profile = ({ match: { params } }) => {
         <div className="profile">
           <div className="profile__container">
             <div className="profile__content">
-              <Sidebar profile={viewedProfile} isUserProfile={isUserProfile} />
+              <Sidebar
+                profile={isUserProfile ? currentProfile : viewedProfile}
+                isUserProfile={isUserProfile}
+              />
               <main className="profile__main">
                 <CardSummary
-                  profile={viewedProfile}
+                  profile={isUserProfile ? currentProfile : viewedProfile}
                   isUserProfile={isUserProfile}
                 />
                 <CardStatistic
-                  profile={viewedProfile}
+                  profile={isUserProfile ? currentProfile : viewedProfile}
                   isUserProfile={isUserProfile}
                 />
               </main>

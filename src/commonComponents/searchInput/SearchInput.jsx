@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Search } from "@commonComponents/svg";
 import { DebounceInput } from "react-debounce-input";
 import PropTypes from "prop-types";
@@ -23,4 +23,4 @@ const SearchInput = ({ ...rest }) => {
 
 SearchInput.propTypes = {};
 
-export default SearchInput;
+export default memo(SearchInput);

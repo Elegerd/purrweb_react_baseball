@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { Arrow } from "@commonComponents/svg";
 import Dropdown from "rc-dropdown";
 import PropTypes from "prop-types";
@@ -44,4 +44,4 @@ ButtonDropdown.propTypes = {
   buttonClass: PropTypes.string,
 };
 
-export default ButtonDropdown;
+export default memo(ButtonDropdown);

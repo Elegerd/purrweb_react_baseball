@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { memo, useMemo } from "react";
 import PropTypes from "prop-types";
 import Select from "react-select";
 import customSelectStyle from "./customSelectStyle";
@@ -68,4 +68,4 @@ CustomSelect.propTypes = {
   meta: PropTypes.object,
 };
 
-export default CustomSelect;
+export default memo(CustomSelect);

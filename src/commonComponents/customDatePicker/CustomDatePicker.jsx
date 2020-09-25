@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { memo } from "react";
 import DatePicker from "react-datepicker";
+import PropTypes from "prop-types";
 import "./customDatePicker.css";
 
 const CustomDatePicker = ({ ...rest }) => {
@@ -13,4 +13,4 @@ const CustomDatePicker = ({ ...rest }) => {
 
 CustomDatePicker.propTypes = {};
 
-export default CustomDatePicker;
+export default memo(CustomDatePicker);

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSchoolsData } from "@ducks/schools/routines";
 import { fetchTeamsData } from "@ducks/teams/routines";
 import { fetchFacilitiesData } from "@ducks/facilities/routines";
-import { likeProfile } from "@ducks/profile/routines";
+import { likeProfile } from "@ducks/viewedProfile/routines";
 import { getSchools } from "@ducks/schools/selector";
 import { getFacilities } from "@ducks/facilities/selector";
 import { getTeams } from "@ducks/teams/selector";
@@ -46,7 +46,7 @@ const Sidebar = ({ profile, isUserProfile }) => {
     setIsEditing(false);
   };
 
-  const onChangeIsEditing = (value) => {
+  const handleOnChangeIsEditing = (value) => {
     setIsEditing(value);
   };
 
@@ -60,8 +60,8 @@ const Sidebar = ({ profile, isUserProfile }) => {
             schools={schools}
             teams={teams}
             facilities={facilities}
-            handleOnClickCancel={handleOnClickCancel}
-            onChangeIsEditing={onChangeIsEditing}
+            onClickCancel={handleOnClickCancel}
+            onChangeIsEditing={handleOnChangeIsEditing}
           />
         </>
       ) : (
@@ -85,4 +85,4 @@ Sidebar.propTypes = {
   isUserProfile: PropTypes.bool,
 };
 
-export default Sidebar;
+export default memo(Sidebar);

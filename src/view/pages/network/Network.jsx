@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { filterFavorite, filterPositions, filterShow } from "@constants/index";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfilesData } from "@ducks/profiles/routines";
@@ -10,7 +10,7 @@ import NetworkTableHeader from "./networkTableHeader/NetworkTableHeader";
 import NetworkTableRow from "./networkTableRow/NetworkTableRow";
 import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
 import HiddenInput from "@commonComponents/hiddenInput/HiddenInput";
-import Menu, { MenuItem } from "rc-menu";
+import CustomMenu from "@commonComponents/customMenu/CustomMenu";
 import { updateFavoriteProfileRequest } from "@helpers/request/profileRequest";
 import { getObjectById } from "@helpers/utilities";
 import "./network.css";
@@ -70,22 +70,6 @@ const Network = () => {
     );
   };
 
-  const renderMenu = (items, onClick) => {
-    return (
-      <Menu selectable={false} onClick={onClick} className="dropdown-panel">
-        {items.map((item) => (
-          <MenuItem
-            className="dropdown-panel__item"
-            data-item={item.id}
-            key={item.id}
-          >
-            {item.title}
-          </MenuItem>
-        ))}
-      </Menu>
-    );
-  };
-
   const handlePageChange = (data) => {
     let selected = data.selected;
     setActivePage(selected);
@@ -106,7 +90,7 @@ const Network = () => {
     setFavorite(type);
   };
 
-  const renderRows = () => {
+  const renderRows = useCallback(() => {
     return (
       profileList &&
       profileList.profiles.map((item, index) => (
@@ -117,7 +101,7 @@ const Network = () => {
         />
       ))
     );
-  };
+  }, [profileList]);
 
   return (
     <div className="network__container">
@@ -151,7 +135,12 @@ const Network = () => {
                 text={`${position.field ? `${position.title}` : "Position"}`}
                 buttonClass={"n-header-filters__button"}
                 arrowContainerClass={"n-header-filters__arrow"}
-                overlay={renderMenu(filterPositions, handleOnClickPositionItem)}
+                overlay={() => (
+                  <CustomMenu
+                    items={filterPositions}
+                    onClick={handleOnClickPositionItem}
+                  />
+                )}
               />
             </div>
             <div className="n-header-filters__age">
@@ -173,7 +162,12 @@ const Network = () => {
                 text={`${favorite.field ? `${favorite.title}` : "All"}`}
                 buttonClass={"n-header-filters__button"}
                 arrowContainerClass={"n-header-filters__arrow"}
-                overlay={renderMenu(filterFavorite, handleOnClickFavoriteItem)}
+                overlay={() => (
+                  <CustomMenu
+                    items={filterFavorite}
+                    onClick={handleOnClickFavoriteItem}
+                  />
+                )}
               />
             </div>
             <div className="n-header-filters__show">
@@ -182,7 +176,12 @@ const Network = () => {
                 text={`Show: ${show.title}`}
                 buttonClass={"n-header-filters__button"}
                 arrowContainerClass={"n-header-filters__arrow"}
-                overlay={renderMenu(filterShow, handleOnClickShowItem)}
+                overlay={() => (
+                  <CustomMenu
+                    items={filterShow}
+                    onClick={handleOnClickShowItem}
+                  />
+                )}
               />
             </div>
           </div>

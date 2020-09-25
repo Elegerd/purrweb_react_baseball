@@ -115,6 +115,8 @@ export const leaderboardPitchingHeader = [
   "Favorite",
 ];
 
+export const comparisonRows = ["Fastball", "Curveball", "Changeup", "Slider"];
+
 export const leaderboardPitchingTypes = [
   { id: 0, title: "Pitch Velocity", field: "pitch_velocity" },
   { id: 1, title: "Spin Rate", field: "spin_rate" },

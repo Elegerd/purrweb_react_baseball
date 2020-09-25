@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { networkHeader } from "@constants";
 
 const NetworkTableHeader = () => {
@@ -15,4 +15,4 @@ const NetworkTableHeader = () => {
   );
 };
 
-export default NetworkTableHeader;
+export default memo(NetworkTableHeader);

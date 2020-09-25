@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { letterToUppercase } from "@helpers/utilities";
 import { Age, Bats, Height, Throws, Weight } from "@commonComponents/svg";
 import PropTypes from "prop-types";
@@ -35,4 +35,4 @@ PersonalInfo.propTypes = {
   profile: PropTypes.object,
 };
 
-export default PersonalInfo;
+export default memo(PersonalInfo);

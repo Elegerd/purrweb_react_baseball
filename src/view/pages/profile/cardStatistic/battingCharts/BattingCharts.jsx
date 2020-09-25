@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Menu, { Item as MenuItem } from "rc-menu";
 import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
 import { pitchTypes } from "@constants";
@@ -28,18 +28,25 @@ const BattingCharts = () => {
     );
   };
 
-  const renderMenuType = () => (
-    <Menu
-      selectable={false}
-      onClick={handleOnClickItem}
-      className="dropdown-panel dropdown-statistic"
-    >
-      {pitchTypes.map((item, index) => (
-        <MenuItem className="dropdown-panel__item" data-item={item} key={index}>
-          {item}
-        </MenuItem>
-      ))}
-    </Menu>
+  const renderMenuType = useCallback(
+    () => (
+      <Menu
+        selectable={false}
+        onClick={handleOnClickItem}
+        className="dropdown-panel dropdown-statistic"
+      >
+        {pitchTypes.map((item, index) => (
+          <MenuItem
+            className="dropdown-panel__item"
+            data-item={item}
+            key={index}
+          >
+            {item}
+          </MenuItem>
+        ))}
+      </Menu>
+    ),
+    [pitchTypes]
   );
 
   return (
@@ -49,7 +56,7 @@ const BattingCharts = () => {
           <ButtonDropdown
             trigger={["click"]}
             overlay={renderMenuType()}
-            text={`Pitch Type ${selectedItem ? selectedItem : ""}`}
+            text={`Pitch Type ${selectedItem ? `(${selectedItem})` : ""}`}
             arrowContainerClass={"charts-actions__arrow"}
           />
         </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Form, Field } from "react-final-form";
 import PropTypes from "prop-types";
 import { toBase64 } from "@helpers/utilities";
@@ -101,4 +101,4 @@ AvatarForm.propTypes = {
   profile: PropTypes.object,
 };
 
-export default AvatarForm;
+export default memo(AvatarForm);

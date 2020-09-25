@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
@@ -20,7 +20,11 @@ const NetworkTableRow = ({ item, onClickFavorite }) => {
         {item.school ? item.school.name : "-"}
       </div>
       <div className="network-row__item">
-        {item.teams.length ? item.teams[0].name : "-"}
+          <div className="network-row__item-v">
+              {item.teams.length
+                  ? item.teams.map((team) => team.name).join(", ")
+                  : "-"}
+          </div>
       </div>
       <div className="network-row__item">{item.age || "-"}</div>
       <div className="network-row__item">
@@ -42,4 +46,4 @@ NetworkTableRow.propTypes = {
   onClickFavorite: PropTypes.func,
 };
 
-export default NetworkTableRow;
+export default memo(NetworkTableRow);

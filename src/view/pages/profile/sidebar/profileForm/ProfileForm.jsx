@@ -24,7 +24,7 @@ const ProfileForm = ({
   facilities,
   schools,
   onChangeIsEditing,
-  handleOnClickCancel = () => {},
+  onClickCancel = () => {},
 }) => {
   const dispatch = useDispatch();
   const isRequesting = useSelector(getProfileIsRequesting);
@@ -77,7 +77,7 @@ const ProfileForm = ({
               <span className="error">* Fill out the required fields</span>
             ) : null}
             <div className="edit-profile__buttons">
-              <button className="button-cancel" onClick={handleOnClickCancel}>
+              <button className="button-cancel" onClick={onClickCancel}>
                 Cancel
               </button>
               <button
@@ -108,7 +108,7 @@ const ProfileForm = ({
 
 ProfileForm.propTypes = {
   profile: PropTypes.object,
-  handleOnClickCancel: PropTypes.func,
+  onClickCancel: PropTypes.func,
   onChangeIsEditing: PropTypes.func,
   schools: PropTypes.array,
   teams: PropTypes.array,

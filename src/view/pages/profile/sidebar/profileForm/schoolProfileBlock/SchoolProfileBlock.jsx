@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useMemo, useState } from "react";
 import { Field } from "react-final-form";
 import CustomSelect from "@commonComponents/customSelect/CustomSelect";
 import { useSelector } from "react-redux";
@@ -19,19 +19,28 @@ const SchoolProfileBlock = ({
   const [selectedSchool, setSelectedSchool] = useState([]);
   const [selectedTeams, setSelectedTeams] = useState([]);
 
-  const schoolOptions = schools.map((school) => {
-    return { value: school.id, label: school.name };
-  });
+  const schoolOptions = useMemo(
+    () =>
+      schools.map((school) => {
+        return { value: school.id, label: school.name };
+      }),
+    [schools]
+  );
 
-  const teamOptions = teams.map((team) => {
-    return { value: team.id, label: team.name };
-  });
+  const teamOptions = useMemo(
+    () =>
+      teams.map((team) => {
+        return { value: team.id, label: team.name };
+      }),
+    [teams]
+  );
 
   useEffect(() => {
     if (!isLoadingSchool)
       setSelectedSchool(
-        schoolOptions.find((option) =>
-          option.value === profileSchool ? profileSchool.id : undefined
+        schoolOptions.find(
+          (option) =>
+            option.value === (profileSchool ? profileSchool.id : undefined)
         )
       );
     if (!isLoadingTeams)
@@ -105,4 +114,4 @@ SchoolProfileBlock.propTypes = {
   defaultValues: PropTypes.object,
 };
 
-export default SchoolProfileBlock;
+export default memo(SchoolProfileBlock);

@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getViewedProfile } from "@ducks/viewedProfile/selector";
 import user from "@assets/img/user.png";
 import { Search } from "@commonComponents/svg";
 import Dropdown from "rc-dropdown";
-import Menu, { Item as MenuItem } from "rc-menu";
 import { fetchUserData } from "@ducks/users/routines";
 import { getUsers, getUsersIsLoading } from "@ducks/users/selector";
-import ReactLoading from "react-loading";
 import { getObjectById } from "@helpers/utilities";
-import { topBattingType, topPitchingType } from "@constants";
+import { topBattingType, topPitchingType, comparisonRows } from "@constants";
 import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
+import CustomMenu from "@commonComponents/customMenu/CustomMenu";
+import ReactLoading from "react-loading";
+import Menu, { Item as MenuItem } from "rc-menu";
 import { profileDataRequest } from "@helpers/request/profileRequest";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import "./comparison.css";
+import ComparisonRow from "@view/pages/profile/cardStatistic/comparison/ComparisonRow";
 
-const Comparison = ({}) => {
+const Comparison = ({ profile: viewedProfile }) => {
   const dispatch = useDispatch();
   const [profileName, setProfileName] = useState("");
   const [topType, setTopType] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
   const [selectedProfile, setSelectedProfile] = useState(null);
-  const viewedProfile = useSelector(getViewedProfile);
   const profileNames = useSelector(getUsers);
   const isLoadingProfileNames = useSelector(getUsersIsLoading);
   const avatarUrl = viewedProfile.avatar ? viewedProfile.avatar : user;
@@ -60,91 +60,50 @@ const Comparison = ({}) => {
     setSelectedType(type);
   };
 
-  const renderMenuUsers = () => (
-    <Menu
-      selectable={false}
-      onClick={handleOnClickUser}
-      className="dropdown-panel"
-    >
-      {profileNames.map((item) => {
-        const fullName = `${item.first_name} ${item.last_name}`;
-        return (
-          <MenuItem
-            className="dropdown-panel__item"
-            data-item={fullName}
-            key={item.id}
-          >
-            {fullName}
-          </MenuItem>
-        );
-      })}
-    </Menu>
+  const renderMenuUsers = useCallback(
+    () => (
+      <Menu
+        selectable={false}
+        onClick={handleOnClickUser}
+        className="dropdown-panel"
+      >
+        {profileNames.map((item) => {
+          const fullName = `${item.first_name} ${item.last_name}`;
+          return (
+            <MenuItem
+              className="dropdown-panel__item"
+              data-item={fullName}
+              key={item.id}
+            >
+              {fullName}
+            </MenuItem>
+          );
+        })}
+      </Menu>
+    ),
+    [profileNames]
   );
 
-  const menuType = (
-    <Menu
-      selectable={false}
-      onClick={handleOnClickType}
-      className="dropdown-panel"
-    >
-      {topType &&
-        topType.types.map((item) => (
-          <MenuItem
-            className="dropdown-panel__item"
-            data-item={item.id}
-            key={item.id}
-          >
-            {item.title}
-          </MenuItem>
-        ))}
-    </Menu>
+  const renderInput = useCallback(
+    () => (
+      <div className="rp-search">
+        <div className="rp-search__input">
+          <input
+            value={profileName}
+            name="compared_user"
+            onChange={handleOnChangeProfileName}
+            placeholder="Enter player name"
+          />
+        </div>
+        <div className="rp-search__icon">
+          <span>
+            <Search />
+          </span>
+        </div>
+      </div>
+    ),
+    [profileName]
   );
-
-  const renderInput = () => (
-    <div className="rp-search">
-      <div className="rp-search__input">
-        <input
-          value={profileName}
-          name="compared_user"
-          onChange={handleOnChangeProfileName}
-          placeholder="Enter player name"
-        />
-      </div>
-      <div className="rp-search__icon">
-        <span>
-          <Search />
-        </span>
-      </div>
-    </div>
-  );
-
-  const renderRow = (title) => {
-    const viewedBatting =
-      viewedProfile && topType
-        ? viewedProfile[topType.field].find((item) => item.pitch_type === title)
-        : null;
-    const selectedBatting =
-      selectedProfile && topType
-        ? selectedProfile[topType.field].find(
-            (item) => item.pitch_type === title
-          )
-        : null;
-    return (
-      <div className="tbv-table__tbv-row">
-        <div className="tbv-row__item">
-          <div>{title}</div>
-        </div>
-        <div className="tbv-row__item">
-          <div>{viewedBatting ? viewedBatting[selectedType.field] : "-"}</div>
-        </div>
-        <div className="tbv-row__item">
-          <div>
-            {selectedBatting ? selectedBatting[selectedType.field] : "-"}
-          </div>
-        </div>
-      </div>
-    );
-  };
 
   return (
     <div className="comparison__container">
@@ -222,7 +181,12 @@ const Comparison = ({}) => {
                 <div className="tbv-actions">
                   <ButtonDropdown
                     trigger={["click"]}
-                    overlay={menuType}
+                    overlay={() => (
+                      <CustomMenu
+                        items={topType ? topType.types : []}
+                        onClick={handleOnClickType}
+                      />
+                    )}
                     text={`Top Batting Values ${
                       selectedType ? ` - ${selectedType.title}` : ""
                     }`}
@@ -233,10 +197,16 @@ const Comparison = ({}) => {
               </div>
               <div className="top-batting-values__table">
                 <div className="tbv-table">
-                  {renderRow("Fastball")}
-                  {renderRow("Curveball")}
-                  {renderRow("Changeup")}
-                  {renderRow("Slider")}
+                  {comparisonRows.map((item, index) => (
+                    <ComparisonRow
+                      key={index}
+                      title={item}
+                      viewedProfile={viewedProfile}
+                      selectedProfile={selectedProfile}
+                      topType={topType}
+                      selectedType={selectedType}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
@@ -247,6 +217,8 @@ const Comparison = ({}) => {
   );
 };
 
-Comparison.propTypes = {};
+Comparison.propTypes = {
+  profile: PropTypes.object,
+};
 
 export default Comparison;
