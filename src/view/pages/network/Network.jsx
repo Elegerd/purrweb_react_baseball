@@ -34,7 +34,7 @@ const Network = () => {
       fetchProfilesData({
         offset,
         profiles_count: show.field,
-        age: age || undefined,
+        age: parseInt(age, 10) || undefined,
         favorite: favorite.field ? 1 : undefined,
         player_name: playerName || undefined,
         position: position.field || undefined,
@@ -60,7 +60,7 @@ const Network = () => {
       fetchProfilesData({
         offset,
         profiles_count: show.field,
-        age: age || undefined,
+        age: parseInt(age, 10) || undefined,
         favorite: favorite.field ? 1 : undefined,
         player_name: playerName || undefined,
         position: position.field || undefined,

@@ -34,7 +34,7 @@ const Leaderboard = () => {
 
   const filter = {
     date: date.field || undefined,
-    age: age || undefined,
+    age: parseInt(age, 10) || undefined,
     favorite: favorite.field ? 1 : undefined,
     position: position.field || undefined,
     school: schoolName || undefined,
