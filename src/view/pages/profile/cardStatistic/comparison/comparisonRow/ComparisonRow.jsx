@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import PropTypes from "prop-types";
 
 const ComparisonRow = ({
@@ -8,14 +8,22 @@ const ComparisonRow = ({
   topType,
   selectedType,
 }) => {
-  const viewedBatting =
-    viewedProfile && topType
-      ? viewedProfile[topType.field].find((item) => item.pitch_type === title)
-      : null;
-  const selectedBatting =
-    selectedProfile && topType
-      ? selectedProfile[topType.field].find((item) => item.pitch_type === title)
-      : null;
+  const viewedBatting = useMemo(
+    () =>
+      viewedProfile && topType
+        ? viewedProfile[topType.field].find((item) => item.pitch_type === title)
+        : null,
+    [viewedProfile, topType]
+  );
+  const selectedBatting = useMemo(
+    () =>
+      selectedProfile && topType
+        ? selectedProfile[topType.field].find(
+            (item) => item.pitch_type === title
+          )
+        : null,
+    [selectedProfile, topType]
+  );
   return (
     <div className="tbv-table__tbv-row">
       <div className="tbv-row__item">
