@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Menu, { Item as MenuItem } from "rc-menu";
-import { pitchingLogHeader, pitchTypes } from "@constants/index";
+import { pitchingLogHeader, pitchTypes } from "@constants";
 import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
 import SearchInput from "@commonComponents/searchInput/SearchInput";
 import {

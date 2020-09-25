@@ -6,6 +6,7 @@ import {
   getBattingSummaryIsLoading,
 } from "@ducks/battingSummary/selector";
 import Spinner from "@commonComponents/spinner/Spinner";
+import BattingSummaryRow from "./battingSummaryRow/BattingSummaryRow";
 import PropTypes from "prop-types";
 import "./battingSummary.css";
 
@@ -33,20 +34,7 @@ const BattingSummary = () => {
     const filteredItems = items.filter((item) => item.pitch_type);
     return filteredItems.length ? (
       filteredItems.map((item, index) => (
-        <div key={index} className="c-table__row">
-          <div className="c-table__row-item summary-batting__row-item">
-            <div>{item.pitch_type || "-"}</div>
-          </div>
-          <div className="c-table__row-item summary-batting__row-item">
-            <div>{item.distance || "-"}</div>
-          </div>
-          <div className="c-table__row-item summary-batting__row-item">
-            <div>{item.launch_angle || "-"}</div>
-          </div>
-          <div className="c-table__row-item summary-batting__row-item">
-            <div>{item.exit_velocity || "-"}</div>
-          </div>
-        </div>
+        <BattingSummaryRow key={index} item={item} />
       ))
     ) : (
       <div className="summary__row-empty">

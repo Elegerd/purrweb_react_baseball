@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { filterFavorite, filterPositions, filterShow } from "@constants/index";
+import { filterFavorite, filterPositions, filterShow } from "@constants";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfilesData } from "@ducks/profiles/routines";
 import Pagination from "react-paginate";
