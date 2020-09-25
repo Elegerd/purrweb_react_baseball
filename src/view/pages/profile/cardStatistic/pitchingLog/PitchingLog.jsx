@@ -10,6 +10,7 @@ import {
 } from "@ducks/pitchingLog/selector";
 import { fetchPitchingLogData } from "@ducks/pitchingLog/routines";
 import Spinner from "@commonComponents/spinner/Spinner";
+import PitchingLogRow from "./PitchingLogRow/PitchingLogRow";
 import Pagination from "react-paginate";
 import PropTypes from "prop-types";
 import "./pitchingLog.css";
@@ -70,31 +71,7 @@ const PitchingLog = ({}) => {
 
   const renderRows = (items) => {
     return items.length ? (
-      items.map((item, index) => (
-        <div key={index} className="c-table__row">
-          <div className="c-table__row-item log-pitching__row-item">
-            <div>{item.date || "-"}</div>
-          </div>
-          <div className="c-table__row-item log-pitching__row-item">
-            <div>{item.batter_name || "-"}</div>
-          </div>
-          <div className="c-table__row-item log-pitching__row-item">
-            <div>{item.pitch_type || "-"}</div>
-          </div>
-          <div className="c-table__row-item log-pitching__row-item">
-            <div>{item.pitch_call || "-"}</div>
-          </div>
-          <div className="c-table__row-item log-pitching__row-item">
-            <div>{item.velocity || "-"}</div>
-          </div>
-          <div className="c-table__row-item log-pitching__row-item">
-            <div>{item.spin_rate || "-"}</div>
-          </div>
-          <div className="c-table__row-item log-pitching__row-item">
-            <div>{item.spin_axis || "-"}</div>
-          </div>
-        </div>
-      ))
+      items.map((item, index) => <PitchingLogRow key={index} item={item} />)
     ) : (
       <div className="log__row-empty">
         <div>{"There's no info yet!"}</div>

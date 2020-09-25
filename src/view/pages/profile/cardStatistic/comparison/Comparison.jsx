@@ -11,11 +11,11 @@ import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
 import CustomMenu from "@commonComponents/customMenu/CustomMenu";
 import ReactLoading from "react-loading";
 import Menu, { Item as MenuItem } from "rc-menu";
+import ComparisonRow from "./comparisonRow/ComparisonRow";
 import { profileDataRequest } from "@helpers/request/profileRequest";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import "./comparison.css";
-import ComparisonRow from "@view/pages/profile/cardStatistic/comparison/ComparisonRow";
 
 const Comparison = ({ profile: viewedProfile }) => {
   const dispatch = useDispatch();

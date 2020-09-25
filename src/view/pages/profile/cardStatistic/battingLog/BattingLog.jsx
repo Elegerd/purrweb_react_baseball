@@ -10,6 +10,7 @@ import {
 } from "@ducks/battingLog/selector";
 import { fetchBattingLogData } from "@ducks/battingLog/routines";
 import Spinner from "@commonComponents/spinner/Spinner";
+import BattingLogRow from "./battingLogRow/BattingLogRow";
 import Pagination from "react-paginate";
 import PropTypes from "prop-types";
 import "./battingLog.css";
@@ -70,25 +71,7 @@ const BattingLog = ({}) => {
 
   const renderRows = (items) => {
     return items.length ? (
-      items.map((item, index) => (
-        <div key={index} className="c-table__row">
-          <div className="c-table__row-item log-batting__row-item">
-            <div>{item.date || "-"}</div>
-          </div>
-          <div className="c-table__row-item log-batting__row-item">
-            <div>{item.pitcher_name || "-"}</div>
-          </div>
-          <div className="c-table__row-item log-batting__row-item">
-            <div>{item.pitcher_handedness || "-"}</div>
-          </div>
-          <div className="c-table__row-item log-batting__row-item">
-            <div>{item.pitch_type || "-"}</div>
-          </div>
-          <div className="c-table__row-item log-batting__row-item">
-            <div>{item.pitch_call || "-"}</div>
-          </div>
-        </div>
-      ))
+      items.map((item, index) => <BattingLogRow key={index} item={item} />)
     ) : (
       <div className="log__row-empty">
         <div>{"There's no info yet!"}</div>

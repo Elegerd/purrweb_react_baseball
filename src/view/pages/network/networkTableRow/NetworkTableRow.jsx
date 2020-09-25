@@ -20,11 +20,11 @@ const NetworkTableRow = ({ item, onClickFavorite }) => {
         {item.school ? item.school.name : "-"}
       </div>
       <div className="network-row__item">
-          <div className="network-row__item-v">
-              {item.teams.length
-                  ? item.teams.map((team) => team.name).join(", ")
-                  : "-"}
-          </div>
+        <div className="network-row__item-v">
+          {item.teams.length
+            ? item.teams.map((team) => team.name).join(", ")
+            : "-"}
+        </div>
       </div>
       <div className="network-row__item">{item.age || "-"}</div>
       <div className="network-row__item">
