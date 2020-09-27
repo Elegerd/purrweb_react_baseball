@@ -20,16 +20,12 @@ const PersonalProfileBlock = ({
           defaultValue={profile.age}
           name="age"
           validate={required}
-          render={(props) => (
-            <CustomInput
-              type="number"
-              step="1"
-              min="0"
-              placeholder={"Age *"}
-              title={"Age *"}
-              {...props}
-            />
-          )}
+          type="number"
+          step="1"
+          min="0"
+          placeholder={"Age *"}
+          title={"Age *"}
+          component={CustomInput}
         />
       </div>
       <div className="edit-profile__feet-and-inches">
@@ -38,31 +34,23 @@ const PersonalProfileBlock = ({
             defaultValue={profile.feet}
             name="feet"
             validate={required}
-            render={(props) => (
-              <CustomInput
-                type="number"
-                step="1"
-                min="0"
-                placeholder={"Feet *"}
-                title={"Feet *"}
-                {...props}
-              />
-            )}
+            type="number"
+            step="1"
+            min="0"
+            placeholder={"Feet *"}
+            title={"Feet *"}
+            component={CustomInput}
           />
           <Field
             defaultValue={profile.inches}
             name="inches"
             validate={required}
-            render={(props) => (
-              <CustomInput
-                step="1"
-                min="0"
-                type="number"
-                placeholder={"Inches *"}
-                title={"Inches *"}
-                {...props}
-              />
-            )}
+            step="1"
+            min="0"
+            type="number"
+            placeholder={"Inches *"}
+            title={"Inches *"}
+            component={CustomInput}
           />
         </div>
       </div>
@@ -71,16 +59,12 @@ const PersonalProfileBlock = ({
           defaultValue={profile.weight}
           name="weight"
           validate={required}
-          render={(props) => (
-            <CustomInput
-              type="number"
-              step="1"
-              min="1"
-              placeholder={"Weight *"}
-              title={"Weight *"}
-              {...props}
-            />
-          )}
+          type="number"
+          step="1"
+          min="1"
+          placeholder={"Weight *"}
+          title={"Weight *"}
+          component={CustomInput}
         />
       </div>
       <div className="edit-profile__throws-and-bats">
@@ -89,27 +73,19 @@ const PersonalProfileBlock = ({
             name="throws_hand"
             validate={required}
             defaultValue={throws_hand}
-            render={(props) => (
-              <CustomSelect
-                title={"Throws *"}
-                placeholder={"Throws *"}
-                options={throwAndBatOptions}
-                {...props}
-              />
-            )}
+            title={"Throws *"}
+            placeholder={"Throws *"}
+            options={throwAndBatOptions}
+            component={CustomSelect}
           />
           <Field
             name="bats_hand"
             validate={required}
             defaultValue={bats_hand}
-            render={(props) => (
-              <CustomSelect
-                title={"Bats *"}
-                placeholder={"Bats *"}
-                options={throwAndBatOptions}
-                {...props}
-              />
-            )}
+            title={"Bats *"}
+            placeholder={"Bats *"}
+            options={throwAndBatOptions}
+            component={CustomSelect}
           />
         </div>
       </div>

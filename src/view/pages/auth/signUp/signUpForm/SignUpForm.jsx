@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { signUp } from "@ducks/auth/routines";
 import { required } from "@helpers/validators";
 import { getAuthIsLoading } from "@ducks/auth/selector";
+import CustomInput from "@commonComponents/customInput/CustomInput";
 import PropTypes from "prop-types";
 import "./signUpForm.css";
 
@@ -37,14 +38,9 @@ const SignUpForm = ({ role }) => {
                 name="email"
                 type="email"
                 validate={required}
-                render={({ input, meta }) => (
-                  <div>
-                    <input placeholder="Email" {...input} />
-                    {meta.error && meta.touched && (
-                      <span className="error">{meta.error}</span>
-                    )}
-                  </div>
-                )}
+                placeholder="Email"
+                title={"Email"}
+                component={CustomInput}
               />
             </div>
             <span className="sf-input__icon">
@@ -56,15 +52,10 @@ const SignUpForm = ({ role }) => {
               <Field
                 name="password"
                 type="password"
+                placeholder="Password"
+                title={"Password"}
                 validate={required}
-                render={({ input, meta }) => (
-                  <div>
-                    <input placeholder="Password" {...input} />
-                    {meta.error && meta.touched && (
-                      <span className="error">{meta.error}</span>
-                    )}
-                  </div>
-                )}
+                component={CustomInput}
               />
             </div>
             <span className="sf-input__icon">
@@ -76,15 +67,10 @@ const SignUpForm = ({ role }) => {
               <Field
                 name="password_confirmation"
                 type="password"
+                placeholder="Confirm Password"
+                title={"Confirm Password"}
                 validate={required}
-                render={({ input, meta }) => (
-                  <div>
-                    <input placeholder="Confirm Password" {...input} />
-                    {meta.error && meta.touched && (
-                      <span className="error">{meta.error}</span>
-                    )}
-                  </div>
-                )}
+                component={CustomInput}
               />
             </div>
             <span className="sf-input__icon">

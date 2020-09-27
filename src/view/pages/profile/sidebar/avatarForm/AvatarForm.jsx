@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Form, Field } from "react-final-form";
+import AvatarInput from "./avatarInput/AvatarInput";
 import PropTypes from "prop-types";
-import { toBase64 } from "@helpers/utilities";
 import "./avatarForm.css";
 
 const AvatarForm = ({ profile }) => {
@@ -30,30 +30,13 @@ const AvatarForm = ({ profile }) => {
               <div className="choose-avatar">
                 <div className="choose-avatar__container">
                   <div className="choose-avatar__input">
-                    <Field name="avatarFile" type="file">
-                      {({ input: { value, onChange, ...input }, meta }) => {
-                        const handleChange = async ({ target }) => {
-                          const file = target.files.length
-                            ? target.files[0]
-                            : undefined;
-                          file.base64 = await toBase64(file);
-                          onChange(file);
-                        };
-                        return (
-                          <>
-                            <input
-                              id="avatar-file"
-                              accept="image/png,image/jpeg,image/jpg"
-                              onChange={handleChange}
-                              {...input}
-                            />
-                            {meta.error && meta.touched && (
-                              <span className="error">{meta.error}</span>
-                            )}
-                          </>
-                        );
-                      }}
-                    </Field>
+                    <Field
+                      name="avatarFile"
+                      type="file"
+                      id="avatar-file"
+                      accept="image/png,image/jpeg,image/jpg"
+                      component={AvatarInput}
+                    />
                   </div>
                   {isChooseAvatar && (
                     <div className="file-name">

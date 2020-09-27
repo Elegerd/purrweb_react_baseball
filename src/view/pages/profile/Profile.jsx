@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "@view/pages/profile/sidebar/Sidebar";
 import { getProfile, getProfileIsLoading } from "@ducks/profile/selector";

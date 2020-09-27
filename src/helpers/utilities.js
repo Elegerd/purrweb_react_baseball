@@ -75,3 +75,6 @@ export const getRequiredProfileFields = (profile) => {
     facilities: profile.facilities,
   };
 };
+
+export const getDefaultValue = (options, value) =>
+  options.find((option) => option.value === value);

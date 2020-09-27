@@ -2,17 +2,17 @@ import React, { memo } from "react";
 import { letterToUppercase } from "@helpers/utilities";
 import PropTypes from "prop-types";
 
+const renderSchoolInfoItem = (title, value) => {
+  return (
+    <div className="school-info__item">
+      <div className="item__title">{title}</div>
+      <div className="item__value">{value}</div>
+    </div>
+  );
+};
+
 const SchoolInfo = ({ profile }) => {
   const { school, school_year, teams, facilities, biography } = profile;
-
-  const renderSchoolInfoItem = (title, value) => {
-    return (
-      <div className="school-info__item">
-        <div className="item__title">{title}</div>
-        <div className="item__value">{value}</div>
-      </div>
-    );
-  };
 
   return (
     <div className="school-info">

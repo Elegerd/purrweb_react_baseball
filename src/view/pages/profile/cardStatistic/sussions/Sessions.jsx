@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CustomDatePicker from "@commonComponents/customDatePicker/CustomDatePicker";
 import { Calendar } from "@commonComponents/svg";
@@ -39,18 +39,25 @@ const Sessions = () => {
     );
   };
 
-  const renderMenuType = () => (
-    <Menu
-      selectable={false}
-      onClick={handleOnClickItem}
-      className="dropdown-panel dropdown-statistic"
-    >
-      {sessionTypes.map((item, index) => (
-        <MenuItem className="dropdown-panel__item" data-item={item} key={index}>
-          {item}
-        </MenuItem>
-      ))}
-    </Menu>
+  const renderMenuType = useCallback(
+    () => (
+      <Menu
+        selectable={false}
+        onClick={handleOnClickItem}
+        className="dropdown-panel dropdown-statistic"
+      >
+        {sessionTypes.map((item, index) => (
+          <MenuItem
+            className="dropdown-panel__item"
+            data-item={item}
+            key={index}
+          >
+            {item}
+          </MenuItem>
+        ))}
+      </Menu>
+    ),
+    [sessionTypes, handleOnClickItem]
   );
 
   const handleOnClickClear = (e) => {

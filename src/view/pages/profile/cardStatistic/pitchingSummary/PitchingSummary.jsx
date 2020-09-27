@@ -5,10 +5,36 @@ import {
   getPitchingSummary,
   getPitchingSummaryIsLoading,
 } from "@ducks/pitchingSummary/selector";
+import { pitchingSummaryHeader } from "@constants";
 import Spinner from "@commonComponents/spinner/Spinner";
 import PitchingSummaryRow from "./pitchingSummaryRow/PitchingSummaryRow";
 import PropTypes from "prop-types";
 import "./pitchingSummary.css";
+
+const renderRows = (items) => {
+  const filteredItems = items.filter((item) => item.pitch_type);
+  return filteredItems.length ? (
+    filteredItems.map((item, index) => (
+      <PitchingSummaryRow key={index} item={item} />
+    ))
+  ) : (
+    <div className="summary__row-empty">
+      <div>{"There's no info yet!"}</div>
+    </div>
+  );
+};
+
+const renderHeader = () => (
+  <div className="c-table__header">
+    <div className="ss-table__header summary-pitching__header">
+      {pitchingSummaryHeader.map((item, index) => (
+        <div key={index} className="summary-pitching__header-item">
+          {item}
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
 const PitchingSummary = () => {
   const dispatch = useDispatch();
@@ -18,29 +44,6 @@ const PitchingSummary = () => {
   useEffect(() => {
     dispatch(fetchPitchingSummaryData({}));
   }, []);
-
-  const renderHeader = () => (
-    <div className="c-table__header">
-      <div className="ss-table__header summary-pitching__header">
-        <div className="summary-pitching__header-item">Pitch Type</div>
-        <div className="summary-pitching__header-item">Velocity</div>
-        <div className="summary-pitching__header-item">Spin Rate</div>
-      </div>
-    </div>
-  );
-
-  const renderRows = (items) => {
-    const filteredItems = items.filter((item) => item.pitch_type);
-    return filteredItems.length ? (
-      filteredItems.map((item, index) => (
-        <PitchingSummaryRow key={index} item={item} />
-      ))
-    ) : (
-      <div className="summary__row-empty">
-        <div>{"There's no info yet!"}</div>
-      </div>
-    );
-  };
 
   if (isLoadingPitchingSummary)
     return (

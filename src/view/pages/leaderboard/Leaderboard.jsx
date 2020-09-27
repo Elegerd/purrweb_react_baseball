@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import BattingLeaderboard from "./BattingLeaderboard/BattingLeaderboard";
-import PitchingLeaderboard from "./PitchingLeaderboard/PitchingLeaderboard";
+import BattingLeaderboard from "./battingLeaderboard/BattingLeaderboard";
+import PitchingLeaderboard from "./pitchingLeaderboard/PitchingLeaderboard";
 import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
 import HiddenInput from "@commonComponents/hiddenInput/HiddenInput";
 import CustomMenu from "@commonComponents/customMenu/CustomMenu";

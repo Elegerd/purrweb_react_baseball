@@ -60,46 +60,34 @@ const SchoolProfileBlock = ({
         <Field
           defaultValue={selectedSchool}
           name="school"
-          render={(props) => (
-            <CustomSelect
-              isLoading={isLoadingSchool}
-              isSearchable={true}
-              placeholder={"School"}
-              options={schoolOptions}
-              {...props}
-            />
-          )}
+          isLoading={isLoadingSchool}
+          isSearchable={true}
+          placeholder={"School"}
+          options={schoolOptions}
+          component={CustomSelect}
         />
       </div>
       <div className="edit-profile__school-year">
         <Field
           name="school_year"
           defaultValue={school_year}
-          render={(props) => (
-            <CustomSelect
-              isSearchable={true}
-              placeholder={"School Year"}
-              options={schoolYearOptions}
-              {...props}
-            />
-          )}
+          isSearchable={true}
+          placeholder={"School Year"}
+          options={schoolYearOptions}
+          component={CustomSelect}
         />
       </div>
       <div className="edit-profile__teams">
         <Field
           defaultValue={selectedTeams}
           name="teams"
-          render={(props) => (
-            <CustomSelect
-              isLoading={isLoadingTeams}
-              isMulti={true}
-              isClearable={false}
-              isSearchable={true}
-              placeholder={"Team"}
-              options={teamOptions}
-              {...props}
-            />
-          )}
+          isLoading={isLoadingTeams}
+          isMulti={true}
+          isClearable={false}
+          isSearchable={true}
+          placeholder={"Team"}
+          options={teamOptions}
+          component={CustomSelect}
         />
       </div>
     </>

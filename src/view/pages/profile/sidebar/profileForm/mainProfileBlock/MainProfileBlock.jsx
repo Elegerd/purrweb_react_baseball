@@ -18,53 +18,37 @@ const MainProfileBlock = ({
           type="text"
           validate={required}
           defaultValue={profile.first_name}
-          render={(props) => (
-            <CustomInput
-              placeholder={"First Name *"}
-              title={"First Name *"}
-              {...props}
-            />
-          )}
+          placeholder={"First Name *"}
+          title={"First Name *"}
+          component={CustomInput}
         />
         <Field
           defaultValue={profile.last_name}
           name="last_name"
           type="text"
           validate={required}
-          render={(props) => (
-            <CustomInput
-              placeholder={"Last Name *"}
-              title={"Last Name *"}
-              {...props}
-            />
-          )}
+          placeholder={"Last Name *"}
+          title={"Last Name *"}
+          component={CustomInput}
         />
       </div>
       <div className="edit-profile__position">
         <Field
           name="position"
           defaultValue={position}
-          render={(props) => (
-            <CustomSelect
-              placeholder={"Position in Game *"}
-              title={"Position in Game *"}
-              options={positionOptions}
-              {...props}
-            />
-          )}
+          placeholder={"Position in Game *"}
+          title={"Position in Game *"}
+          options={positionOptions}
+          component={CustomSelect}
         />
       </div>
       <div className="edit-profile__position2">
         <Field
           name="position2"
           defaultValue={position2}
-          render={(props) => (
-            <CustomSelect
-              placeholder={"Secondary Position in Game"}
-              options={[{ value: undefined, label: "-" }, ...positionOptions]}
-              {...props}
-            />
-          )}
+          placeholder={"Secondary Position in Game"}
+          options={[{ value: undefined, label: "-" }, ...positionOptions]}
+          component={CustomSelect}
         />
       </div>
     </>

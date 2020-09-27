@@ -33,17 +33,13 @@ const FacilityProfileBlock = ({ profileFacilities, facilities }) => {
         <Field
           defaultValue={selectedFacilities}
           name="facilities"
-          render={(props) => (
-            <CustomSelect
-              isLoading={isLoadingFacilities}
-              isMulti={true}
-              isClearable={false}
-              isSearchable={true}
-              placeholder={"Facility"}
-              options={facultyOptions}
-              {...props}
-            />
-          )}
+          isLoading={isLoadingFacilities}
+          isMulti={true}
+          isClearable={false}
+          isSearchable={true}
+          placeholder={"Facility"}
+          options={facultyOptions}
+          component={CustomSelect}
         />
       </div>
     </>

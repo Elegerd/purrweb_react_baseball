@@ -34,19 +34,14 @@ export const sessionTypes = ["None", "Game", "Practice"];
 
 export const cardStatisticItems = ["Summary", "Charts", "Log"];
 
-export const initProfile = {
-  first_name: "",
-  last_name: "",
-  biography: "",
-  teams: [],
-  facilities: [],
-  throws_hand: "none",
-  bats_hand: "none",
-  position: null,
-  position2: null,
-  school: null,
-  school_year: null,
-};
+export const pitchingSummaryHeader = ["Pitch Type", "Velocity", "Spin Rate"];
+
+export const battingSummaryHeader = [
+  "Pitch Type",
+  "Distance",
+  "Launch Angle",
+  "Exit Velocity",
+];
 
 export const topBattingType = [
   { id: 0, title: "Distance", field: "distance" },

@@ -13,12 +13,8 @@ const AboutProfileBlock = ({ profile }) => {
         <Field
           defaultValue={profile.biography}
           name="biography"
-          render={(props) => (
-            <CustomTextarea
-              placeholder={"Describe yourself in a few words"}
-              {...props}
-            />
-          )}
+          placeholder={"Describe yourself in a few words"}
+          component={CustomTextarea}
         />
       </div>
     </>

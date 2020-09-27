@@ -29,7 +29,7 @@
   max-width: 450px;
 }
 
-.sign-form input {
+.sign-form .custom-input input {
   display: block;
   width: 100%;
   height: 50px;
@@ -43,7 +43,7 @@
   border: 1px solid transparent;
 }
 
-.sign-form input:focus {
+.sign-form .custom-input input:focus {
   outline: none;
   border: 1px solid #48bbff;
 }

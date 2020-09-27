@@ -1,46 +1,15 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { signOut } from "@ducks/auth/routines";
+import { useSelector } from "react-redux";
 import { BaseballCloud } from "@commonComponents/svg";
 import { TriangularArrow } from "@commonComponents/svg";
 import { Link } from "react-router-dom";
 import { getProfile } from "@ducks/profile/selector";
 import ButtonDropdown from "@commonComponents/buttonDropdown/ButtonDropdown";
-import Menu, { Item as MenuItem } from "rc-menu";
+import HeaderMenu from "./headerMenu/HeaderMenu";
 import "./header.css";
 
 const Header = () => {
-  const history = useHistory();
   const profile = useSelector(getProfile);
-  const dispatch = useDispatch();
-
-  const handleOnClickLogOut = (v) => {
-    dispatch(signOut());
-  };
-
-  const handleOnClickProfile = (v) => {
-    history.push("/profile");
-  };
-
-  const renderMenuHeader = () => (
-    <Menu selectable={false} className="dropdown-panel dropdown-header">
-      <MenuItem
-        onClick={handleOnClickProfile}
-        className="dropdown-panel__item"
-        key="1"
-      >
-        My Profile
-      </MenuItem>
-      <MenuItem
-        onClick={handleOnClickLogOut}
-        className="dropdown-panel__item"
-        key="2"
-      >
-        Log Out
-      </MenuItem>
-    </Menu>
-  );
 
   return (
     <header className={"header"}>
@@ -74,7 +43,7 @@ const Header = () => {
                 <div className="header-panel__dropdown-panel">
                   <ButtonDropdown
                     trigger={["click"]}
-                    overlay={renderMenuHeader()}
+                    overlay={() => <HeaderMenu />}
                     text={`${profile.first_name} ${profile.last_name}`}
                     buttonClass={"dropdown-panel__button"}
                     arrowContainerClass={"dropdown-panel__arrow"}

@@ -14,7 +14,7 @@ import FacilityProfileBlock from "./facilityProfileBlock/FacilityProfileBlock";
 import AboutProfileBlock from "./aboutProfileBlock/AboutProfileBlock";
 import { updateProfile } from "@ducks/profile/routines";
 import { getProfileIsRequesting } from "@ducks/profile/selector";
-import { setProfileValidField } from "@helpers/utilities";
+import { setProfileValidField, getDefaultValue } from "@helpers/utilities";
 import PropTypes from "prop-types";
 import "./profileForm.css";
 
@@ -46,9 +46,6 @@ const ProfileForm = ({
       position2: getDefaultValue(positionOptions, profile.position2),
     });
   }, []);
-
-  const getDefaultValue = (options, value) =>
-    options.find((option) => option.value === value);
 
   return (
     <Form

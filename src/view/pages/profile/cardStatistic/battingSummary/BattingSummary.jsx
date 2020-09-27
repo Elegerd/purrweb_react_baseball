@@ -5,10 +5,36 @@ import {
   getBattingSummary,
   getBattingSummaryIsLoading,
 } from "@ducks/battingSummary/selector";
+import { battingSummaryHeader } from "@constants";
 import Spinner from "@commonComponents/spinner/Spinner";
 import BattingSummaryRow from "./battingSummaryRow/BattingSummaryRow";
 import PropTypes from "prop-types";
 import "./battingSummary.css";
+
+const renderRows = (items) => {
+  const filteredItems = items.filter((item) => item.pitch_type);
+  return filteredItems.length ? (
+    filteredItems.map((item, index) => (
+      <BattingSummaryRow key={index} item={item} />
+    ))
+  ) : (
+    <div className="summary__row-empty">
+      <div>{"There's no info yet!"}</div>
+    </div>
+  );
+};
+
+const renderHeader = () => (
+  <div className="c-table__header">
+    <div className="ss-table__header">
+      {battingSummaryHeader.map((item, index) => (
+        <div key={index} className="summary-batting__header-item">
+          {index}
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
 const BattingSummary = () => {
   const dispatch = useDispatch();
@@ -18,30 +44,6 @@ const BattingSummary = () => {
   useEffect(() => {
     dispatch(fetchBattingSummaryData({}));
   }, []);
-
-  const renderHeader = () => (
-    <div className="c-table__header">
-      <div className="ss-table__header">
-        <div className="summary-batting__header-item">Pitch Type</div>
-        <div className="summary-batting__header-item">Distance</div>
-        <div className="summary-batting__header-item">Launch Angle</div>
-        <div className="summary-batting__header-item">Exit Velocity</div>
-      </div>
-    </div>
-  );
-
-  const renderRows = (items) => {
-    const filteredItems = items.filter((item) => item.pitch_type);
-    return filteredItems.length ? (
-      filteredItems.map((item, index) => (
-        <BattingSummaryRow key={index} item={item} />
-      ))
-    ) : (
-      <div className="summary__row-empty">
-        <div>{"There's no info yet!"}</div>
-      </div>
-    );
-  };
 
   if (isLoadingBattingSummary)
     return (

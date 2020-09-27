@@ -73,31 +73,34 @@ const CardStatistic = ({ profile, isUserProfile }) => {
     [cardStatisticItems]
   );
 
-  const renderTabPanels = () => (
-    <>
-      {isPitching && (
+  const renderTabPanels = useCallback(
+    () => (
+      <>
+        {isPitching && (
+          <TabPanel>
+            {selectedItem === "0" && <PitchingSummary />}
+            {selectedItem === "1" && <PitchingCharts />}
+            {selectedItem === "2" && <PitchingLog />}
+          </TabPanel>
+        )}
+        {isBatting && (
+          <TabPanel>
+            {selectedItem === "0" && <BattingSummary />}
+            {selectedItem === "1" && <BattingCharts />}
+            {selectedItem === "2" && <BattingLog />}
+          </TabPanel>
+        )}
+        {isUserProfile && (
+          <TabPanel>
+            <Sessions />
+          </TabPanel>
+        )}
         <TabPanel>
-          {selectedItem === "0" && <PitchingSummary />}
-          {selectedItem === "1" && <PitchingCharts />}
-          {selectedItem === "2" && <PitchingLog />}
+          <Comparison profile={profile} />
         </TabPanel>
-      )}
-      {isBatting && (
-        <TabPanel>
-          {selectedItem === "0" && <BattingSummary />}
-          {selectedItem === "1" && <BattingCharts />}
-          {selectedItem === "2" && <BattingLog />}
-        </TabPanel>
-      )}
-      {isUserProfile && (
-        <TabPanel>
-          <Sessions />
-        </TabPanel>
-      )}
-      <TabPanel>
-        <Comparison profile={profile} />
-      </TabPanel>
-    </>
+      </>
+    ),
+    [isPitching, isBatting, isUserProfile, selectedItem, profile]
   );
 
   return (

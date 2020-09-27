@@ -8,13 +8,11 @@ import {
   getBattingLeaderboard,
   getBattingLeaderboardIsLoading,
 } from "@ducks/battingLeaderboard/selector";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as faHeartO } from "@fortawesome/free-regular-svg-icons";
-import { Link } from "react-router-dom";
 import { getObjectById } from "@helpers/utilities";
 import Spinner from "@commonComponents/spinner/Spinner";
 import { updateFavoriteProfileRequest } from "@helpers/request/profileRequest";
+import LeaderboardTableHeader from "../leaderboardTableHeader/LeaderboardTableHeader";
+import BattingLeaderboardTableRow from "./battingLeaderboardTableRow/BattingLeaderboardTableRow";
 import PropTypes from "prop-types";
 import "./battingLeaderboard.css";
 
@@ -45,60 +43,14 @@ const BattingLeaderboard = ({ filter }) => {
     );
   };
 
-  const renderHeader = useCallback(
-    () => (
-      <div className="c-table__header">
-        <div className="ss-table__header leaderboard-table__header">
-          {leaderboardBattingHeader.map((item, index) => (
-            <div
-              className="leaderboard-batting__header-item leaderboard-header-item"
-              key={index}
-            >
-              {item}
-            </div>
-          ))}
-        </div>
-      </div>
-    ),
-    [leaderboardBattingHeader]
-  );
-
   const renderRows = useCallback(() => {
     return battingLeaderboard.map((item, index) => (
-      <div
+      <BattingLeaderboardTableRow
         key={index}
-        className="leaderboard-row leaderboard-batting__row c-table__row"
-      >
-        <div className="leaderboard-row__item">{index + 1}</div>
-        <div className="leaderboard-row__item">
-          <Link
-            className="leaderboard-row__link"
-            to={`/profile/${item.batter_datraks_id}`}
-          >
-            {item.batter_name}
-          </Link>
-        </div>
-        <div className="leaderboard-row__item">{item.age || "-"}</div>
-        <div className="leaderboard-row__item">
-          {item.school ? item.school.name : "-"}
-        </div>
-        <div className="leaderboard-row__item">
-          {item.teams.length ? item.teams[0].name : "-"}
-        </div>
-        <div className="leaderboard-row__item">{item.exit_velocity || "-"}</div>
-        <div className="leaderboard-row__item">{item.launch_angle || "-"}</div>
-        <div className="leaderboard-row__item">{item.distance || "-"}</div>
-        <div className="leaderboard-row__item">
-          <FontAwesomeIcon
-            className="icon blue-icon icon-button"
-            onClick={handleOnClickFavorite({
-              profile_id: item.batter_datraks_id,
-              favorite: !item.favorite,
-            })}
-            icon={item.favorite ? faHeart : faHeartO}
-          />
-        </div>
-      </div>
+        index={index + 1}
+        item={item}
+        onClickFavorite={handleOnClickFavorite}
+      />
     ));
   }, [battingLeaderboard]);
 
@@ -119,7 +71,10 @@ const BattingLeaderboard = ({ filter }) => {
         />
       </div>
       <div className="leaderboard__table c-table">
-        {renderHeader()}
+        <LeaderboardTableHeader
+          items={leaderboardBattingHeader}
+          itemClass={"leaderboard-batting__header-item"}
+        />
         {isLoadingLeaderboard ? (
           <div className="leaderboard__spinner-container">
             <Spinner />

@@ -6,6 +6,7 @@ import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { signIn } from "@ducks/auth/routines";
 import { getAuthIsLoading } from "@ducks/auth/selector";
+import CustomInput from "@commonComponents/customInput/CustomInput";
 import "./signInForm.css";
 
 const SignInForm = () => {
@@ -26,8 +27,9 @@ const SignInForm = () => {
               <Field
                 name="email"
                 type="email"
-                component="input"
                 placeholder="Email"
+                title={"Email"}
+                component={CustomInput}
               />
             </div>
             <span className="sf-input__icon">
@@ -39,8 +41,9 @@ const SignInForm = () => {
               <Field
                 name="password"
                 type="password"
-                component="input"
                 placeholder="Password"
+                title={"Password"}
+                component={CustomInput}
               />
             </div>
             <span className="sf-input__icon">
