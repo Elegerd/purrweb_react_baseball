@@ -21,7 +21,7 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <div className="main-content">
+      <div id="main" className="main-content">
         {isLoadingProfile ? <Spinner /> : <Routes auth={auth} />}
       </div>
       <Footer />

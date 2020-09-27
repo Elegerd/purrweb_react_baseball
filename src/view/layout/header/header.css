@@ -7,6 +7,10 @@ header {
   color: #788b99;
 }
 
+#header {
+  position: relative;
+}
+
 .header {
   background: #fff;
   background: var(--primaryColor, #fff);

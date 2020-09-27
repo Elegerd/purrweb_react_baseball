@@ -52,6 +52,10 @@ body {
     "ft ft";
 }
 
+#container {
+  position: relative;
+}
+
 [tabindex],
 a,
 area,
@@ -332,4 +336,10 @@ button {
 
 .fa-heart:before {
   content: "\f004";
+}
+
+.dropdown-panel:focus,
+.dropdown-panel:active,
+.dropdown-panel:active:focus {
+  outline: none;
 }

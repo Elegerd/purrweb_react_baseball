@@ -104,7 +104,7 @@ const Network = () => {
   }, [profileList]);
 
   return (
-    <div className="network__container">
+    <div id="container" className="network__container">
       <div className="network">
         <div className="network__header">
           <div className="network__header-title">Network</div>

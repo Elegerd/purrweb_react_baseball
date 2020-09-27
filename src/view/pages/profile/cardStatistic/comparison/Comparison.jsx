@@ -139,6 +139,7 @@ const Comparison = ({ profile: viewedProfile }) => {
                 "dropdown-comparison__hidden": !profileNames.length,
               })}
               trigger={["click"]}
+              animation={"slide-up"}
               overlay={renderMenuUsers()}
             >
               {renderInput()}

@@ -42,7 +42,7 @@ const Profile = ({ match: { params } }) => {
         <div className="profile-error">{viewedProfileError}</div>
       ) : (
         <div className="profile">
-          <div className="profile__container">
+          <div id="container" className="profile__container">
             <div className="profile__content">
               <Sidebar
                 profile={isUserProfile ? currentProfile : viewedProfile}

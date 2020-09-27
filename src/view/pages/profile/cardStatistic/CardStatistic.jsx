@@ -109,14 +109,22 @@ const CardStatistic = ({ profile, isUserProfile }) => {
         <TabList>
           {isPitching && (
             <Tab ref={tabPitchingRef}>
-              <Dropdown overlay={renderMenuPitching()}>
+              <Dropdown
+                animation={"slide-up"}
+                overlay={renderMenuPitching()}
+                getPopupContainer={() => document.getElementById("container")}
+              >
                 <span>Pitching</span>
               </Dropdown>
             </Tab>
           )}
           {isBatting && (
             <Tab ref={tabBattingRef}>
-              <Dropdown overlay={renderMenuBatting()}>
+              <Dropdown
+                animation={"slide-up"}
+                overlay={renderMenuBatting()}
+                getPopupContainer={() => document.getElementById("container")}
+              >
                 <span>Batting</span>
               </Dropdown>
             </Tab>

@@ -8,6 +8,7 @@ const ButtonDropdown = ({
   arrowComponent: ArrowComponent = Arrow,
   arrowContainerClass = "",
   buttonClass = "",
+  popupContainerId = "container",
   ...rest
 }) => {
   const [visible, setVisible] = useState(false);
@@ -19,8 +20,10 @@ const ButtonDropdown = ({
   return (
     <Dropdown
       {...rest}
+      animation={"slide-up"}
       onVisibleChange={onVisibleChange}
       onOverlayClick={onOverlayClick}
+      getPopupContainer={() => document.getElementById(popupContainerId)}
     >
       <button className={buttonClass}>
         {text}
@@ -38,6 +41,7 @@ const ButtonDropdown = ({
 };
 
 ButtonDropdown.propTypes = {
+  popupContainerId: PropTypes.string,
   text: PropTypes.string,
   arrowComponent: PropTypes.elementType,
   arrowContainerClass: PropTypes.string,

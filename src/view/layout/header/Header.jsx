@@ -12,7 +12,7 @@ const Header = () => {
   const profile = useSelector(getProfile);
 
   return (
-    <header className={"header"}>
+    <header id={"header"} className={"header"}>
       <div className={"header__logo-bs"}>
         <div className={"logo-bs"}>
           <Link to={"/profile"}>
@@ -48,6 +48,7 @@ const Header = () => {
                     buttonClass={"dropdown-panel__button"}
                     arrowContainerClass={"dropdown-panel__arrow"}
                     arrowComponent={TriangularArrow}
+                    popupContainerId={"header"}
                   />
                 </div>
               </div>
